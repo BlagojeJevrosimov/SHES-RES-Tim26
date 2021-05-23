@@ -15,31 +15,32 @@ namespace BatteryComponent
         static void Main(string[] args)
         {
             double capacities = 0;
+            Rezim rezimRada = Rezim.Idle;
             //preuzeti vrednosti iz bafera iz baterije i dodeliti pravim poljima
             Thread server = new Thread(Server);
             server.Start();
 
-            ChannelFactory<ISHESBattery> channel = new ChannelFactory<ISHESBattery>("IBatteryClient");
+            ChannelFactory<ISHESBattery> channel = new ChannelFactory<ISHESBattery>("ISHESBattery");
             ISHESBattery proxy = channel.CreateChannel();
 
             while (true)
             {
-                Batteries.rezimRada = Batteries.bufferRezim;
-                double[] capacities = { };
-                int i = 0;
+                capacities = 0;
+                rezimRada = Batteries.bufferRezim;
+
                 foreach (Common.Battery battery in Batteries.batteries)
                 {
-                    capacities[i++] = battery.Capacity;
+                    capacities += battery.Capacity;
 
-                    if (Batteries.rezimRada == Rezim.Punjenje && battery.Capacity <= battery.MaxPower - 1)
+                    if (rezimRada == Rezim.Punjenje && battery.Capacity <= battery.MaxPower - 1)
                     {
                         battery.Capacity++;
                     }
-                    else if (Batteries.rezimRada == Rezim.Praznjenje && battery.Capacity >= 1)
+                    else if (rezimRada == Rezim.Praznjenje && battery.Capacity >= 1)
                     {
                         battery.Capacity--;
                     }
-                    proxy.SendData(capacities, Batteries.rezimRada);
+                    proxy.SendData(capacities, rezimRada);
                 }
                 Thread.Sleep(1000);
             }
