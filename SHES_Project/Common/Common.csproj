@@ -46,8 +46,8 @@
     <Compile Include="Consumer.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="EVCharger.cs" />
-    <Compile Include="IBatterySHES.cs" />
-    <Compile Include="ISHESBattery.cs" />
+    <Compile Include="ISHESSolarPanel.cs" />
+    <Compile Include="ISolarPanelGUI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SHES.cs" />
     <Compile Include="SolarPanel.cs" />

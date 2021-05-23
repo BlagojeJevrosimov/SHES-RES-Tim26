@@ -13,35 +13,38 @@ namespace SHES
     {
         static void Main(string[] args)
         {
-            Thread batteryServer = new Thread(BatteryServerThread);
-            batteryServer.Start();
+            double solarPanelsOutput = 0;
 
-            ChannelFactory<IBatterySHES> batteryChannel = new ChannelFactory<IBatterySHES>("BatterySHES");
-            IBatterySHES batteryProxy = batteryChannel.CreateChannel();
 
-            //ove vrednosti se prosledjuju od UI-a
-            int num = 1;
-            double[] power = { 100 };
-            batteryProxy.InitializeBatteries(num, power);
 
-            //ovde ide logika kada se prazne i pune baterije
-            //batteryProxy.SendRegime(Rezim.punjenje);
+
+            Thread solarPanelServer = new Thread(SolarPanelServerThread);
+            solarPanelServer.Start();
+
+            while (true)
+            {
+               
+                solarPanelsOutput = SHESSolarPanel.bufferPowerOutput;
+                Console.WriteLine(solarPanelsOutput);
+
+                Thread.Sleep(3000);
+            }
 
         }
-
-        static void BatteryServerThread()
+        static void SolarPanelServerThread()
         {
-            using (ServiceHost host = new ServiceHost(typeof(BatteryServer)))
+
+            using (ServiceHost host = new ServiceHost(typeof(SHESSolarPanel)))
             {
+
                 host.Open();
-                while (true)
-                {
-                    BatteryServer.capacity = BatteryServer.bufferCapacity;
-                    BatteryServer.rezim = BatteryServer.bufferRegime;
-                    //da li treba da spava???
-                    Thread.Sleep(1000);
-                }
+                while (true) ;
+
+
             }
         }
     }
+
 }
+   
+
