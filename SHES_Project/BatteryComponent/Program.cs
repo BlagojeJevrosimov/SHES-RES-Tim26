@@ -16,7 +16,7 @@ namespace BatteryComponent
         {
             double capacities = 0;
             Rezim rezimRada = Rezim.Idle;
-            //preuzeti vrednosti iz bafera iz baterije i dodeliti pravim poljima
+
             Thread server = new Thread(Server);
             server.Start();
 

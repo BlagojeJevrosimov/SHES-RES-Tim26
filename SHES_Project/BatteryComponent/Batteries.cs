@@ -11,7 +11,6 @@ namespace BatteryComponent
     public class Batteries : IBatterySHES
     {
         public static Rezim bufferRezim = Rezim.Idle;
-        public static Rezim rezimRada = Rezim.Idle;
         public static List<Common.Battery> batteries = new List<Common.Battery>();
 
         public void InitializeBatteries(int num, double[] maxPowers)
