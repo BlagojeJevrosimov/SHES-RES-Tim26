@@ -14,6 +14,7 @@ namespace BatteryComponent
     {
         static void Main(string[] args)
         {
+            double capacities = 0;
             //preuzeti vrednosti iz bafera iz baterije i dodeliti pravim poljima
             Thread server = new Thread(Server);
             server.Start();
@@ -29,9 +30,7 @@ namespace BatteryComponent
                 foreach (Common.Battery battery in Batteries.batteries)
                 {
                     capacities[i++] = battery.Capacity;
-                    //da li svaka baterija ima drugaciji rezim ???
-                    //napravljeno tako da se za sve salju odjednom podaci
-                    //baterije se pune ili prazne
+
                     if (Batteries.rezimRada == Rezim.Punjenje && battery.Capacity <= battery.MaxPower - 1)
                     {
                         battery.Capacity++;
