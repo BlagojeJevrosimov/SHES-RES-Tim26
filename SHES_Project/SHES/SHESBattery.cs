@@ -8,7 +8,7 @@ using static Common.Enums;
 
 namespace SHES
 {
-    public class BatteryServer : ISHESBattery
+    public class SHESBattery : ISHESBattery
     {
         public static double bufferCapacity;
         public static Rezim bufferRegime = Rezim.Idle;

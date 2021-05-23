@@ -43,10 +43,11 @@ namespace SHES
                 //ovde ide logika kada se prazne i pune baterije
                 batteryProxy.SendRegime(Rezim.Punjenje);
 
-                batteryCapacity = BatteryServer.bufferCapacity;
-                rezim = BatteryServer.bufferRegime;
+                batteryCapacity = SHESBattery.bufferCapacity;
+                rezim = SHESBattery.bufferRegime;
 
                 Console.WriteLine("Kapacitet baterija: " + batteryCapacity);
+                Console.WriteLine("Rezim baterija: " + rezim.ToString());
 
                 Thread.Sleep(3000);
             }
@@ -57,16 +58,13 @@ namespace SHES
 
             using (ServiceHost host = new ServiceHost(typeof(SHESSolarPanel)))
             {
-
                 host.Open();
                 while (true) ;
-
-
             }
         }
         static void BatteryServerThread()
         {
-            using (ServiceHost host = new ServiceHost(typeof(BatteryServer)))
+            using (ServiceHost host = new ServiceHost(typeof(SHESBattery)))
             {
                 host.Open();
                 while (true) ;

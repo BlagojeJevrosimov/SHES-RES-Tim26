@@ -21,10 +21,9 @@ namespace Common
         private string id;
         private double maxPower;
 
-
         public Battery()
         {
-
+            capacity = 0;
         }
 
         ~Battery()
@@ -38,7 +37,9 @@ namespace Common
         /// <param name="capacity"></param>
         public Battery(string id, double maxPower, int capacity)
         {
-
+            Id = id;
+            MaxPower = maxPower;
+            Capacity = capacity;
         }
 
         public int Capacity

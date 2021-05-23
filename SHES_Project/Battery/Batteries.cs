@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static Common.Enums;
 
-namespace BatteryComponent
+namespace Battery
 {
     public class Batteries : IBatterySHES
     {

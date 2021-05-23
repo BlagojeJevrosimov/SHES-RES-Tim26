@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.1401
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{A0DD15B1-AD3B-494C-B148-626F08A18CE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Battery", "BatteryComponent\Battery.csproj", "{2D0B71BD-A3C7-49D5-8590-ACFF84112A42}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Battery", "Battery\Battery.csproj", "{2D0B71BD-A3C7-49D5-8590-ACFF84112A42}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consumers", "Consumer\Consumers.csproj", "{C5E0CDCC-66E9-406E-AC35-EC9BBC1990A4}"
 EndProject

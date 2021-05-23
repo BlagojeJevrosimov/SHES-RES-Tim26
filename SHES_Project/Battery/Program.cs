@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using static Common.Enums;
 
-namespace BatteryComponent
+namespace Battery
 {
     class Program
     {
@@ -42,7 +42,10 @@ namespace BatteryComponent
                     }
                     proxy.SendData(capacities, rezimRada);
                 }
-                Thread.Sleep(1000);
+                Console.WriteLine("Kapacitet baterija: " + capacities);
+                Console.WriteLine("Rezim rada baterija: " + rezimRada.ToString());
+
+                Thread.Sleep(3000);
             }
         }
 
