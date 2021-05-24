@@ -16,13 +16,20 @@ namespace Common
 {
     public class EVCharger
     {
-
-        
-
+        private double maxPower;
+        private double capacity;
+        private Enums.Rezim rezim;
 
         public EVCharger()
         {
 
+        }
+
+        public EVCharger(double maxPower, double capacity, Enums.Rezim rezim)
+        {
+            MaxPower = maxPower;
+            Capacity = capacity;
+            Rezim = rezim;
         }
 
         ~EVCharger()
@@ -30,8 +37,8 @@ namespace Common
 
         }
 
-       
-        
-
+        public double MaxPower { get => maxPower; set => maxPower = value; }
+        public double Capacity { get => capacity; set => capacity = value; }
+        public Enums.Rezim Rezim { get => rezim; set => rezim = value; }
     }
 }

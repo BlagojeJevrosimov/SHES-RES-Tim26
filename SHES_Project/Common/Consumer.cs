@@ -36,6 +36,8 @@ namespace Common
         /// <param name="energyConsumption"></param>
         public Consumer(string id, double energyConsumption)
         {
+            this.EnergyConsumption = energyConsumption;
+            this.Id = id;
 
         }
 

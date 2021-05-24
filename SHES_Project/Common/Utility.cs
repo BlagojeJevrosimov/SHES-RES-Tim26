@@ -16,7 +16,7 @@ namespace Common
     public class Utility
     {
 
-        private bool powerDirection;
+        private double power;
         private double price;
 
 
@@ -25,9 +25,9 @@ namespace Common
 
         }
 
-        public Utility(bool pd, double price)
+        public Utility(int p, double price)
         {
-            PowerDirection = pd;
+            Power = p;
             Price = price;
         }
 
@@ -47,15 +47,15 @@ namespace Common
         /// <param name="amount"></param>
       
 
-        public bool PowerDirection
+        public double Power
         {
             get
             {
-                return powerDirection;
+                return power;
             }
             set
             {
-                powerDirection = value;
+                power = value;
             }
         }
 

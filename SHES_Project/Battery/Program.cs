@@ -22,7 +22,7 @@ namespace Battery
 
             ChannelFactory<ISHESBattery> channel = new ChannelFactory<ISHESBattery>("ISHESBattery");
             ISHESBattery proxy = channel.CreateChannel();
-
+            int counter = 0;
             while (true)
             {
                 capacities = 0;
@@ -32,19 +32,21 @@ namespace Battery
                 {
                     capacities += battery.Capacity;
 
-                    if (rezimRada == Rezim.Punjenje && battery.Capacity <= battery.MaxPower - 1)
+                    if (rezimRada == Rezim.Punjenje && battery.Capacity <= battery.MaxPower - 1 && counter == 60)
                     {
                         battery.Capacity++;
+                        counter = 0;
                     }
-                    else if (rezimRada == Rezim.Praznjenje && battery.Capacity >= 1)
+                    else if (rezimRada == Rezim.Praznjenje && battery.Capacity >= 1 && counter == 60)
                     {
                         battery.Capacity--;
+                        counter = 0;
                     }
                     proxy.SendData(capacities, rezimRada);
                 }
                 Console.WriteLine("Kapacitet baterija: " + capacities);
                 Console.WriteLine("Rezim rada baterija: " + rezimRada.ToString());
-
+                counter++;
                 Thread.Sleep(3000);
             }
         }

@@ -14,41 +14,45 @@ namespace SHES
     {
         static void Main(string[] args)
         {
+            //Vrednosti potrebne za pravilan rad aplikacije: 
             double solarPanelsOutput = 0;
             double batteryCapacity = 0;
+            double consumerEnergyConsumption = 0;
             Rezim rezim = Rezim.Idle;
 
+            //Iniciajizacija Servera:
             Thread solarPanelServer = new Thread(SolarPanelServerThread);
             solarPanelServer.Start();
 
             Thread batteryServer = new Thread(BatteryServerThread);
             batteryServer.Start();
+            Thread consumerServer = new Thread(ConsumerServerThread);
+            consumerServer.Start();
 
+            //Otvaravnje kanala:
             ChannelFactory<IBatterySHES> batteryChannel = new ChannelFactory<IBatterySHES>("IBatterySHES");
             IBatterySHES batteryProxy = batteryChannel.CreateChannel();
 
-            //ove vrednosti se prosledjuju od UI-a
-            int num = 1;
+            ChannelFactory<IUtilitySHES> utilityChannel = new ChannelFactory<IUtilitySHES>("IUtilitySHES");
+            IUtilitySHES utilityProxy = utilityChannel.CreateChannel();
 
-            double[] power = { 100 };
-            batteryProxy.InitializeBatteries(num, power);
+            ChannelFactory<IEVChargerSHES> evchargerChannel = new ChannelFactory<IEVChargerSHES>("IEVChargerSHES");
+            IEVChargerSHES evchargerProxy = evchargerChannel.CreateChannel();
+
+           // evchargerProxy.InitializeEVCharger(new EVCharger(50, 0, Enums.Rezim.Punjenje));
+            //ove vrednosti se prosledjuju od UI-a
+           // int num = 1;
+           // double[] power = { 100 };
+            //batteryProxy.InitializeBatteries(num, power);
             
             while (true)
             {
-               
+                //Preuzimanje vrednosti iz baffera:
                 solarPanelsOutput = SHESSolarPanel.bufferPowerOutput;
-
-                Console.WriteLine(solarPanelsOutput);
-
-                //ovde ide logika kada se prazne i pune baterije
-                batteryProxy.SendRegime(Rezim.Punjenje);
-
                 batteryCapacity = SHESBattery.bufferCapacity;
                 rezim = SHESBattery.bufferRegime;
-
-                Console.WriteLine("Kapacitet baterija: " + batteryCapacity);
-                Console.WriteLine("Rezim baterija: " + rezim.ToString());
-
+                consumerEnergyConsumption = SHESConsumer.energyConsumptioneBuffer;
+               
                 Thread.Sleep(3000);
             }
 
@@ -70,6 +74,17 @@ namespace SHES
                 while (true) ;
             }
         }
+        static void ConsumerServerThread() {
+
+            using (ServiceHost host = new ServiceHost(typeof(SHESConsumer))) {
+
+                host.Open();
+                while (true) ;
+            }
+
+
+        }
+        
     }
 
 }
