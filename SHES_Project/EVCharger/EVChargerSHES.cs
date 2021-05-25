@@ -9,15 +9,15 @@ namespace EVCharger
 {
     public class EVChargerSHES : IEVChargerSHES
     {
-        public static Enums.Rezim rezimBuffer; 
+        public static Enums.BatteryRezim rezimBuffer; 
         public static Common.EVCharger EVCharger;
         public void InitializeEVCharger(Common.EVCharger evc)
         {
-            rezimBuffer = Enums.Rezim.Idle;
+            rezimBuffer = Enums.BatteryRezim.IDLE;
             EVCharger = evc;
         }
 
-        public void SendRegime(Enums.Rezim rezim)
+        public void SendRegime(Enums.BatteryRezim rezim)
         {
             rezimBuffer = rezim;
         }

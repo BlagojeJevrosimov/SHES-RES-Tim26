@@ -23,6 +23,8 @@ namespace SolarPanel
             ChannelFactory<ISHESSolarPanel> channel = new ChannelFactory<ISHESSolarPanel>("ISHESSolarPanel");
             ISHESSolarPanel proxy = channel.CreateChannel();
 
+            SolarPanelGUI.InitializeSolarPanels(3, new double[] { 50, 100, 200 });
+
             while (true)
             {
                 sunIntensity = SolarPanelGUI.buffer;

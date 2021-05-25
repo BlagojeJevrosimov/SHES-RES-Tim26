@@ -15,13 +15,19 @@ namespace Battery
         static void Main(string[] args)
         {
             double capacities = 0;
-            Rezim rezimRada = Rezim.Idle;
+            //rezim baterije
+            BatteryRezim rezimRada = BatteryRezim.IDLE;
 
             Thread server = new Thread(Server);
             server.Start();
 
             ChannelFactory<ISHESBattery> channel = new ChannelFactory<ISHESBattery>("ISHESBattery");
             ISHESBattery proxy = channel.CreateChannel();
+
+            int num = 2;
+            double[] power = { 100, 200 };
+            Batteries.InitializeBatteries(num, power);
+
             int counter = 0;
             while (true)
             {
@@ -32,20 +38,18 @@ namespace Battery
                 {
                     capacities += battery.Capacity;
 
-                    if (rezimRada == Rezim.Punjenje && battery.Capacity <= battery.MaxPower - 1 && counter == 60)
+                    if (rezimRada == BatteryRezim.PUNJENJE && battery.Capacity <= battery.MaxPower - 1 && counter == 60)
                     {
                         battery.Capacity++;
                         counter = 0;
                     }
-                    else if (rezimRada == Rezim.Praznjenje && battery.Capacity >= 1 && counter == 60)
+                    else if (rezimRada == BatteryRezim.PRAZNJENJE && battery.Capacity >= 1 && counter == 60)
                     {
                         battery.Capacity--;
                         counter = 0;
                     }
                     proxy.SendData(capacities, rezimRada);
                 }
-                Console.WriteLine("Kapacitet baterija: " + capacities);
-                Console.WriteLine("Rezim rada baterija: " + rezimRada.ToString());
                 counter++;
                 Thread.Sleep(3000);
             }

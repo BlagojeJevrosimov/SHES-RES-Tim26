@@ -18,14 +18,14 @@ namespace Common
     {
         private double maxPower;
         private double capacity;
-        private Enums.Rezim rezim;
+        private Enums.BatteryRezim rezim;
 
         public EVCharger()
         {
 
         }
 
-        public EVCharger(double maxPower, double capacity, Enums.Rezim rezim)
+        public EVCharger(double maxPower, double capacity, Enums.BatteryRezim rezim)
         {
             MaxPower = maxPower;
             Capacity = capacity;
@@ -39,6 +39,6 @@ namespace Common
 
         public double MaxPower { get => maxPower; set => maxPower = value; }
         public double Capacity { get => capacity; set => capacity = value; }
-        public Enums.Rezim Rezim { get => rezim; set => rezim = value; }
+        public Enums.BatteryRezim Rezim { get => rezim; set => rezim = value; }
     }
 }

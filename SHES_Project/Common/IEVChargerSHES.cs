@@ -14,6 +14,6 @@ namespace Common
         void InitializeEVCharger(Common.EVCharger evc);
 
         [OperationContract]
-        void SendRegime(Enums.Rezim rezim);
+        void SendRegime(Enums.BatteryRezim rezim);
     }
 }

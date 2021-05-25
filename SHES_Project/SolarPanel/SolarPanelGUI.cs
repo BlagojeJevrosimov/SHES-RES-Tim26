@@ -20,13 +20,12 @@ namespace SolarPanels
             else throw new ArgumentOutOfRangeException("Intenzitet sunca mora da bude izmedju 0 i 1");
         }
 
-        public void InitializeSolarPanels(int num, double[] maxPowers)
+        public static void InitializeSolarPanels(int num, double[] maxPowers)
         {
             solarPanels = new List<Common.SolarPanel>(num);
             for (int i = 0; i < num; i++)
             {
                 solarPanels.Add(new Common.SolarPanel() { Id = i.ToString(), MaxPower = maxPowers[i] });
-
             }
         }
     }

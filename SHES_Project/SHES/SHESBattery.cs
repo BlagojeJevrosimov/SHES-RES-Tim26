@@ -11,10 +11,10 @@ namespace SHES
     public class SHESBattery : ISHESBattery
     {
         public static double bufferCapacity;
-        public static Rezim bufferRegime = Rezim.Idle;
+        public static BatteryRezim bufferRegime = BatteryRezim.IDLE;
 
 
-        public void SendData(double sentCapacity, Rezim sentRegime)
+        public void SendData(double sentCapacity, BatteryRezim sentRegime)
         {
             bufferCapacity = sentCapacity;
             bufferRegime = sentRegime;

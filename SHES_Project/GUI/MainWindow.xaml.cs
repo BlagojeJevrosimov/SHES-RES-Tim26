@@ -31,12 +31,11 @@ namespace GUI
             List<string> rezimConsumer = new List<string> { Common.Enums.ConsumerRezim.OFF.ToString(), Common.Enums.ConsumerRezim.ON.ToString() };
             cmbBoxConsumer.ItemsSource = rezimConsumer;
 
-            List<string> rezimBattery = new List<string> { Common.Enums.BatteryRezim.NONE.ToString(), Common.Enums.BatteryRezim.NONE.ToString() };
+            List<string> rezimBattery = new List<string> { Common.Enums.BatteryRezim.PUNJENJE.ToString(), Common.Enums.BatteryRezim.PRAZNJENJE.ToString() };
             cmbBoxBattery.ItemsSource = rezimBattery;
 
             ChannelFactory<ISolarPanelGUI> channel = new ChannelFactory<ISolarPanelGUI>("ISolarPanelGUI");
             proxy = channel.CreateChannel();
-            proxy.InitializeSolarPanels(3, new double[] { 50, 100, 200 });
 
         }
 
@@ -49,12 +48,29 @@ namespace GUI
         {
             //parsirati unos svaki
             double sunIntensity = 0;
+            var consumer = Common.Enums.ConsumerRezim.OFF;
+
             if(txtSun.Text != null && txtSun.Text != "")
             {
                 sunIntensity = double.Parse(txtSun.Text);
                 proxy.ChangeSunIntensity(sunIntensity);
+                txtSun.Text = "";
             }
 
+            if (cmbBoxConsumer.Text != null && cmbBoxConsumer.Text != "")
+            {
+                switch (cmbBoxConsumer.Text)
+                {
+                    case "ON":
+                        consumer = Enums.ConsumerRezim.ON;
+                        break;
+                    default:
+                        consumer = Enums.ConsumerRezim.OFF;
+                        break;
+                }
+
+                //proxy.ChangeSunIntensity(sunIntensity);
+            }
 
         }
     }

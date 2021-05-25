@@ -10,15 +10,15 @@ namespace Battery
 {
     public class Batteries : IBatterySHES
     {
-        public static Rezim bufferRezim = Rezim.Idle;
+        public static BatteryRezim bufferRezim = BatteryRezim.IDLE;
         public static List<Common.Battery> batteries = new List<Common.Battery>();
 
-        public void InitializeBatteries(int num, double[] maxPowers)
+        public static void InitializeBatteries(int num, double[] maxPowers)
         {
             if (num > 0)
             {
                 batteries = new List<Common.Battery>();
-                bufferRezim = Rezim.Idle;
+                bufferRezim = BatteryRezim.IDLE;
                 //sta je kapacitet
                 //da li to dokle je napunjena u intervalu od 0 do maxPower
                 //ili je capacity maksimalni kapacitet baterije
@@ -28,7 +28,7 @@ namespace Battery
             }
         }
 
-        public void SendRegime(Rezim rezim)
+        public void SendRegime(BatteryRezim rezim)
         {
             bufferRezim = rezim;
         }

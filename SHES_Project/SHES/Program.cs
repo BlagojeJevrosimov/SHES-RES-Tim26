@@ -18,7 +18,7 @@ namespace SHES
             double solarPanelsOutput = 0;
             double batteryCapacity = 0;
             double consumerEnergyConsumption = 0;
-            Rezim rezim = Rezim.Idle;
+            BatteryRezim rezim = BatteryRezim.IDLE;
 
             //Iniciajizacija Servera:
             Thread solarPanelServer = new Thread(SolarPanelServerThread);
@@ -38,12 +38,6 @@ namespace SHES
 
             ChannelFactory<IEVChargerSHES> evchargerChannel = new ChannelFactory<IEVChargerSHES>("IEVChargerSHES");
             IEVChargerSHES evchargerProxy = evchargerChannel.CreateChannel();
-
-           // evchargerProxy.InitializeEVCharger(new EVCharger(50, 0, Enums.Rezim.Punjenje));
-            //ove vrednosti se prosledjuju od UI-a
-           // int num = 1;
-           // double[] power = { 100 };
-            //batteryProxy.InitializeBatteries(num, power);
             
             while (true)
             {

@@ -12,7 +12,7 @@ namespace Common
     public interface ISHESBattery
     {
         [OperationContract]
-        void SendData(double sentCapacity, Rezim sentRegime);
+        void SendData(double sentCapacity, BatteryRezim sentRegime);
 
     }
 }
