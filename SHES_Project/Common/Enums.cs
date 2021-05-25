@@ -9,5 +9,9 @@ namespace Common
     public class Enums
     {
         public enum Rezim { Idle, Punjenje, Praznjenje }
+
+        public enum ConsumerRezim { ON, OFF }
+
+        public enum BatteryRezim { NONE, PUNJENJE }
     }
 }

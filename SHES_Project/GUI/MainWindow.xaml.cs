@@ -22,14 +22,40 @@ namespace GUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static ISolarPanelGUI proxy;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            List<string> rezimConsumer = new List<string> { Common.Enums.ConsumerRezim.OFF.ToString(), Common.Enums.ConsumerRezim.ON.ToString() };
+            cmbBoxConsumer.ItemsSource = rezimConsumer;
+
+            List<string> rezimBattery = new List<string> { Common.Enums.BatteryRezim.NONE.ToString(), Common.Enums.BatteryRezim.NONE.ToString() };
+            cmbBoxBattery.ItemsSource = rezimBattery;
+
             ChannelFactory<ISolarPanelGUI> channel = new ChannelFactory<ISolarPanelGUI>("ISolarPanelGUI");
-            ISolarPanelGUI proxy = channel.CreateChannel();
+            proxy = channel.CreateChannel();
             proxy.InitializeSolarPanels(3, new double[] { 50, 100, 200 });
-            proxy.ChangeSunIntensity(0.5);
-            
+
+        }
+
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+
+        private void BtnChange_Click(object sender, RoutedEventArgs e)
+        {
+            //parsirati unos svaki
+            double sunIntensity = 0;
+            if(txtSun.Text != null && txtSun.Text != "")
+            {
+                sunIntensity = double.Parse(txtSun.Text);
+                proxy.ChangeSunIntensity(sunIntensity);
+            }
+
+
         }
     }
 }

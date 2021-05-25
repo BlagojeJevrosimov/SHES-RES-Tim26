@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="" Height="540" Width="850" AllowsTransparency="True" Background="WhiteSmoke" MouseLeftButtonDown="Window_MouseLeftButtonDown" WindowStyle="None">
     <Grid>
-        
+        <Label Content="Sun intensity (0-1):" FontSize="20px" TextElement.FontFamily="Cambria" HorizontalAlignment="Left" VerticalAlignment="Top" Height="61" Width="303" Margin="112,64,0,0"/>
+        <TextBox x:Name="txtSun" HorizontalAlignment="Left" Height="61" Margin="423,64,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="299"/>
+        <Label Content="Consumer:" FontSize="20px" TextElement.FontFamily="Cambria" HorizontalAlignment="Left" VerticalAlignment="Top" Height="61" Width="303" Margin="112,132,0,0"/>
+        <ComboBox x:Name="cmbBoxConsumer" HorizontalAlignment="Left" Margin="423,132,0,0" VerticalAlignment="Top" Width="299" Height="61"/>
+        <Label Content="Battery:" FontSize="20px" TextElement.FontFamily="Cambria" HorizontalAlignment="Left" VerticalAlignment="Top" Height="61" Width="303" Margin="112,200,0,0"/>
+        <ComboBox x:Name="cmbBoxBattery" HorizontalAlignment="Left" Margin="423,200,0,0" VerticalAlignment="Top" Width="299" Height="61"/>
+
+        <Button x:Name="btnChange" Content="Change" TextElement.FontFamily="Cambria" TextElement.FontSize="30px" Width="216" Height="40" Click="BtnChange_Click" Canvas.Left="74" Canvas.Top="77" Margin="316,470,317.6,30"/>
+
     </Grid>
 </Window>
