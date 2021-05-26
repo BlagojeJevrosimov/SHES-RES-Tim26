@@ -14,22 +14,22 @@ using System.IO;
 
 namespace Common
 {
-    public class EVCharger
+    public class EVCharger:Battery
     {
-        private double maxPower;
-        private double capacity;
-        private Enums.BatteryRezim rezim;
+
+        bool charge;
+        bool connected;
 
         public EVCharger()
         {
 
         }
 
-        public EVCharger(double maxPower, double capacity, Enums.BatteryRezim rezim)
+        public EVCharger(double capacity, string id, double maxPower, Enums.BatteryRezim state) :base(maxPower,id,capacity,state)
         {
-            MaxPower = maxPower;
-            Capacity = capacity;
-            Rezim = rezim;
+            this.Charge = false;
+            this.Connected = false;
+            
         }
 
         ~EVCharger()
@@ -37,8 +37,7 @@ namespace Common
 
         }
 
-        public double MaxPower { get => maxPower; set => maxPower = value; }
-        public double Capacity { get => capacity; set => capacity = value; }
-        public Enums.BatteryRezim Rezim { get => rezim; set => rezim = value; }
+        public bool Charge { get => charge; set => charge = value; }
+        public bool Connected { get => connected; set => connected = value; }
     }
 }

@@ -17,9 +17,10 @@ namespace Common
     public class Battery
     {
 
-        private int capacity;
+        private double capacity;
         private string id;
         private double maxPower;
+        private Enums.BatteryRezim state;
 
         public Battery()
         {
@@ -35,14 +36,16 @@ namespace Common
         /// <param name="id"></param>
         /// <param name="maxPower"></param>
         /// <param name="capacity"></param>
-        public Battery(string id, double maxPower, int capacity)
+
+        public Battery(double capacity, string id, double maxPower, Enums.BatteryRezim state)
         {
+            Capacity = capacity;
             Id = id;
             MaxPower = maxPower;
-            Capacity = capacity;
+            State = state;
         }
 
-        public int Capacity
+        public double Capacity
         {
             get
             {
@@ -78,5 +81,6 @@ namespace Common
             }
         }
 
+        public Enums.BatteryRezim State { get => state; set => state = value; }
     }
 }//end Battery

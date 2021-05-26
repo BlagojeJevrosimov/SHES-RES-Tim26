@@ -52,6 +52,100 @@ namespace SHES
                 consumerEnergyConsumption = SHESConsumer.energyConsumptioneBuffer;
                 //preuzeti bafere sa GUIja
 
+
+                 int vreme = 14;
+                double solarniPaneli = 100;
+                double potrosaci = 200;
+                double avgCena = 0.139;
+                double cena = 0.5;
+                List<Common.Battery> baterije = new List<Battery>() {
+                new Common.Battery(0.3,"b1",50,Enums.BatteryRezim.IDLE),
+                new Common.Battery(0.5,"b2",25,Enums.BatteryRezim.IDLE)
+            };
+                Common.EVCharger ev = new EVCharger(0.7,"evc",50,Enums.BatteryRezim.IDLE);
+                ev.Charge = false;
+                ev.Connected = true;
+
+
+
+                //Algoritam:
+                double potrosnja = potrosaci;
+                potrosnja -= solarniPaneli;
+
+                if (ev.Connected && ev.Charge && ev.Capacity < 1)
+                {
+                    potrosnja += ev.MaxPower;
+                    //evproxy.ZadajRezim("punjenje");
+                }
+
+                if (vreme >= 3 && vreme <= 6)
+                {
+                    foreach (var b in baterije)
+                    {
+                        if (b.Capacity < 1)
+                        {
+                            potrosnja += b.MaxPower;
+                            //baterijaProxy.ZadajRezim("Punjenje");
+                        }
+                    }
+                    if (ev.Connected)
+                    {
+                        if (ev.Capacity < 1)
+                        {
+                            potrosnja += ev.MaxPower;
+                            //evproxy.ZadajRezim("punjenje");
+                        }
+                    }
+
+                }
+                else if (vreme >= 14 && vreme <= 17)
+                {
+
+                    foreach (var b in baterije)
+                    {
+                        if (b.Capacity > 0)
+                        {
+                            potrosnja -= b.MaxPower;
+                            //baterijaProxy.ZadajRezim("Praznjenje");
+                        }
+                    }
+
+                }
+                else
+                {
+
+                    if (cena <= avgCena)
+                    {
+
+                        foreach (var b in baterije)
+                        {
+
+                            if (b.Capacity <= 1)
+                            {
+                                potrosnja += b.MaxPower;
+                                //baterijaProxy.ZadajRezim("Punjenje");
+                            }
+                        }
+
+                    }
+                    else
+                    {
+
+                        foreach (var b in baterije)
+                        {
+                            if (b.Capacity > 0)
+                            {
+                                potrosnja -= b.MaxPower;
+                                //baterijaProxy.ZadajRezim("Praznjenje");
+                            }
+                        }
+
+                    }
+
+                }
+                Console.WriteLine(potrosnja);
+                Console.ReadKey();
+
                 Thread.Sleep(3000);
             }
 
