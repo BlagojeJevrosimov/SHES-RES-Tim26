@@ -5,16 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d"
-        Title="" Height="540" Width="850" AllowsTransparency="True" Background="WhiteSmoke" MouseLeftButtonDown="Window_MouseLeftButtonDown" WindowStyle="None">
+        Title="" Height="650" Width="900" AllowsTransparency="True" Background="WhiteSmoke" MouseLeftButtonDown="Window_MouseLeftButtonDown" WindowStyle="None">
     <Grid>
-        <Label Content="Sun intensity (0-1):" FontSize="20px" TextElement.FontFamily="Cambria" HorizontalAlignment="Left" VerticalAlignment="Top" Height="61" Width="303" Margin="112,64,0,0"/>
-        <TextBox x:Name="txtSun" HorizontalAlignment="Left" Height="61" Margin="423,64,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="299"/>
-        <Label Content="Consumer:" FontSize="20px" TextElement.FontFamily="Cambria" HorizontalAlignment="Left" VerticalAlignment="Top" Height="61" Width="303" Margin="112,132,0,0"/>
-        <ComboBox x:Name="cmbBoxConsumer" HorizontalAlignment="Left" Margin="423,132,0,0" VerticalAlignment="Top" Width="299" Height="61"/>
-        <Label Content="Battery:" FontSize="20px" TextElement.FontFamily="Cambria" HorizontalAlignment="Left" VerticalAlignment="Top" Height="61" Width="303" Margin="112,200,0,0"/>
-        <ComboBox x:Name="cmbBoxBattery" HorizontalAlignment="Left" Margin="423,200,0,0" VerticalAlignment="Top" Width="299" Height="61"/>
+        <Label Content="" HorizontalAlignment="Left" Margin="8,127,0,0" VerticalAlignment="Top" Width="880" Height="5" Background="CadetBlue"/>
 
-        <Button x:Name="btnChange" Content="Change" TextElement.FontFamily="Cambria" TextElement.FontSize="30px" Width="216" Height="40" Click="BtnChange_Click" Canvas.Left="74" Canvas.Top="77" Margin="316,470,317.6,30"/>
+        <Label Content="Initialize components" TextElement.FontFamily="Cambria" TextElement.FontSize="40px" TextElement.FontWeight="DemiBold" HorizontalAlignment="Left" Margin="225,51,0,0" VerticalAlignment="Top"/>
+        <Label Content="Number of solar panels:" TextElement.FontFamily="Cambria" TextElement.FontSize="20px" HorizontalAlignment="Left" Margin="30,137,0,478.6" Width="381" />
+        <TextBox x:Name="txtNmbSP" HorizontalAlignment="Left" Height="34" Margin="569,137,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="293"/>
+        <Label Content="Max power of solar panels (space separated) [kWh]:" TextElement.FontFamily="Cambria" TextElement.FontSize="20px" HorizontalAlignment="Left" Margin="30,176,0,439.6" Width="504" />
+        <TextBox x:Name="txtMaxPwrSP" HorizontalAlignment="Left" Height="34" Margin="569,175,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="293"/>
+        <Label Content="Number of batteries:" TextElement.FontFamily="Cambria" TextElement.FontSize="20px" HorizontalAlignment="Left" Margin="30,215,0,400.6" Width="381" />
+        <Label Content="Max power of batteries (space separated) [kWh]:" TextElement.FontFamily="Cambria" TextElement.FontSize="20px" HorizontalAlignment="Left" Margin="30,254,0,361.6" Width="504" />
+        <Label Content="Capacity of batteries (space separated) [h]:" TextElement.FontFamily="Cambria" TextElement.FontSize="20px" HorizontalAlignment="Left" Margin="30,293,0,322.6" Width="504" />
+        <TextBox x:Name="txtNmbB" HorizontalAlignment="Left" Height="34" Margin="569,215,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="293"/>
+        <TextBox x:Name="txtMaxPwrB" HorizontalAlignment="Left" Height="34" Margin="569,254,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="293"/>
+        <TextBox x:Name="txtCapB" HorizontalAlignment="Left" Height="34" Margin="569,292,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="293"/>
+        <Label Content="Number of consumers:" TextElement.FontFamily="Cambria" TextElement.FontSize="20px" HorizontalAlignment="Left" Margin="30,410,0,205.6" Width="381" />
+        <Label Content="Cost of utility [$/kWh]:" TextElement.FontFamily="Cambria" TextElement.FontSize="20px" HorizontalAlignment="Left" Margin="30,371,0,244.6" Width="381" />
+        <Label Content="Max power of EV Charger [kWh]:" TextElement.FontFamily="Cambria" TextElement.FontSize="20px" HorizontalAlignment="Left" Margin="30,332,0,283.6" Width="381" />
+        <TextBox x:Name="txtNmbConsumer" HorizontalAlignment="Left" Height="34" Margin="569,410,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="293"/>
+        <TextBox x:Name="txtCostU" HorizontalAlignment="Left" Height="34" Margin="569,371,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="293"/>
+        <TextBox x:Name="txtMaxPwrEV" HorizontalAlignment="Left" Height="34" Margin="569,331,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="293"/>
+        <Label Content="Max power of consumers (space separated) [kWh]:" TextElement.FontFamily="Cambria" TextElement.FontSize="20px" HorizontalAlignment="Left" Margin="30,449,0,166.6" Width="504" />
+        <TextBox x:Name="txtMaxPwrConsumer" HorizontalAlignment="Left" Height="34" Margin="569,449,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="293"/>
+        <Button Content="Initialize" Click="Initialize_Click" TextElement.FontFamily="Cambria" TextElement.FontSize="30px" HorizontalAlignment="Left" Margin="167,528,0,0" VerticalAlignment="Top" Width="246" Height="61"/>
+        <Button Content="Skip" Click="Skip_Click" TextElement.FontFamily="Cambria" TextElement.FontSize="30px" HorizontalAlignment="Left" Margin="489,528,0,0" VerticalAlignment="Top" Width="248" Height="61"/>
+        <Label x:Name="lblErrorMessage" Content="" HorizontalContentAlignment="Center" Foreground="Red" TextElement.FontWeight="DemiBold"  TextElement.FontFamily="Cambria" TextElement.FontSize="20px" Height="33" Margin="207,490,207,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

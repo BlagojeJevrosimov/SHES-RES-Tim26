@@ -1,6 +1,7 @@
 ﻿using Common;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
@@ -22,21 +23,188 @@ namespace GUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static ISolarPanelGUI proxy;
-
         public MainWindow()
         {
             InitializeComponent();
 
-            List<string> rezimConsumer = new List<string> { Common.Enums.ConsumerRezim.OFF.ToString(), Common.Enums.ConsumerRezim.ON.ToString() };
-            cmbBoxConsumer.ItemsSource = rezimConsumer;
+            ChannelFactory<ISHESGUI> channelSHES = new ChannelFactory<ISHESGUI>("ISHESGUI");
+            CommunicationData.proxySHES = channelSHES.CreateChannel();
+        }
 
-            List<string> rezimBattery = new List<string> { Common.Enums.BatteryRezim.PUNJENJE.ToString(), Common.Enums.BatteryRezim.PRAZNJENJE.ToString() };
-            cmbBoxBattery.ItemsSource = rezimBattery;
+        private void Initialize_Click(object sender, RoutedEventArgs e)
+        {
+            //parsirati unos i poslati podatke shesu
+            string[] temp = txtMaxPwrSP.Text.Split(' ');
+            double[] tempD = new double[0];
+            double[] tempSP = new double[temp.Count()];
 
-            ChannelFactory<ISolarPanelGUI> channel = new ChannelFactory<ISolarPanelGUI>("ISolarPanelGUI");
-            proxy = channel.CreateChannel();
+            bool flag = true;
 
+            if(txtNmbSP.Text == "" && flag == true)
+            {
+                flag = false;
+                lblErrorMessage.Content = "Unesite broj solarnih panela";
+            }
+
+            if (flag == true && (temp.Count() == 0 || (temp.Count() == 1 && temp[0] == "") || (txtNmbSP.Text != null && txtNmbSP.Text != "" && temp.Count() != Int32.Parse(txtNmbSP.Text))))
+            {
+                lblErrorMessage.Content = "Pogresno unete vrednosti snage solarnih panela!";
+                flag = false;
+            }
+            else if (flag == true)
+            {
+                try
+                {
+                    tempD = new double[temp.Count()];
+                    for (int i = 0; i < temp.Count(); i++)
+                    {
+                        if (temp[i] == "")
+                        {
+                            throw new Exception("Pogresno unete vrednosti kapaciteta baterija!");
+                        }
+                        tempD[i] = double.Parse(temp[i]);
+                    }
+                    tempSP = tempD;
+                }
+                catch
+                {
+                    throw new Exception("Pogresno unete vrednosti snage solarnih panela!");
+                }
+            }
+
+            temp = txtMaxPwrB.Text.Split(' ');
+            tempD = new double[0];
+            double[] tempBMP = new double[temp.Count()];
+
+            if (txtNmbB.Text == "" && flag == true)
+            {
+                flag = false;
+                lblErrorMessage.Content = "Unesite broj baterija";
+            }
+
+            if (flag == true && (temp.Count() == 0 || (temp.Count() == 1 && temp[0] == "") || (txtNmbB.Text != null && txtNmbB.Text != "" && temp.Count() != Int32.Parse(txtNmbB.Text))))
+            {
+                lblErrorMessage.Content = "Pogresno unete vrednosti snage baterija!";
+                flag = false;
+            }
+            else if (flag == true)
+            {
+                try
+                {
+                    tempD = new double[temp.Count()];
+                    for (int i = 0; i < temp.Count(); i++)
+                    {
+                        if (temp[i] == "")
+                        {
+                            throw new Exception("Pogresno unete vrednosti kapaciteta baterija!");
+                        }
+                        tempD[i] = double.Parse(temp[i]);
+                    }
+                    tempBMP = tempD;
+                }
+                catch
+                {
+                    throw new Exception("Pogresno unete vrednosti snage baterija!");
+                }
+            }
+
+            temp = txtCapB.Text.Split(' ');
+            tempD = new double[0];
+            double[] tempBC = new double[temp.Count()];
+
+            if (flag == true && (temp.Count() == 0 || (temp.Count() == 1 && temp[0] == "") || (txtNmbB.Text != null && txtNmbB.Text != "" && temp.Count() != Int32.Parse(txtNmbB.Text))))
+            {
+                lblErrorMessage.Content = "Pogresno unete vrednosti kapaciteta baterija!";
+                flag = false;
+            }
+            else if (flag == true)
+            {
+                try
+                {
+                    tempD = new double[temp.Count()];
+                    for (int i = 0; i < temp.Count(); i++)
+                    {
+                        if(temp[i] == "")
+                        {
+                            throw new Exception("Pogresno unete vrednosti kapaciteta baterija!");
+                        }
+                        tempD[i] = double.Parse(temp[i]);
+                    }
+                    tempBC = tempD;
+                }
+                catch
+                {
+                    throw new Exception("Pogresno unete vrednosti kapaciteta baterija!");
+                }
+            }
+
+            if (txtMaxPwrEV.Text == "" && flag == true)
+            {
+                flag = false;
+                lblErrorMessage.Content = "Unesite snagu EV Chargera";
+            }
+
+            if (txtCostU.Text == "" && flag == true)
+            {
+                flag = false;
+                lblErrorMessage.Content = "Unesite cenu za Utility";
+            }
+
+            temp = txtMaxPwrConsumer.Text.Split(' ');
+            tempD = new double[0];
+            double[] tempMPC = new double[temp.Count()];
+
+            if (txtNmbConsumer.Text == "" && flag == true)
+            {
+                flag = false;
+                lblErrorMessage.Content = "Unesite broj potrosaca";
+            }
+
+            if (flag == true && (temp.Count() == 0 || (temp.Count() == 1 && temp[0] == "") || (txtNmbConsumer.Text != null && txtNmbConsumer.Text != "" && temp.Count() != Int32.Parse(txtNmbConsumer.Text))))
+            {
+                lblErrorMessage.Content = "Pogresno unete vrednosti snage potrosaca!";
+                flag = false;
+            }
+            else if(flag == true)
+            {
+                try
+                {
+                    tempD = new double[temp.Count()];
+                    for (int i = 0; i < temp.Count(); i++)
+                    {
+                        if (temp[i] == "")
+                        {
+                            throw new Exception("Pogresno unete vrednosti kapaciteta baterija!");
+                        }
+                        tempD[i] = double.Parse(temp[i]);
+                    }
+                    tempMPC = tempD;
+                }
+                catch
+                {
+                    throw new Exception("Pogresno unete vrednosti snage potrosaca!");
+                }
+            }
+
+            if (flag == true)
+            {
+                CommunicationData.proxySHES.Initialize(Int32.Parse(txtNmbSP.Text), tempSP, Int32.Parse(txtNmbB.Text), tempBMP, 
+                    tempBC, double.Parse(txtMaxPwrEV.Text), double.Parse(txtCostU.Text), Int32.Parse(txtNmbConsumer.Text), tempMPC);
+                ChangeInputWindow newChangeInput = new ChangeInputWindow();
+                newChangeInput.Show();
+                this.Close();
+            }
+        }
+
+        private void Skip_Click(object sender, RoutedEventArgs e)
+        {
+            //poslati prazne podatke shesu
+            double[] niz = new double[0];
+            CommunicationData.proxySHES.Initialize(0, niz, 0, niz, niz, 0, 0, 0, niz);
+
+            ChangeInputWindow newChangeInput = new ChangeInputWindow();
+            newChangeInput.Show();
+            this.Close();
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -44,34 +212,5 @@ namespace GUI
             this.DragMove();
         }
 
-        private void BtnChange_Click(object sender, RoutedEventArgs e)
-        {
-            //parsirati unos svaki
-            double sunIntensity = 0;
-            var consumer = Common.Enums.ConsumerRezim.OFF;
-
-            if(txtSun.Text != null && txtSun.Text != "")
-            {
-                sunIntensity = double.Parse(txtSun.Text);
-                proxy.ChangeSunIntensity(sunIntensity);
-                txtSun.Text = "";
-            }
-
-            if (cmbBoxConsumer.Text != null && cmbBoxConsumer.Text != "")
-            {
-                switch (cmbBoxConsumer.Text)
-                {
-                    case "ON":
-                        consumer = Enums.ConsumerRezim.ON;
-                        break;
-                    default:
-                        consumer = Enums.ConsumerRezim.OFF;
-                        break;
-                }
-
-                //proxy.ChangeSunIntensity(sunIntensity);
-            }
-
-        }
     }
 }

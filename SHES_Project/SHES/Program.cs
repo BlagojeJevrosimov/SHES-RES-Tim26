@@ -26,8 +26,12 @@ namespace SHES
 
             Thread batteryServer = new Thread(BatteryServerThread);
             batteryServer.Start();
+
             Thread consumerServer = new Thread(ConsumerServerThread);
             consumerServer.Start();
+
+            Thread GUIServer = new Thread(GUIServerThread);
+            GUIServer.Start();
 
             //Otvaravnje kanala:
             ChannelFactory<IBatterySHES> batteryChannel = new ChannelFactory<IBatterySHES>("IBatterySHES");
@@ -46,20 +50,22 @@ namespace SHES
                 batteryCapacity = SHESBattery.bufferCapacity;
                 rezim = SHESBattery.bufferRegime;
                 consumerEnergyConsumption = SHESConsumer.energyConsumptioneBuffer;
-               
+                //preuzeti bafere sa GUIja
+
                 Thread.Sleep(3000);
             }
 
         }
+
         static void SolarPanelServerThread()
         {
-
             using (ServiceHost host = new ServiceHost(typeof(SHESSolarPanel)))
             {
                 host.Open();
                 while (true) ;
             }
         }
+
         static void BatteryServerThread()
         {
             using (ServiceHost host = new ServiceHost(typeof(SHESBattery)))
@@ -68,17 +74,24 @@ namespace SHES
                 while (true) ;
             }
         }
-        static void ConsumerServerThread() {
 
+        static void ConsumerServerThread() {
             using (ServiceHost host = new ServiceHost(typeof(SHESConsumer))) {
 
                 host.Open();
                 while (true) ;
             }
-
-
         }
-        
+
+        static void GUIServerThread()
+        {
+            using (ServiceHost host = new ServiceHost(typeof(SHESGUI)))
+            {
+
+                host.Open();
+                while (true) ;
+            }
+        }
     }
 
 }

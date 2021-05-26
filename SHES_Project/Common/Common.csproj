@@ -50,8 +50,10 @@
     <Compile Include="Enums.cs" />
     <Compile Include="EVCharger.cs" />
     <Compile Include="IBatterySHES.cs" />
+    <Compile Include="IEVChargerGUI.cs" />
     <Compile Include="IEVChargerSHES.cs" />
     <Compile Include="ISHESBattery.cs" />
+    <Compile Include="ISHESGUI.cs" />
     <Compile Include="ISHESSolarPanel.cs" />
     <Compile Include="ISolarPanelGUI.cs" />
     <Compile Include="IUtilitySHES.cs" />

@@ -2,6 +2,7 @@
 using SolarPanels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
@@ -34,6 +35,9 @@ namespace SolarPanel
                     powerOutput += (sp.MaxPower * sunIntensity);
                 }
                 proxy.SendData(powerOutput);
+                Trace.TraceInformation("Sun intensity: " + sunIntensity);
+                Trace.TraceInformation("Solar power output: " + powerOutput);
+
                 Thread.Sleep(1000);
             }
 
