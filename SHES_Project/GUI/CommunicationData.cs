@@ -12,5 +12,6 @@ namespace GUI
         public static ISolarPanelGUI proxySP;
         public static IEVChargerGUI proxyEV;
         public static ISHESGUI proxySHES;
+        public static IConsumerGUI proxyConsumer;
     }
 }

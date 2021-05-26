@@ -38,7 +38,9 @@ namespace GUI
             ChannelFactory<IEVChargerGUI> EVChargerChannel = new ChannelFactory<IEVChargerGUI>("IEVChargerGUI");
             CommunicationData.proxyEV = EVChargerChannel.CreateChannel();
 
-            
+            ChannelFactory<IConsumerGUI> ConsumerChannel = new ChannelFactory<IConsumerGUI>("IConsumerGUI");
+            CommunicationData.proxyConsumer = ConsumerChannel.CreateChannel();
+
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -50,7 +52,8 @@ namespace GUI
         {
             //parsirati unos svaki
             double sunIntensity = 0;
-            var consumer = Common.Enums.ConsumerRezim.OFF;
+            var consumerRezim = Common.Enums.ConsumerRezim.OFF;
+            int consumerID = 0;
             var ev = Common.Enums.BatteryRezim.IDLE;
 
             if (txtSun.Text != null && txtSun.Text != "")
@@ -60,19 +63,24 @@ namespace GUI
                 txtSun.Text = "";
             }
 
-            if (cmbBoxConsumer.Text != null && cmbBoxConsumer.Text != "")
+            if(txtConsumerId.Text != null && txtConsumerId.Text != "")
             {
-                switch (cmbBoxConsumer.Text)
-                {
-                    case "ON":
-                        consumer = Enums.ConsumerRezim.ON;
-                        break;
-                    default:
-                        consumer = Enums.ConsumerRezim.OFF;
-                        break;
-                }
+                consumerID = Int32.Parse(txtConsumerId.Text);
 
-                //proxy.ChangeSunIntensity(sunIntensity);
+                if (cmbBoxConsumer.Text != null && cmbBoxConsumer.Text != "")
+                {
+                    switch (cmbBoxConsumer.Text)
+                    {
+                        case "ON":
+                            consumerRezim = Enums.ConsumerRezim.ON;
+                            break;
+                        default:
+                            consumerRezim = Enums.ConsumerRezim.OFF;
+                            break;
+                    }
+                    Trace.TraceInformation("GUI sending: Consumer id-" + consumerID + ", state-" + consumerRezim.ToString());
+                    CommunicationData.proxyConsumer.ChangeConsumerState(consumerID, consumerRezim);
+                }
             }
 
             if (cmbBoxBattery.Text != null && cmbBoxBattery.Text != "")
