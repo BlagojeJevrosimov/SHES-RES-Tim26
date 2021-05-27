@@ -14,8 +14,9 @@ namespace EVCharger
     {
         static void Main(string[] args)
         {
-            Enums.BatteryRezim rezim;
-            bool plug;
+            Enums.BatteryRezim rezimSHES = Enums.BatteryRezim.IDLE;
+            Enums.BatteryRezim rezimGUI = Enums.BatteryRezim.IDLE;
+            bool plug = false;
 
             Thread server1 = new Thread(Server1);
             Thread server2 = new Thread(Server2);
@@ -23,15 +24,28 @@ namespace EVCharger
             server1.Start();
             server2.Start();
 
+            ChannelFactory<ISHESEVCharger> channelSHES = new ChannelFactory<ISHESEVCharger>("ISHESEVCharger");
+            ISHESEVCharger proxySHES = channelSHES.CreateChannel();
+
             while (true)
             {
-                rezim = EVChargerSHES.rezimBuffer;
-                plug = EVChargerGUI.plugBuffer;
+                rezimSHES = EVChargerSHES.rezimBuffer;
+                rezimGUI = EVChargerGUI.rezimBuffer;
 
-                Trace.TraceInformation("Sent from SHES: " + rezim.ToString());
+                Trace.TraceInformation("Sent from SHES: " + rezimSHES.ToString());
+                Trace.TraceInformation("Sent from GUI: " + EVChargerGUI.rezimBuffer.ToString());
 
                 //kreirati proxy ka SHESu da mu se posalje trazeni rezim rada sa GUI-ja
-                Trace.TraceInformation("Sent from GUI: " + EVChargerGUI.rezimBuffer.ToString());
+                //proveriti da li je promenjeno stanje i tek ako jeste poslati tu info shesu kao bool
+                if (plug != EVChargerGUI.plugBuffer || rezimSHES != EVChargerGUI.rezimBuffer)
+                {
+                    plug = EVChargerGUI.plugBuffer;
+                    if(rezimGUI == Enums.BatteryRezim.PRAZNJENJE)
+                        proxySHES.SendRegime(plug, false);
+                    else if (rezimGUI == Enums.BatteryRezim.PUNJENJE)
+                        proxySHES.SendRegime(plug, true);
+                }
+
                 Thread.Sleep(1000);
             }
             

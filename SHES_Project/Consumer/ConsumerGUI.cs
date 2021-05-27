@@ -12,7 +12,6 @@ namespace Consumer
     //[ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple,InstanceContextMode =InstanceContextMode.Single)]
     public class ConsumerGUI : IConsumerGUI
     {
-        //zameniti ovaj broj sa stvarnim brojem consumera nakon inicijalizacije
         public static Enums.ConsumerRezim[] rezimBuffer = new Enums.ConsumerRezim[ConsumerSHES.consumersList.Count];
 
         public void ChangeConsumerState(int id, Enums.ConsumerRezim rezim)

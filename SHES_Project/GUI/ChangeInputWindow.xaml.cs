@@ -83,6 +83,7 @@ namespace GUI
                     }
                     Trace.TraceInformation("GUI sending: Consumer id-" + consumerID + ", state-" + consumerRezim.ToString());
                     CommunicationData.proxyConsumer.ChangeConsumerState(consumerID, consumerRezim);
+                    txtConsumerId.Text = "";
                 }
             }
 
@@ -97,8 +98,8 @@ namespace GUI
                         ev = Enums.BatteryRezim.PRAZNJENJE;
                         break;
                 }
-                Trace.TraceInformation("GUI to EV: " + ev.ToString());
-                CommunicationData.proxyEV.SendRegime(cmbBoxBatteryOnPlug.Text, ev);
+                Trace.TraceInformation("GUI to EV: " + Convert.ToBoolean(cmbBoxBatteryOnPlug.Text) + " " + ev.ToString());
+                CommunicationData.proxyEV.SendRegime(Convert.ToBoolean(cmbBoxBatteryOnPlug.Text), ev);
             }
         }
 

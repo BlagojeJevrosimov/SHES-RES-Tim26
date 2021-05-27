@@ -11,7 +11,8 @@ namespace Consumer
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class ConsumerSHES : IConsumerSHES
     {
-        public static List<Common.Consumer> consumersList;
+        public static List<Common.Consumer> consumersList = new List<Common.Consumer>();
+
         public void InitializeConsumers(List<Common.Consumer> consumers)
         {
             if (consumers == null)

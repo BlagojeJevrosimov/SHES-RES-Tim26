@@ -32,6 +32,9 @@ namespace SHES
             Thread shesGUI = new Thread(GUIServerThread);
             shesGUI.Start();
 
+            Thread shesEVC = new Thread(EVCServerThread);
+            shesEVC.Start();
+
             //Otvaravnje kanala:
             ChannelFactory<IBatterySHES> batteryChannel = new ChannelFactory<IBatterySHES>("IBatterySHES");
             IBatterySHES batteryProxy = batteryChannel.CreateChannel();
@@ -61,7 +64,7 @@ namespace SHES
                 List<Common.Battery> baterije = new List<Battery>() {
                 new Common.Battery(0.3,"b1",50,Enums.BatteryRezim.IDLE),
                 new Common.Battery(0.5,"b2",25,Enums.BatteryRezim.IDLE)
-            };
+                };
                 Common.EVCharger ev = new EVCharger(0.7,"evc",50,Enums.BatteryRezim.IDLE);
                 ev.Charge = false;
                 ev.Connected = true;
@@ -183,7 +186,15 @@ namespace SHES
         {
             using (ServiceHost host = new ServiceHost(typeof(SHESGUI)))
             {
+                host.Open();
+                while (true) ;
+            }
+        }
 
+        static void EVCServerThread()
+        {
+            using (ServiceHost host = new ServiceHost(typeof(SHESEVCharger)))
+            {
                 host.Open();
                 while (true) ;
             }

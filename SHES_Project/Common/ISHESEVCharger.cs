@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 namespace Common
 {
     [ServiceContract]
-   public interface ISHESEVCharger
+    public interface ISHESEVCharger
     {
+        [OperationContract]
+        void SendRegime(bool plugIn, bool charge);
     }
 }
