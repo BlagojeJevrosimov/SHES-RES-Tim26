@@ -18,12 +18,22 @@ namespace Consumer
             Thread serverGUI = new Thread(ServerGUI);
             serverGUI.Start();
 
-
+            Thread serverSHES = new Thread(ServerSHES);
+            serverSHES.Start();
         }
 
         public static void ServerGUI()
         {
             using (ServiceHost host = new ServiceHost(typeof(ConsumerGUI)))
+            {
+                host.Open();
+                while (true) ;
+            }
+        }
+
+        public static void ServerSHES()
+        {
+            using (ServiceHost host = new ServiceHost(typeof(ConsumerSHES)))
             {
                 host.Open();
                 while (true) ;

@@ -15,6 +15,7 @@ namespace EVCharger
         static void Main(string[] args)
         {
             Enums.BatteryRezim rezim;
+            bool plug;
 
             Thread server1 = new Thread(Server1);
             Thread server2 = new Thread(Server2);
@@ -25,6 +26,8 @@ namespace EVCharger
             while (true)
             {
                 rezim = EVChargerSHES.rezimBuffer;
+                plug = EVChargerGUI.plugBuffer;
+
                 Trace.TraceInformation("Sent from SHES: " + rezim.ToString());
 
                 //kreirati proxy ka SHESu da mu se posalje trazeni rezim rada sa GUI-ja

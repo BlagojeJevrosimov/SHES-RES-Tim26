@@ -30,7 +30,10 @@ namespace GUI
             cmbBoxConsumer.ItemsSource = rezimConsumer;
 
             List<string> rezimBattery = new List<string> { Common.Enums.BatteryRezim.PUNJENJE.ToString(), Common.Enums.BatteryRezim.PRAZNJENJE.ToString() };
-            cmbBoxBattery.ItemsSource = rezimBattery;
+            cmbBoxBatteryRegime.ItemsSource = rezimBattery;
+
+            List<bool> plugBattery = new List<bool> { true, false };
+            cmbBoxBatteryOnPlug.ItemsSource = plugBattery;
 
             ChannelFactory<ISolarPanelGUI> SolarPanelChannel = new ChannelFactory<ISolarPanelGUI>("ISolarPanelGUI");
             CommunicationData.proxySP = SolarPanelChannel.CreateChannel();
@@ -83,9 +86,9 @@ namespace GUI
                 }
             }
 
-            if (cmbBoxBattery.Text != null && cmbBoxBattery.Text != "")
+            if (cmbBoxBatteryRegime.Text != null && cmbBoxBatteryRegime.Text != "")
             {
-                switch (cmbBoxBattery.Text)
+                switch (cmbBoxBatteryRegime.Text)
                 {
                     case "PUNJENJE":
                         ev = Enums.BatteryRezim.PUNJENJE;
@@ -95,7 +98,7 @@ namespace GUI
                         break;
                 }
                 Trace.TraceInformation("GUI to EV: " + ev.ToString());
-                CommunicationData.proxyEV.SendRegime(ev);
+                CommunicationData.proxyEV.SendRegime(cmbBoxBatteryOnPlug.Text, ev);
             }
         }
 

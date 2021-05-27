@@ -12,6 +12,6 @@ namespace Common
     public interface IEVChargerGUI
     {
         [OperationContract]
-        void SendRegime(BatteryRezim rezim);
+        void SendRegime(bool plug, BatteryRezim rezim);
     }
 }

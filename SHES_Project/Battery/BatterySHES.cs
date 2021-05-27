@@ -13,7 +13,7 @@ namespace Battery
 
     public class BatterySHES : IBatterySHES
     {
-        public static Dictionary<string, Enums.BatteryRezim> bufferRezim;
+        public static Dictionary<string, Enums.BatteryRezim> bufferRezim = new Dictionary<string, BatteryRezim>();
         public static List<Common.Battery> batteries = new List<Common.Battery>();
 
         public void InitializeBatteries(int num, double[] maxPowers)
@@ -36,7 +36,8 @@ namespace Battery
 
         public void SendRegime(string id,BatteryRezim rezim)
         {
-            if (id == null || rezim == null) throw new ArgumentNullException("Null prosledjen u bateriju");
+            if (id == null)
+                throw new ArgumentNullException("Null prosledjen u bateriju");
             bufferRezim[id] = rezim;
         }
     }

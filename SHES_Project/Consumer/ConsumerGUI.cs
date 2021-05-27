@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Consumer
 {
-    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple,InstanceContextMode =InstanceContextMode.Single)]
+    //[ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple,InstanceContextMode =InstanceContextMode.Single)]
     public class ConsumerGUI : IConsumerGUI
     {
         //zameniti ovaj broj sa stvarnim brojem consumera nakon inicijalizacije
