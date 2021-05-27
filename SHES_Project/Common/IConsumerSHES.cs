@@ -4,15 +4,12 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
-using static Common.Enums;
 
 namespace Common
-{
-    [ServiceContract]
-    public interface ISHESBattery
+{   [ServiceContract]
+    public interface IConsumerSHES
     {
         [OperationContract]
-        void SendData( string id, double sentCapacity, BatteryRezim sentRegime);
-
+        void InitializeConsumers(List<Common.Consumer> consumers);
     }
 }

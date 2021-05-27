@@ -10,14 +10,14 @@ namespace SHES
 {
     public class SHESBattery : ISHESBattery
     {
-        public static double bufferCapacity;
-        public static BatteryRezim bufferRegime = BatteryRezim.IDLE;
+        public static Dictionary<string, double> bufferCapacities;
+        public static Dictionary<string, Enums.BatteryRezim> bufferRezimi;
 
 
-        public void SendData(double sentCapacity, BatteryRezim sentRegime)
+        public void SendData(string id, double sentCapacity, BatteryRezim sentRegime)
         {
-            bufferCapacity = sentCapacity;
-            bufferRegime = sentRegime;
+            bufferRezimi[id] = sentRegime;
+            bufferCapacities[id] = sentCapacity;
         }
     }
 }

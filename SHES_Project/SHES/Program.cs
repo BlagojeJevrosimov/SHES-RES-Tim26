@@ -13,7 +13,7 @@ namespace SHES
     class Program
     {
         static void Main(string[] args)
-        {
+    {
             //Vrednosti potrebne za pravilan rad aplikacije: 
             double solarPanelsOutput = 0;
             double batteryCapacity = 0;
@@ -21,17 +21,17 @@ namespace SHES
             BatteryRezim rezim = BatteryRezim.IDLE;
 
             //Iniciajizacija Servera:
-            Thread solarPanelServer = new Thread(SolarPanelServerThread);
-            solarPanelServer.Start();
+            Thread shesSolarPanel = new Thread(SolarPanelServerThread);
+            shesSolarPanel.Start();
 
-            Thread batteryServer = new Thread(BatteryServerThread);
-            batteryServer.Start();
+            Thread shesBattery = new Thread(BatteryServerThread);
+            shesBattery.Start();
 
-            Thread consumerServer = new Thread(ConsumerServerThread);
-            consumerServer.Start();
+            Thread shesConsumer = new Thread(ConsumerServerThread);
+            shesConsumer.Start();
 
-            Thread GUIServer = new Thread(GUIServerThread);
-            GUIServer.Start();
+            Thread shesGUI = new Thread(GUIServerThread);
+            shesGUI.Start();
 
             //Otvaravnje kanala:
             ChannelFactory<IBatterySHES> batteryChannel = new ChannelFactory<IBatterySHES>("IBatterySHES");
@@ -47,8 +47,6 @@ namespace SHES
             {
                 //Preuzimanje vrednosti iz baffera:
                 solarPanelsOutput = SHESSolarPanel.bufferPowerOutput;
-                batteryCapacity = SHESBattery.bufferCapacity;
-                rezim = SHESBattery.bufferRegime;
                 consumerEnergyConsumption = SHESConsumer.energyConsumptioneBuffer;
                 //preuzeti bafere sa GUIja
 

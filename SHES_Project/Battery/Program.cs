@@ -14,9 +14,6 @@ namespace Battery
     {
         static void Main(string[] args)
         {
-            double capacities = 0;
-            //rezim baterije
-            BatteryRezim rezimRada = BatteryRezim.IDLE;
 
             Thread server = new Thread(Server);
             server.Start();
@@ -24,40 +21,34 @@ namespace Battery
             ChannelFactory<ISHESBattery> channel = new ChannelFactory<ISHESBattery>("ISHESBattery");
             ISHESBattery proxy = channel.CreateChannel();
 
-            int num = 2;
-            double[] power = { 100, 200 };
-            Batteries.InitializeBatteries(num, power);
 
             int counter = 0;
             while (true)
             {
-                capacities = 0;
-                rezimRada = Batteries.bufferRezim;
+                foreach (Common.Battery b in BatterySHES.batteries) { 
 
-                foreach (Common.Battery battery in Batteries.batteries)
-                {
-                    capacities += battery.Capacity;
+                    b.State = BatterySHES.bufferRezim[b.Id];
 
-                    if (rezimRada == BatteryRezim.PUNJENJE && battery.Capacity <= battery.MaxPower - 1 && counter == 60)
+                    if ( b.State == BatteryRezim.PUNJENJE && counter == 60)
                     {
-                        battery.Capacity++;
+                        b.Capacity+=0.01;
                         counter = 0;
                     }
-                    else if (rezimRada == BatteryRezim.PRAZNJENJE && battery.Capacity >= 1 && counter == 60)
+                    else if (b.State == BatteryRezim.PRAZNJENJE && counter == 60)
                     {
-                        battery.Capacity--;
+                        b.Capacity -= 0.01;
                         counter = 0;
                     }
-                    proxy.SendData(capacities, rezimRada);
+                    proxy.SendData(b.Id,b.Capacity,b.State);
                 }
                 counter++;
-                Thread.Sleep(3000);
+                Thread.Sleep(60000);
             }
         }
 
         static void Server()
         {
-            using (ServiceHost host = new ServiceHost(typeof(Batteries)))
+            using (ServiceHost host = new ServiceHost(typeof(BatterySHES)))
             {
                 host.Open();
                 while (true) ;

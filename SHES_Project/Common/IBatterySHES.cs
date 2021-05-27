@@ -11,10 +11,10 @@ namespace Common
     [ServiceContract]
     public interface IBatterySHES
     {
-        //[OperationContract]
-        //void InitializeBatteries(int num, double[] maxPowers);
+        [OperationContract]
+        void InitializeBatteries(int num, double[] maxPowers);
 
         [OperationContract]
-        void SendRegime(BatteryRezim rezim);
+        void SendRegime(string id,BatteryRezim rezim);
     }
 }

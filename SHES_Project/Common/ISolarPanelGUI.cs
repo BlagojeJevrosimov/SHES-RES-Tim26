@@ -10,8 +10,6 @@ namespace Common
     [ServiceContract]
     public interface ISolarPanelGUI
     {
-        //[OperationContract]
-        //void InitializeSolarPanels(int num, double[] maxPowers);
 
         [OperationContract]
         void ChangeSunIntensity(double sunIntensity);

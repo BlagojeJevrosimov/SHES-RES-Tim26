@@ -10,8 +10,10 @@ namespace Common
     public interface IUtilitySHES
     {
         [OperationContract]
-        double sendRequestforEnergy(double amount);
+        void sendRequestforEnergy(double amount);
         [OperationContract]
         void initializeUtility(Common.Utility util);
+        [OperationContract]
+        double getPrice();
     }
 }

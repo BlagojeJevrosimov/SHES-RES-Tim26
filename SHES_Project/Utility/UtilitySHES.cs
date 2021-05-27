@@ -10,24 +10,25 @@ namespace Utility
     public class UtilitySHES : IUtilitySHES
     {
         public static Common.Utility utility;
+
+        public double getPrice()
+        {
+            return utility.Price;
+        }
+
         public void initializeUtility(Common.Utility util)
         {
+            if (util == null) throw new ArgumentNullException("Null prosledjen u eletrodistribuciju");
+            if (util.Price < 0) throw new ArgumentOutOfRangeException("Cena struje ne moze biti manja od nula");
             utility = util;
         }
 
 
 
-        public double sendRequestforEnergy(double amount)
+        public void sendRequestforEnergy(double amount)
         {
             utility.Power = amount;
-            if (amount <= 0)
-            {
-                return utility.Price;
-            }
-            else {
-
-                return utility.Price;
-            }
+          
         }
     }
 }

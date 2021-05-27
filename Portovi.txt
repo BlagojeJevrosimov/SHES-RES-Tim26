@@ -8,3 +8,4 @@
 4007 - EVChargerSHES
 4008 - SHESGUI
 4009 - ConsumerGUI
+4010 - SolarPanelSHES
