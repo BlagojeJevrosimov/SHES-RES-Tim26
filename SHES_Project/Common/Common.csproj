@@ -51,9 +51,11 @@
     <Compile Include="EVCharger.cs" />
     <Compile Include="IBatterySHES.cs" />
     <Compile Include="IConsumerGUI.cs" />
+    <Compile Include="IConsumerSHES.cs" />
     <Compile Include="IEVChargerGUI.cs" />
     <Compile Include="IEVChargerSHES.cs" />
     <Compile Include="ISHESBattery.cs" />
+    <Compile Include="ISHESEVCharger.cs" />
     <Compile Include="ISHESGUI.cs" />
     <Compile Include="ISHESSolarPanel.cs" />
     <Compile Include="ISolarPanelGUI.cs" />

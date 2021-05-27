@@ -36,7 +36,7 @@ namespace SolarPanel
                 Trace.TraceInformation("Sun intensity: " + sunIntensity);
                 Trace.TraceInformation("Solar power output: " + powerOutput);
 
-                Thread.Sleep(1000);
+                Thread.Sleep(1);
             }
 
 

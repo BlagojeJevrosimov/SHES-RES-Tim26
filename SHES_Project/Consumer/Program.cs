@@ -14,8 +14,6 @@ namespace Consumer
     {
         static void Main(string[] args)
         {
-            //zameniti ovaj broj nakon inicijalizacije sistema sa stvarnim brojem consumera
-            
 
             Thread serverGUI = new Thread(ServerGUI);
             serverGUI.Start();

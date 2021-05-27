@@ -16,7 +16,6 @@ namespace SHES
     {
             //Vrednosti potrebne za pravilan rad aplikacije: 
             double solarPanelsOutput = 0;
-            double batteryCapacity = 0;
             double consumerEnergyConsumption = 0;
             BatteryRezim rezim = BatteryRezim.IDLE;
 
@@ -42,18 +41,21 @@ namespace SHES
 
             ChannelFactory<IEVChargerSHES> evchargerChannel = new ChannelFactory<IEVChargerSHES>("IEVChargerSHES");
             IEVChargerSHES evchargerProxy = evchargerChannel.CreateChannel();
-            
+
+            long date = DateTimeOffset.Now.ToUnixTimeSeconds();
+
             while (true)
             {
                 //Preuzimanje vrednosti iz baffera:
                 solarPanelsOutput = SHESSolarPanel.bufferPowerOutput;
                 consumerEnergyConsumption = SHESConsumer.energyConsumptioneBuffer;
+                Dictionary<string, double> Capacities = SHESBattery.bufferCapacities;
+                Dictionary<string, Enums.BatteryRezim> Rezimi = SHESBattery.bufferRezimi;
                 //preuzeti bafere sa GUIja
+                
+                
 
-
-                 int vreme = 14;
-                double solarniPaneli = 100;
-                double potrosaci = 200;
+                int vreme = 14;
                 double avgCena = 0.139;
                 double cena = 0.5;
                 List<Common.Battery> baterije = new List<Battery>() {
@@ -67,13 +69,14 @@ namespace SHES
 
 
                 //Algoritam:
-                double potrosnja = potrosaci;
-                potrosnja -= solarniPaneli;
+                double potrosnja = consumerEnergyConsumption;
+
+                potrosnja -= solarPanelsOutput;
 
                 if (ev.Connected && ev.Charge && ev.Capacity < 1)
                 {
                     potrosnja += ev.MaxPower;
-                    //evproxy.ZadajRezim("punjenje");
+                    evchargerProxy.SendRegime(Enums.BatteryRezim.PUNJENJE);
                 }
 
                 if (vreme >= 3 && vreme <= 6)
@@ -83,7 +86,7 @@ namespace SHES
                         if (b.Capacity < 1)
                         {
                             potrosnja += b.MaxPower;
-                            //baterijaProxy.ZadajRezim("Punjenje");
+                            batteryProxy.SendRegime(b.Id, Enums.BatteryRezim.PUNJENJE);
                         }
                     }
                     if (ev.Connected)
@@ -91,7 +94,7 @@ namespace SHES
                         if (ev.Capacity < 1)
                         {
                             potrosnja += ev.MaxPower;
-                            //evproxy.ZadajRezim("punjenje");
+                            evchargerProxy.SendRegime(Enums.BatteryRezim.PUNJENJE);
                         }
                     }
 
@@ -104,7 +107,7 @@ namespace SHES
                         if (b.Capacity > 0)
                         {
                             potrosnja -= b.MaxPower;
-                            //baterijaProxy.ZadajRezim("Praznjenje");
+                            batteryProxy.SendRegime(b.Id, Enums.BatteryRezim.PRAZNJENJE);
                         }
                     }
 
@@ -121,7 +124,7 @@ namespace SHES
                             if (b.Capacity <= 1)
                             {
                                 potrosnja += b.MaxPower;
-                                //baterijaProxy.ZadajRezim("Punjenje");
+                                batteryProxy.SendRegime(b.Id, Enums.BatteryRezim.PUNJENJE);
                             }
                         }
 
@@ -134,17 +137,18 @@ namespace SHES
                             if (b.Capacity > 0)
                             {
                                 potrosnja -= b.MaxPower;
-                                //baterijaProxy.ZadajRezim("Praznjenje");
+                                batteryProxy.SendRegime(b.Id, Enums.BatteryRezim.PRAZNJENJE);
                             }
                         }
 
                     }
 
                 }
-                Console.WriteLine(potrosnja);
-                Console.ReadKey();
+                //Sacuvaj u bazu sve
 
-                Thread.Sleep(3000);
+                Thread.Sleep(1000);
+                    date +=1200;
+
             }
 
         }

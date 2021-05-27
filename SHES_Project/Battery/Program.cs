@@ -42,7 +42,7 @@ namespace Battery
                     proxy.SendData(b.Id,b.Capacity,b.State);
                 }
                 counter++;
-                Thread.Sleep(60000);
+                Thread.Sleep(50);
             }
         }
 

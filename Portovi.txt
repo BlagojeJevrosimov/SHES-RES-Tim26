@@ -9,3 +9,5 @@
 4008 - SHESGUI
 4009 - ConsumerGUI
 4010 - SolarPanelSHES
+4011 - ConsumerSHES
+4012 - SHESEVCharger
