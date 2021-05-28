@@ -30,15 +30,19 @@ namespace Battery
                     batteries.Add(new Common.Battery(0, i.ToString(), maxPowers[i], Enums.BatteryRezim.IDLE));
                 }
             }
-            else throw new ArgumentOutOfRangeException("Broj baterija ne moze biti negativan.");
+            else throw new ArgumentOutOfRangeException("Broj baterija ne moze biti negativan!");
             
         }
 
-        public void SendRegime(string id,BatteryRezim rezim)
+        public void SendRegime(string id, BatteryRezim rezim)
         {
             if (id == null)
-                throw new ArgumentNullException("Null prosledjen u bateriju");
-            bufferRezim[id] = rezim;
+                throw new ArgumentNullException("Id ne moze biti null!");
+
+            if (!bufferRezim.Keys.Contains(id))
+                throw new ArgumentException("Nepostojeci id!");
+            else
+                bufferRezim[id] = rezim;
         }
     }
 }

@@ -44,14 +44,46 @@ namespace BatteryTest
         }
 
         [Test]
+        [TestCase(200, null, 500, Common.Enums.BatteryRezim.PUNJENJE)]
+        public void BatteryKonstruktoNullParametri(double capacity, string id, double maxPower, Enums.BatteryRezim state)
+        {
+            Assert.Throws<ArgumentNullException>(
+                () =>
+                {
+                    Common.Battery battery = new Common.Battery(capacity, id, maxPower, state);
+                }
+            );
+        }
+
+        //[Test]
+        //[TestCase(200, "broj", 300, Enums.BatteryRezim.PUNJENJE)]
+        //[TestCase(100, "broj52", 100, Enums.BatteryRezim.PRAZNJENJE)]
+        //public void BatteryKonstruktorIdNonNumber(double capacity, string id, double maxPower, Enums.BatteryRezim state)
+        //{
+        //    Assert.Throws<ArgumentException>(
+        //        () =>
+        //        {
+        //            Common.Battery battery = new Common.Battery(capacity, id, maxPower, state);
+        //        }
+        //    );
+        //}
+
+        [Test]
         [TestCase(150)]
         public void CapacityDobriParametri(double capacity)
         {
-            Common.Battery battery = new Battery();
-
-            battery.Capacity = capacity;
-
+            Common.Battery battery = new Common.Battery();
+            battery.Capacity = capacity;       
             Assert.AreEqual(capacity, battery.Capacity);
+        }
+
+        [Test]
+        [TestCase("150")]
+        public void IdDobriParametri(string id)
+        {
+            Common.Battery battery = new Common.Battery();
+            battery.Id = id;
+            Assert.AreEqual(id, battery.Id);
         }
     }
 }
