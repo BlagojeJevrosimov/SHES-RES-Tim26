@@ -16,21 +16,23 @@ namespace Battery
         public static Dictionary<string, Enums.BatteryRezim> bufferRezim = new Dictionary<string, BatteryRezim>();
         public static List<Common.Battery> batteries = new List<Common.Battery>();
 
-        public void InitializeBatteries(int num, double[] maxPowers)
+        public void InitializeBatteries(List<Common.Battery> batteriesRecieved)
         {
-            if (num != maxPowers.Length) throw new ArgumentOutOfRangeException("Broj baterija i njihovih snaga se ne poklapaju.");
+            //if (num != batteriesRecieved.Count)
+            //    throw new ArgumentOutOfRangeException("Broj baterija i njihovih snaga se ne poklapaju.");
 
-            if (num > 0)
+            if (batteriesRecieved != null)
             {
-                batteries = new List<Common.Battery>();
+                int num = batteriesRecieved.Count();
+
+                batteries = batteriesRecieved;
 
                 for (int i = 0; i < num; i++)
                 {
-                    bufferRezim[i.ToString()] = Enums.BatteryRezim.IDLE;
-                    batteries.Add(new Common.Battery(0, i.ToString(), maxPowers[i], Enums.BatteryRezim.IDLE));
+                    bufferRezim[batteriesRecieved[i].Id] = Enums.BatteryRezim.IDLE;
                 }
             }
-            else throw new ArgumentOutOfRangeException("Broj baterija ne moze biti negativan!");
+            else throw new ArgumentNullException("Baterije su null!");
             
         }
 

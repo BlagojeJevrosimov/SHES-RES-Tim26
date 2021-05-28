@@ -25,9 +25,9 @@ namespace Common
 
         }
 
-        public Utility(int p, double price)
+        public Utility(int power, double price)
         {
-            Power = p;
+            Power = power;
             Price = price;
         }
 

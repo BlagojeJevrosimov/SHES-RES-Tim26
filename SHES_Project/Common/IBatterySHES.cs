@@ -12,7 +12,7 @@ namespace Common
     public interface IBatterySHES
     {
         [OperationContract]
-        void InitializeBatteries(int num, double[] maxPowers);
+        void InitializeBatteries(List<Battery> batteriesRecieved);
 
         [OperationContract]
         void SendRegime(string id,BatteryRezim rezim);

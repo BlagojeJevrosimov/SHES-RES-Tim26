@@ -12,8 +12,8 @@ namespace SHES
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple,InstanceContextMode = InstanceContextMode.Single)]
     public class SHESBattery : ISHESBattery
     {
-        public static Dictionary<string, double> bufferCapacities;
-        public static Dictionary<string, Enums.BatteryRezim> bufferRezimi;
+        public static Dictionary<string, double> bufferCapacities = new Dictionary<string, double>();
+        public static Dictionary<string, Enums.BatteryRezim> bufferRezimi = new Dictionary<string, BatteryRezim>();
 
 
         public void SendData(string id, double sentCapacity, BatteryRezim sentRegime)

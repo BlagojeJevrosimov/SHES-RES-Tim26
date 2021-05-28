@@ -2,12 +2,14 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BatteryTest
 {
+    [ExcludeFromCodeCoverage]
     [TestFixture]
     public class CommonBatteryTest
     {
@@ -17,6 +19,8 @@ namespace BatteryTest
         public void BatteryKonstruktorDobriParametri(double capacity, string id, double maxPower, Enums.BatteryRezim state)
         {
             Common.Battery battery = new Common.Battery(capacity, id, maxPower, state);
+
+            Assert.AreNotEqual(null, battery);
 
             Assert.AreEqual(battery.Capacity, capacity);
             Assert.AreEqual(battery.Id, id);

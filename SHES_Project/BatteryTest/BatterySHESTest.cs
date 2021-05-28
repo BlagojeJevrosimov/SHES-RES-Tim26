@@ -4,12 +4,14 @@ using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BatteryTest
 {
+    [ExcludeFromCodeCoverage]
     [TestFixture]
     public class BatterySHESTest
     {
@@ -17,12 +19,13 @@ namespace BatteryTest
         public double[] maxPower;
         public IBatterySHES bs;
         public string idLos, idDobar;
-        Enums.BatteryRezim rezim, rezim2;
+        public Enums.BatteryRezim rezim, rezim2;
+        public List<Common.Battery> batteries;
 
         [SetUp]
         public void SetUp()
         {
-            num = 5;
+            num = 2;
             maxPower = new double[num];
 
             for(int i = 0; i < num; i++)
@@ -35,46 +38,33 @@ namespace BatteryTest
             idDobar = "2";
             rezim = Enums.BatteryRezim.IDLE;
             rezim2 = Enums.BatteryRezim.PUNJENJE;
+
+            batteries = new List<Common.Battery>();
+            batteries.Add(new Common.Battery(200, "1", 700, Enums.BatteryRezim.PUNJENJE));
+            batteries.Add(new Common.Battery(100, "2", 800, Enums.BatteryRezim.PUNJENJE));
         }
 
         [Test]
-        public void ArgumentOutOfRangeExceptionInicijalizacija()
+        public void ArgumentNullExceptionInicijalizacija()
         {
-            //Mock<IBatterySHES> mockBS = new Mock<IBatterySHES>();
-
-            Assert.Throws<ArgumentOutOfRangeException> (
-            () =>
-            { 
-                bs.InitializeBatteries(4, maxPower);
-            }
-            );
-
-            Assert.Throws<ArgumentOutOfRangeException>(
+            Assert.Throws<ArgumentNullException>(
             () =>
             {
-                bs.InitializeBatteries(6, maxPower);
+                bs.InitializeBatteries(null);
             }
             );
-
-            Assert.Throws<ArgumentOutOfRangeException>(
-            () =>
-            {
-                bs.InitializeBatteries(-2, maxPower);
-            }
-            );
-
         }
 
         [Test]
         public void InitializeDobriParametri()
         {
-            bs.InitializeBatteries(num, maxPower);
+            //Assert.AreNotEqual(null, bs);
+
+            bs.InitializeBatteries(batteries);
             int temp = BatterySHES.batteries.Count();
             var temp2 = BatterySHES.bufferRezim[idDobar];
 
             Assert.AreEqual(num, temp);
-            Assert.AreEqual(num, temp);
-            Assert.AreEqual(rezim, temp2);
 
             bs.SendRegime(idDobar, rezim2);
             temp2 = BatterySHES.bufferRezim[idDobar];

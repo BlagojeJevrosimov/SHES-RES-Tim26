@@ -45,6 +45,8 @@ namespace SHES
             ChannelFactory<IEVChargerSHES> evchargerChannel = new ChannelFactory<IEVChargerSHES>("IEVChargerSHES");
             IEVChargerSHES evchargerProxy = evchargerChannel.CreateChannel();
 
+            //otvoriti kanale i ka ostalim komponentama zbog inicijalizacije
+
             long date = DateTimeOffset.Now.ToUnixTimeSeconds();
 
             while (true)
@@ -61,15 +63,25 @@ namespace SHES
                 int vreme = 14;
                 double avgCena = 0.139;
                 double cena = 0.5;
+
+                //ove podatke dobaviti sa GUI-ja
                 List<Common.Battery> baterije = new List<Battery>() {
-                new Common.Battery(0.3,"b1",50,Enums.BatteryRezim.IDLE),
-                new Common.Battery(0.5,"b2",25,Enums.BatteryRezim.IDLE)
+                new Common.Battery(0.3,"1",50,Enums.BatteryRezim.IDLE),
+                new Common.Battery(0.5,"2",25,Enums.BatteryRezim.IDLE)
                 };
+
+                batteryProxy.InitializeBatteries(baterije);
+
+                //ove podatke dobaviti sa GUI-ja
                 Common.EVCharger ev = new EVCharger(0.7,"evc",50,Enums.BatteryRezim.IDLE);
                 ev.Charge = false;
                 ev.Connected = true;
 
+                evchargerProxy.InitializeEVCharger(ev);
 
+                //ove podatke dobaviti sa GUI-ja
+                Utility util = new Utility(2000, 500);
+                utilityProxy.initializeUtility(util);
 
                 //Algoritam:
                 double potrosnja = consumerEnergyConsumption;

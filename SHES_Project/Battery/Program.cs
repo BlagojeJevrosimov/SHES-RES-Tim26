@@ -1,6 +1,7 @@
 ﻿using Common;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
@@ -10,6 +11,7 @@ using static Common.Enums;
 
 namespace Battery
 {
+    [ExcludeFromCodeCoverage]
     class Program
     {
         static void Main(string[] args)
@@ -21,7 +23,7 @@ namespace Battery
             ChannelFactory<ISHESBattery> channel = new ChannelFactory<ISHESBattery>("ISHESBattery");
             ISHESBattery proxy = channel.CreateChannel();
 
-
+            Thread.Sleep(2000);
             int counter = 0;
             while (true)
             {
@@ -46,6 +48,7 @@ namespace Battery
             }
         }
 
+        [ExcludeFromCodeCoverage]
         static void Server()
         {
             using (ServiceHost host = new ServiceHost(typeof(BatterySHES)))
