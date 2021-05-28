@@ -16,15 +16,24 @@ namespace Common
 {
     public class Battery
     {
+        public double Capacity { get; set; }
 
-        private double capacity;
-        private string id;
-        private double maxPower;
-        private Enums.BatteryRezim state;
+        public string Id
+        {
+            get;
+            set;
+        }
 
+        public double MaxPower
+        {
+            get;
+            set;
+        }
+
+        public Enums.BatteryRezim State { get; set; }
         public Battery()
         {
-            capacity = 0;
+            Capacity = 0;
         }
 
         ~Battery()
@@ -39,48 +48,17 @@ namespace Common
 
         public Battery(double capacity, string id, double maxPower, Enums.BatteryRezim state)
         {
-            Capacity = capacity;
+            if (capacity >= 0)
+                Capacity = capacity;
+            else
+                throw new ArgumentException("Kapacitet ne sme biti negativan broj!");
             Id = id;
-            MaxPower = maxPower;
+            if (maxPower >= 0)
+                MaxPower = maxPower;
+            else
+                throw new ArgumentException("Max power ne sme biti negativan broj!");
             State = state;
         }
 
-        public double Capacity
-        {
-            get
-            {
-                return capacity;
-            }
-            set
-            {
-                capacity = value;
-            }
-        }
-
-        public string Id
-        {
-            get
-            {
-                return id;
-            }
-            set
-            {
-                id = value;
-            }
-        }
-
-        public double MaxPower
-        {
-            get
-            {
-                return maxPower;
-            }
-            set
-            {
-                maxPower = value;
-            }
-        }
-
-        public Enums.BatteryRezim State { get => state; set => state = value; }
     }
 }//end Battery
