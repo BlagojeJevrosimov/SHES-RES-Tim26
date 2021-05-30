@@ -25,10 +25,10 @@ namespace Common
 
         }
 
-        public EVCharger(double capacity, string id, double maxPower, Enums.BatteryRezim state) :base(maxPower,id,capacity,state)
+        public EVCharger(double capacity, string id, double maxPower, Enums.BatteryRezim state,bool charge,bool connected) :base(maxPower,id,capacity,state)
         {
-            this.Charge = false;
-            this.Connected = false;
+            this.Charge = charge;
+            this.Connected = connected;
             
         }
 

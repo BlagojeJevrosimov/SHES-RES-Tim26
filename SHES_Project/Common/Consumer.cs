@@ -19,6 +19,7 @@ namespace Common
 
         private double energyConsumption;
         private string id;
+        private Enums.ConsumerRezim rezim;
 
 
         public Consumer()
@@ -34,10 +35,11 @@ namespace Common
         /// 
         /// <param name="id"></param>
         /// <param name="energyConsumption"></param>
-        public Consumer(string id, double energyConsumption)
+        public Consumer( double energyConsumption , string id, Enums.ConsumerRezim rezim)
         {
             this.EnergyConsumption = energyConsumption;
             this.Id = id;
+            this.Rezim = rezim;
 
         }
 
@@ -65,5 +67,6 @@ namespace Common
             }
         }
 
+        public Enums.ConsumerRezim Rezim { get => rezim; set => rezim = value; }
     }
 }//end Consumer

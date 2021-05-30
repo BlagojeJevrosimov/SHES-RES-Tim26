@@ -73,9 +73,7 @@ namespace SHES
                 batteryProxy.InitializeBatteries(baterije);
 
                 //ove podatke dobaviti sa GUI-ja
-                Common.EVCharger ev = new EVCharger(0.7,"evc",50,Enums.BatteryRezim.IDLE);
-                ev.Charge = false;
-                ev.Connected = true;
+                Common.EVCharger ev = new EVCharger(0.7,"evc",50,Enums.BatteryRezim.IDLE,false,true);
 
                 evchargerProxy.InitializeEVCharger(ev);
 
