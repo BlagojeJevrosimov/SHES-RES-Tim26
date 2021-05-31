@@ -12,11 +12,13 @@ namespace DatabaseLayer
     {
         static void Main(string[] args)
         {
-            DatabaseLayer.DAO.Implementacije.Utility ut = new DAO.Implementacije.Utility();
-            Common.Utility u = new Common.Utility(0.33);
-            ut.Save(u);
-            Console.WriteLine(ut.GetCurrentPrice());
+
+            DateTime centuryBegin = new DateTime(2001, 1, 1);
+            DateTime currentDate = DateTime.Now;
+
+            
             Console.ReadKey();
+           
 
             
 

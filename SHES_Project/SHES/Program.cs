@@ -47,7 +47,12 @@ namespace SHES
 
             //otvoriti kanale i ka ostalim komponentama zbog inicijalizacije
 
-            long date = DateTimeOffset.Now.ToUnixTimeSeconds();
+            DateTime centuryBegin = new DateTime(2001, 1, 1);
+            DateTime currentDate = DateTime.Now;
+
+            long elapsedTicks = currentDate.Ticks - centuryBegin.Ticks;
+            TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
+            int time = (int)Math.Floor(elapsedSpan.TotalSeconds);
 
             while (true)
             {
@@ -159,8 +164,8 @@ namespace SHES
                 }
                 //Sacuvaj u bazu sve
 
-                Thread.Sleep(1000);
-                    date +=1200;
+                Thread.Sleep(1000);//5 minuta
+                    
 
             }
 

@@ -1,4 +1,5 @@
 ﻿using Common;
+using DatabaseLayer.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace DatabaseLayer.DAO
 {
-    public interface IBatteries: ICRUDDao<Battery,string>
+    public interface IBatteries: ICRUDDao<BatteryDTO,string>
     {
+        IEnumerable<BatteryDTO> FindAllById(string id);
     }
 }

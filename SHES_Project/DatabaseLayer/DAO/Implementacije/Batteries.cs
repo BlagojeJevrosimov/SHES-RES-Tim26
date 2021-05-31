@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common;
+using DatabaseLayer.DTO;
 using SHES_Project.DatabaseLayer;
 
 namespace DatabaseLayer.DAO.Implementacije
@@ -28,7 +29,7 @@ namespace DatabaseLayer.DAO.Implementacije
             }
         }
 
-        public void Delete(Battery entity)
+        public void Delete(BatteryDTO entity)
         {
             throw new NotImplementedException();
         }
@@ -70,11 +71,11 @@ namespace DatabaseLayer.DAO.Implementacije
             
         }
 
-        public IEnumerable<Battery> FindAll()
+        public IEnumerable<BatteryDTO> FindAll()
         {
             
-                string query = "select capacity, idb, power, state from batteries";
-                List<Battery> batteryList = new List<Battery>();
+                string query = "select capacity, idb, power, state, time from batteries";
+                List<BatteryDTO> batteryList = new List<BatteryDTO>();
 
                 using (IDbConnection connection = ConnectionUtil_Pooling.GetConnection())
                 {
@@ -88,9 +89,9 @@ namespace DatabaseLayer.DAO.Implementacije
                         {
                             while (reader.Read())
                             {
-                                Battery scene = new Battery(reader.GetDouble(0), reader.GetString(1),
-                                    reader.GetDouble(2), (Enums.BatteryRezim)Enum.Parse(typeof(Enums.BatteryRezim), reader.GetString(3)));
-                                batteryList.Add(scene);
+                                BatteryDTO b = new BatteryDTO(reader.GetDouble(0), reader.GetString(1),
+                                    reader.GetDouble(2), (Enums.BatteryRezim)Enum.Parse(typeof(Enums.BatteryRezim), reader.GetString(3)),reader.GetInt32(4));
+                                batteryList.Add(b);
                             }
                         }
                     }
@@ -99,15 +100,43 @@ namespace DatabaseLayer.DAO.Implementacije
             
         }
 
-        public IEnumerable<Battery> FindAllById(IEnumerable<string> ids)
+        public IEnumerable<BatteryDTO> FindAllById(IEnumerable<string> ids)
         {
             throw new NotImplementedException();
         }
-
-        public Battery FindById(string id)
+        public IEnumerable<BatteryDTO> FindAllById(string id)
         {
-            string query = "select capacity ,idb, power, state from batteries where idb = :idb";
-            Battery battery = null;
+            string query = "select capacity, idb, power, state, time from batteries where idb =:idb";
+            List<BatteryDTO> batteryList = new List<BatteryDTO>();
+
+            using (IDbConnection connection = ConnectionUtil_Pooling.GetConnection())
+            {
+                connection.Open();
+                using (IDbCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = query;
+                    ParameterUtil.AddParameter(command, "idb", DbType.String);
+                    command.Prepare();
+
+                    ParameterUtil.SetParameterValue(command, "idb", id);
+
+                    using (IDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            BatteryDTO b = new BatteryDTO(reader.GetDouble(0), reader.GetString(1),
+                                reader.GetDouble(2), (Enums.BatteryRezim)Enum.Parse(typeof(Enums.BatteryRezim), reader.GetString(3)), reader.GetInt32(4));
+                            batteryList.Add(b);
+                        }
+                    }
+                }
+            }
+            return batteryList;
+        }
+        public BatteryDTO FindById(string id)
+        {
+            string query = "select capacity ,idb, power, state, time from batteries where idb = :idb";
+            BatteryDTO battery = null;
 
             using (IDbConnection connection = ConnectionUtil_Pooling.GetConnection())
             {
@@ -123,8 +152,8 @@ namespace DatabaseLayer.DAO.Implementacije
                     {
                         if (reader.Read())
                         {
-                            battery = new Battery(reader.GetDouble(0), reader.GetString(1),
-                                reader.GetDouble(2), (Enums.BatteryRezim)Enum.Parse(typeof(Enums.BatteryRezim),reader.GetString(3)));
+                            battery = new BatteryDTO(reader.GetDouble(0), reader.GetString(1),
+                                reader.GetDouble(2), (Enums.BatteryRezim)Enum.Parse(typeof(Enums.BatteryRezim),reader.GetString(3)),reader.GetInt32(4));
                         }
                     }
                 }
@@ -134,7 +163,7 @@ namespace DatabaseLayer.DAO.Implementacije
             return battery;
         }
 
-        public void Save(Battery entity)
+        public void Save(BatteryDTO entity)
         {
             using (IDbConnection connection = ConnectionUtil_Pooling.GetConnection())
             {
@@ -143,13 +172,13 @@ namespace DatabaseLayer.DAO.Implementacije
             }
         }
 
-        public void SaveAll(IEnumerable<Battery> entities)
+        public void SaveAll(IEnumerable<BatteryDTO> entities)
         {
             using (IDbConnection connection = ConnectionUtil_Pooling.GetConnection())
             {
                 connection.Open();
                 IDbTransaction transaction = connection.BeginTransaction();
-                foreach (Battery entity in entities)
+                foreach (BatteryDTO entity in entities)
                 {
                     Save(entity, connection);
                 }
@@ -157,19 +186,22 @@ namespace DatabaseLayer.DAO.Implementacije
                 transaction.Commit();
             }
         }
-        public void Save(Battery entity, IDbConnection connection)
+        public void Save(BatteryDTO entity, IDbConnection connection)
         {
-            String insertSql = "insert into batteries (capacity,power,state,idb) values (:capacity, :power, :state, :idb)";
-            String updateSql = "update batteries set capacity=:capacity, power = :power, state = :state where idb =:idb";
+            String insertSql = "insert into batteries (capacity,power,state,time,idb) values (:capacity, :power, :state,:time, :idb)";
+           // String updateSql = "update batteries set capacity=:capacity, power = :power, state = :state, time=:time where idb =:idb";
 
             using (IDbCommand command = connection.CreateCommand())
             {
-                command.CommandText = ExistsById(entity.Id,connection) ? updateSql : insertSql;
+                // command.CommandText = ExistsById(entity.Id,connection) ? updateSql : insertSql;
+                command.CommandText = insertSql;
                 ParameterUtil.AddParameter(command, "capacity", DbType.Double);
                 ParameterUtil.AddParameter(command, "power", DbType.Double);
                 ParameterUtil.AddParameter(command, "state", DbType.String);
+                ParameterUtil.AddParameter(command, "time", DbType.Int32);
                 ParameterUtil.AddParameter(command, "idb", DbType.String);
                 ParameterUtil.SetParameterValue(command, "idb", entity.Id);
+                ParameterUtil.SetParameterValue(command, "time", entity.Time);
                 ParameterUtil.SetParameterValue(command, "state", entity.State);
                 ParameterUtil.SetParameterValue(command, "power", entity.MaxPower);
                 ParameterUtil.SetParameterValue(command, "capacity", entity.Capacity);              
