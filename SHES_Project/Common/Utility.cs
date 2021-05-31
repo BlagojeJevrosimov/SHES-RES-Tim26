@@ -25,7 +25,7 @@ namespace Common
 
         }
 
-        public Utility(int power, double price)
+        public Utility(double power, double price)
         {
             Power = power;
             Price = price;
@@ -40,7 +40,7 @@ namespace Common
         /// <param name="price"></param>
         public Utility(double price)
         {
-
+            this.Price = price;
         }
 
         /// 

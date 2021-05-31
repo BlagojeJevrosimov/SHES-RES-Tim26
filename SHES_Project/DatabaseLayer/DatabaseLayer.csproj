@@ -54,6 +54,7 @@
     <Compile Include="DAO\Implementacije\Consumers.cs" />
     <Compile Include="DAO\Implementacije\EVChargers.cs" />
     <Compile Include="DAO\Implementacije\SolarPanels.cs" />
+    <Compile Include="DAO\Implementacije\Utility.cs" />
     <Compile Include="DAO\ISolarPanels.cs" />
     <Compile Include="DAO\IUtility.cs" />
     <Compile Include="Program.cs" />

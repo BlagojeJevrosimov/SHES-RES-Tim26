@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace DatabaseLayer.DAO
 {
-    public interface IUtility 
+    public interface IUtility : ICRUDDao<Utility,string>
     {
-        int GetCurrentPrice();
-
-        void SavePrice(double cena);
+        double GetCurrentPrice();
+        
     }
 }
