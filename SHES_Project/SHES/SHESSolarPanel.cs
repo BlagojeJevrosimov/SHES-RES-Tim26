@@ -10,13 +10,15 @@ namespace SHES
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class SHESSolarPanel : ISHESSolarPanel
-
     {
         public static double bufferPowerOutput;
 
-        public void SendData(double PowerOutput)
+        public void SendData(double powerOutput)
         {
-            bufferPowerOutput = PowerOutput;
+            if (powerOutput < 0)
+                throw new ArgumentOutOfRangeException("Snaga solarnih panela ne moze biti negativna!");
+            else
+                bufferPowerOutput = powerOutput;
         }
     }
 }

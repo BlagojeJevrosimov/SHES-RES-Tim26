@@ -26,15 +26,94 @@ namespace SHES
             double[] snageBaterija, double[] kapacitetiBaterija, double snagaEVC, 
             double cenaUtility, int brojPotrosaca, double[] snagePotrosaca)
         {
-            brojPanelaBuffer = brojPanela;
-            snagePanelaBuffer = snagePanela;
-            brojBaterijaBuffer = brojBateija;
-            snageBaterijaBuffer = snageBaterija;
-            kapacitetiBaterijaBuffer = kapacitetiBaterija;
-            snagaEVCBuffer = snagaEVC;
-            cenaUtilityBuffer = cenaUtility;
-            brojPotrosacaBuffer = brojPotrosaca;
-            snagePotrosacaBuffer = snagePotrosaca;
+            if(brojPanela < 0)
+            {
+                throw new ArgumentOutOfRangeException("Broj panela je manji od 0!");
+            }
+            else if (snagePanela.Count() != brojPanela)
+            {
+                throw new ArgumentOutOfRangeException("Pogresno unete snage panela!");
+            }
+            else if(brojBateija < 0)
+            {
+                throw new ArgumentOutOfRangeException("Broj baterija je manji od 0!");
+            }
+            else if (snageBaterija.Count() != brojBateija)
+            {
+                throw new ArgumentOutOfRangeException("Pogresno unete snage baterija");
+            }
+            else if (kapacitetiBaterija.Count() != brojBateija)
+            {
+                throw new ArgumentOutOfRangeException("Pogresno uneti kapaciteti baterija!");
+            }
+            else if (snagaEVC < 0)
+            {
+                throw new ArgumentOutOfRangeException("Snaga EVC-a manja od 0!");
+            }
+            else if (cenaUtility < 0)
+            {
+                throw new ArgumentOutOfRangeException("Cena elektrodistribucije ne moze biti negativna!");
+            }
+            else if (brojPotrosaca < 0)
+            {
+                throw new ArgumentOutOfRangeException("Broj potrosaca ne moze biti negativan!");
+            }
+            else if (snagePotrosaca.Count() != brojPotrosaca)
+            {
+                throw new ArgumentOutOfRangeException("Pogresno unete snage potrosaca!");
+            }
+            else
+            {
+                bool flag = true;
+                foreach(double br in snagePanela)
+                {
+                    if (br < 0)
+                    {
+                        flag = false;
+                        throw new ArgumentOutOfRangeException("Snaga panela ne sme biti negativna!");
+                    }
+                }
+
+                foreach(double br in snageBaterija)
+                {
+                    if(br < 0)
+                    {
+                        flag = false;
+                        throw new ArgumentOutOfRangeException("Snaga baterije ne sme biti negativna!");
+                    }
+                }
+
+                foreach (double br in kapacitetiBaterija)
+                {
+                    if (br < 0)
+                    {
+                        flag = false;
+                        throw new ArgumentOutOfRangeException("Kapacitet baterije ne sme biti negativna!");
+                    }
+                }
+
+                foreach (double br in snagePotrosaca)
+                {
+                    if (br < 0)
+                    {
+                        flag = false;
+                        throw new ArgumentOutOfRangeException("Snaga potrosaca ne sme biti negativna!");
+                    }
+                }
+
+                if (flag == true)
+                {
+                    brojPanelaBuffer = brojPanela;
+                    snagePanelaBuffer = snagePanela;
+                    brojBaterijaBuffer = brojBateija;
+                    snageBaterijaBuffer = snageBaterija;
+                    kapacitetiBaterijaBuffer = kapacitetiBaterija;
+                    snagaEVCBuffer = snagaEVC;
+                    cenaUtilityBuffer = cenaUtility;
+                    brojPotrosacaBuffer = brojPotrosaca;
+                    snagePotrosacaBuffer = snagePotrosaca;
+                }
+            }
 
             Trace.TraceInformation("System initialized");
         }

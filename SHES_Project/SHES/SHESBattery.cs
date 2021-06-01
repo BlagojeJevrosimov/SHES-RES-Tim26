@@ -18,8 +18,15 @@ namespace SHES
 
         public void SendData(string id, double sentCapacity, BatteryRezim sentRegime)
         {
-            bufferRezimi[id] = sentRegime;
-            bufferCapacities[id] = sentCapacity;
+            if (id == null)
+                throw new ArgumentNullException("Id ne moze biti null!");
+            else if (sentCapacity < 0)
+                throw new ArgumentOutOfRangeException("Kapacitet ne moze biti negativan!");
+            else
+            {
+                bufferRezimi[id] = sentRegime;
+                bufferCapacities[id] = sentCapacity;
+            }
         }
     }
 }

@@ -14,7 +14,10 @@ namespace SHES
         public static double energyConsumptioneBuffer;
         public void sendEnergyConsumption(double energyConsumption)
         {
-            energyConsumptioneBuffer = energyConsumption;
+            if (energyConsumption >= 0)
+                energyConsumptioneBuffer = energyConsumption;
+            else
+                throw new ArgumentOutOfRangeException("Potrosnja ne moze biti negativna vrednost!");
         }
 
  

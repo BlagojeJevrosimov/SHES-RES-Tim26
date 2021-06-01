@@ -11,6 +11,6 @@ namespace Common
     public interface ISHESSolarPanel
     {
         [OperationContract]
-        void SendData(double PowerOutput);
+        void SendData(double powerOutput);
     }
 }

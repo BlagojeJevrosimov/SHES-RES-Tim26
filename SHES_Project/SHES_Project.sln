@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseLayer", "DatabaseLa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EVChargerTest", "EVChargerTest\EVChargerTest.csproj", "{76714978-4BEC-4E3D-B30C-A2B32F6F492C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SHESTest", "SHESTest\SHESTest.csproj", "{7AE03A41-7297-4EE9-9E4E-D0579BA36EA2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{76714978-4BEC-4E3D-B30C-A2B32F6F492C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76714978-4BEC-4E3D-B30C-A2B32F6F492C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76714978-4BEC-4E3D-B30C-A2B32F6F492C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AE03A41-7297-4EE9-9E4E-D0579BA36EA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AE03A41-7297-4EE9-9E4E-D0579BA36EA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AE03A41-7297-4EE9-9E4E-D0579BA36EA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AE03A41-7297-4EE9-9E4E-D0579BA36EA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
