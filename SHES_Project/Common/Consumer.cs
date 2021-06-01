@@ -37,8 +37,19 @@ namespace Common
         /// <param name="energyConsumption"></param>
         public Consumer( double energyConsumption , string id, Enums.ConsumerRezim rezim)
         {
-            this.EnergyConsumption = energyConsumption;
-            this.Id = id;
+            int temp;
+            if (id != null && Int32.TryParse(id, out temp) == true)
+                this.Id = id;
+            else if (id == null)
+                throw new ArgumentNullException("Id ne sme biti null!");
+            else
+                throw new ArgumentException("Id moze sadrzati samo brojeve!");
+
+            if (energyConsumption >= 0)
+                this.EnergyConsumption = energyConsumption;
+            else
+                throw new ArgumentOutOfRangeException("Potrosnja ne sme biti negativna!");
+
             this.Rezim = rezim;
 
         }

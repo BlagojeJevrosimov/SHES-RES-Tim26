@@ -17,7 +17,8 @@ namespace SHES
             //Vrednosti potrebne za pravilan rad aplikacije: 
             double solarPanelsOutput = 0;
             double consumerEnergyConsumption = 0;
-            BatteryRezim rezim = BatteryRezim.IDLE;
+            Dictionary<string, Enums.BatteryRezim> rezimi;
+            Dictionary<string, double> capacities;
 
             //Iniciajizacija Servera:
             Thread shesSolarPanel = new Thread(SolarPanelServerThread);
@@ -59,11 +60,11 @@ namespace SHES
                 //Preuzimanje vrednosti iz baffera:
                 solarPanelsOutput = SHESSolarPanel.bufferPowerOutput;
                 consumerEnergyConsumption = SHESConsumer.energyConsumptioneBuffer;
-                Dictionary<string, double> Capacities = SHESBattery.bufferCapacities;
-                Dictionary<string, Enums.BatteryRezim> Rezimi = SHESBattery.bufferRezimi;
+                capacities = SHESBattery.bufferCapacities;
+                rezimi = SHESBattery.bufferRezimi;
                 //preuzeti bafere sa GUIja
-                
-                
+
+
 
                 int vreme = 14;
                 double avgCena = 0.139;
