@@ -25,12 +25,9 @@ namespace Utility
             utility = util;
         }
 
-
-
         public void sendRequestforEnergy(double amount)
         {
-            utility.Power = amount;
-          
+            utility = new Common.Utility(amount, utility.Price);       
         }
     }
 }
