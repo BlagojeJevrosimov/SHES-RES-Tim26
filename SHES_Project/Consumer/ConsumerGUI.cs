@@ -19,12 +19,9 @@ namespace Consumer
             if(id < rezimBuffer.Count() && id >= 0)
             {
                 rezimBuffer[id] = rezim;
-                Trace.TraceInformation("Sent to Consumer: id-" + id + ", state-" + rezim.ToString());
+                Trace.TraceInformation("Sent to Consumer: id-" + id + ", state-" + rezim.ToString());                
                 //odmah se posalje shesu informacija ukupne snage consumera
-                ChannelFactory<ISHESConsumer> channel = new ChannelFactory<ISHESConsumer>("ISHESConsumer");
-                ISHESConsumer proxy = channel.CreateChannel();
-
-
+                
                 double total = 0;
                 for (int i = 0; i < ConsumerSHES.consumersList.Count(); i++)
                 {
@@ -32,12 +29,19 @@ namespace Consumer
                         total += ConsumerSHES.consumersList[i].EnergyConsumption;
                 }
 
-                proxy.sendEnergyConsumption(total);
+                SendTotal(total);
             }
             else
             {
                 Trace.TraceError("Consumer id doesn't exist!");
             }
+        }
+
+        private void SendTotal(double total)
+        {
+            ChannelFactory<ISHESConsumer> channel = new ChannelFactory<ISHESConsumer>("ISHESConsumer");
+            ISHESConsumer proxy = channel.CreateChannel();
+            proxy.sendEnergyConsumption(total);
         }
     }
 }

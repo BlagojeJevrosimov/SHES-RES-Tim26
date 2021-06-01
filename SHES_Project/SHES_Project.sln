@@ -24,6 +24,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsumersTest", "ConsumersTest\ConsumersTest.csproj", "{327ED907-96CB-4234-80FE-7225CBD558D3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseLayer", "DatabaseLayer\DatabaseLayer.csproj", "{A2357D05-2684-410C-AF81-A5AAB985CE84}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EVChargerTest", "EVChargerTest\EVChargerTest.csproj", "{76714978-4BEC-4E3D-B30C-A2B32F6F492C}"
+
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -10,7 +10,6 @@ using static Common.Enums;
 namespace Battery
 {
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, InstanceContextMode = InstanceContextMode.Single)]
-
     public class BatterySHES : IBatterySHES
     {
         public static Dictionary<string, Enums.BatteryRezim> bufferRezim = new Dictionary<string, BatteryRezim>();

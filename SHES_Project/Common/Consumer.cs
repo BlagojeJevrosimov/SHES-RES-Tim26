@@ -16,21 +16,13 @@ namespace Common
 {
     public class Consumer
     {
-
         private double energyConsumption;
         private string id;
         private Enums.ConsumerRezim rezim;
 
+        public Consumer() { }
 
-        public Consumer()
-        {
-
-        }
-
-        ~Consumer()
-        {
-
-        }
+        ~Consumer() { }
 
         /// 
         /// <param name="id"></param>
@@ -44,7 +36,6 @@ namespace Common
                 throw new ArgumentNullException("Id ne sme biti null!");
             else
                 throw new ArgumentException("Id moze sadrzati samo brojeve!");
-
             if (energyConsumption >= 0)
                 this.EnergyConsumption = energyConsumption;
             else

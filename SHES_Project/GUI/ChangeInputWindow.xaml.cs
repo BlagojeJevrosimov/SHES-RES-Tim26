@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
@@ -20,6 +21,7 @@ namespace GUI
     /// <summary>
     /// Interaction logic for ChangeDataWindow.xaml
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public partial class ChangeInputWindow : Window
     {
         public ChangeInputWindow()

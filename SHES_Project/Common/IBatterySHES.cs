@@ -12,7 +12,7 @@ namespace Common
     public interface IBatterySHES
     {
         [OperationContract]
-        void InitializeBatteries(List<Battery> batteriesRecieved);
+        void InitializeBatteries(List<Common.Battery> batteriesRecieved);
 
         [OperationContract]
         void SendRegime(string id,BatteryRezim rezim);

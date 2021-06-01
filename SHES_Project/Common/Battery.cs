@@ -11,7 +11,6 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
-
 namespace Common
 {
     public class Battery
@@ -42,8 +41,10 @@ namespace Common
             {
                 throw new ArgumentNullException("Od ne sme biti null!");
             }
-
-            Id = id;
+            else
+            {
+                Id = id;
+            }
 
             if (capacity >= 0)
             {

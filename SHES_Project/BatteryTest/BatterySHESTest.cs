@@ -15,12 +15,14 @@ namespace BatteryTest
     [TestFixture]
     public class BatterySHESTest
     {
-        private int num = 5;
+        private int num;
         public double[] maxPower;
         public IBatterySHES bs;
         public string idLos, idDobar;
         public Enums.BatteryRezim rezim, rezim2;
         public List<Common.Battery> batteries;
+        public Mock<Common.Battery> mockBattery1;
+        public Mock<Common.Battery> mockBattery2;
 
         [SetUp]
         public void SetUp()
@@ -40,8 +42,12 @@ namespace BatteryTest
             rezim2 = Enums.BatteryRezim.PUNJENJE;
 
             batteries = new List<Common.Battery>();
-            batteries.Add(new Common.Battery(200, "1", 700, Enums.BatteryRezim.PUNJENJE));
-            batteries.Add(new Common.Battery(100, "2", 800, Enums.BatteryRezim.PUNJENJE));
+
+            mockBattery1 = new Mock<Common.Battery>(200, "1", 700, Enums.BatteryRezim.PUNJENJE);
+            mockBattery2 = new Mock<Common.Battery>(100, "2", 800, Enums.BatteryRezim.PUNJENJE);
+
+            batteries.Add(mockBattery1.Object);
+            batteries.Add(mockBattery2.Object);
         }
 
         [Test]
@@ -58,8 +64,6 @@ namespace BatteryTest
         [Test]
         public void InitializeDobriParametri()
         {
-            //Assert.AreNotEqual(null, bs);
-
             bs.InitializeBatteries(batteries);
             int temp = BatterySHES.batteries.Count();
             var temp2 = BatterySHES.bufferRezim[idDobar];
