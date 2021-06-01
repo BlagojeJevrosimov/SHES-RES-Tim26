@@ -15,10 +15,11 @@ namespace ConsumersTest
     [TestFixture]
     public class ConsumerSHESTest
     {
+        private const int _ID1 = 1;
+        private const int _ID2 = 2;
         private int num;
         private IConsumerSHES cs;
         private List<Common.Consumer> consumers;
-
 
         [SetUp]
         public void SetUp()
@@ -27,8 +28,16 @@ namespace ConsumersTest
             cs = new Consumer.ConsumerSHES();
             consumers = new List<Common.Consumer>();
 
-            Mock<Common.Consumer> mockConsumer1 = new Mock<Common.Consumer>("1", 100);
-            Mock<Common.Consumer> mockConsumer2 = new Mock<Common.Consumer>("2", 200);
+            // double energyConsumption , string id, Enums.ConsumerRezim rezim
+            Mock<Common.Consumer> mockConsumer1 = new Mock<Common.Consumer>();
+            mockConsumer1.Setup(cs => cs.EnergyConsumption).Returns(100);
+            mockConsumer1.Setup(cs => cs.Id).Returns(_ID1.ToString());
+            mockConsumer1.Setup(cs => cs.Rezim).Returns(Enums.ConsumerRezim.OFF);
+
+            Mock<Common.Consumer> mockConsumer2 = new Mock<Common.Consumer>();
+            mockConsumer2.Setup(cs => cs.EnergyConsumption).Returns(200);
+            mockConsumer2.Setup(cs => cs.Id).Returns(_ID1.ToString());
+            mockConsumer2.Setup(cs => cs.Rezim).Returns(Enums.ConsumerRezim.ON);
 
             consumers.Add(mockConsumer1.Object);
             consumers.Add(mockConsumer2.Object);

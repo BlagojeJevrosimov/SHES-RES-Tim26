@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace EVChargerTest
 {
-    [TestClass]
-    public class UnitTest1
+    [ExcludeFromCodeCoverage]
+    [TestFixture]
+    public class CommonEVChargerTest
     {
-        [TestMethod]
+        [Test]
         public void TestMethod1()
         {
         }

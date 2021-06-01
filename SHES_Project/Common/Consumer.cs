@@ -16,10 +16,6 @@ namespace Common
 {
     public class Consumer
     {
-        private double energyConsumption;
-        private string id;
-        private Enums.ConsumerRezim rezim;
-
         public Consumer() { }
 
         ~Consumer() { }
@@ -45,30 +41,10 @@ namespace Common
 
         }
 
-        public double EnergyConsumption
-        {
-            get
-            {
-                return energyConsumption;
-            }
-            set
-            {
-                energyConsumption = value;
-            }
-        }
+        public virtual double EnergyConsumption { get; set; }
 
-        public string Id
-        {
-            get
-            {
-                return id;
-            }
-            set
-            {
-                id = value;
-            }
-        }
+        public virtual string Id { get; set; }
 
-        public Enums.ConsumerRezim Rezim { get => rezim; set => rezim = value; }
+        public virtual Enums.ConsumerRezim Rezim { get; set; }
     }
 }//end Consumer

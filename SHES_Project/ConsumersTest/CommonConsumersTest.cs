@@ -10,14 +10,15 @@ namespace ConsumersTest
     public class CommonConsumersTest
     {
         [Test]
-        [TestCase("1", 200)]
-        [TestCase("2", 350)]
-        public void ConsmerKonstruktorDobriParametri(string id, double energyConsumption)
+        [TestCase(200, "1", Common.Enums.ConsumerRezim.ON)]
+        [TestCase(350, "2", Common.Enums.ConsumerRezim.OFF)]
+        public void ConsmerKonstruktorDobriParametri(double energyConsumption, string id, Common.Enums.ConsumerRezim rezim)
         {
-            Common.Consumer consumer = new Common.Consumer(id, energyConsumption);
+            Common.Consumer consumer = new Common.Consumer(energyConsumption, id, rezim);
 
             Assert.AreEqual(consumer.Id, id);
             Assert.AreEqual(consumer.EnergyConsumption, energyConsumption);
+            Assert.AreEqual(consumer.Rezim, rezim);
 
             consumer = new Common.Consumer();
 
@@ -26,39 +27,39 @@ namespace ConsumersTest
         }
 
         [Test]
-        [TestCase("123", -50)]
-        [TestCase("12", -55.20)]
-        public void ConsumerKonstruktorNegativniParametri(string id, double energyConsumption)
+        [TestCase(-100, "1", Common.Enums.ConsumerRezim.ON)]
+        [TestCase(-20.5, "1", Common.Enums.ConsumerRezim.ON)]
+        public void ConsumerKonstruktorNegativniParametri(double energyConsumption, string id, Common.Enums.ConsumerRezim rezim)
         {
             Assert.Throws<ArgumentOutOfRangeException>(
                 () =>
                 {
-                    Common.Consumer consumer = new Common.Consumer(id, energyConsumption);
+                    Common.Consumer consumer = new Common.Consumer(energyConsumption, id, rezim);
                 }
                 );
         }
 
         [Test]
-        [TestCase(null, 250)]
-        public void ConsumerKonstruktorNullParametri(string id, double energyConsumption)
+        [TestCase(250, null, Common.Enums.ConsumerRezim.OFF)]
+        public void ConsumerKonstruktorNullParametri(double energyConsumption, string id, Common.Enums.ConsumerRezim rezim)
         {
             Assert.Throws<ArgumentNullException>(
                 () =>
                 {
-                    Common.Consumer consumer = new Common.Consumer(id, energyConsumption);
+                    Common.Consumer consumer = new Common.Consumer(energyConsumption, id, rezim);
                 }
                 );
         }
 
         [Test]
-        [TestCase("nesto1", 200)]
-        [TestCase("123pp", 100)]
-        public void ConsumerKonstruktorTxtParametri(string id, double energyConsumption)
+        [TestCase(200, "nesto1", Common.Enums.ConsumerRezim.ON)]
+        [TestCase(100, "123pp", Common.Enums.ConsumerRezim.OFF)]
+        public void ConsumerKonstruktorTxtParametri(double energyConsumption, string id, Common.Enums.ConsumerRezim rezim)
         {
             Assert.Throws<ArgumentException>(
                 () =>
                 {
-                    Common.Consumer consumer = new Common.Consumer(id, energyConsumption);
+                    Common.Consumer consumer = new Common.Consumer(energyConsumption, id, rezim);
                 }
                 );
         }

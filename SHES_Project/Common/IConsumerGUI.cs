@@ -13,5 +13,7 @@ namespace Common
         [OperationContract]
         void ChangeConsumerState(int id, Common.Enums.ConsumerRezim rezim);
 
+        double ReturnTotal();
+
     }
 }
