@@ -15,11 +15,6 @@ namespace Common
 {
     public class Utility
     {
-
-        private double power;
-        private double price;
-
-
         public Utility()
         {
 
@@ -27,8 +22,15 @@ namespace Common
 
         public Utility(double power, double price)
         {
-            Power = power;
-            Price = price;
+
+            if (price < 0)
+                throw new ArgumentOutOfRangeException("Cena ne sme biti negativna!");
+            else
+            {
+                Power = power;
+                Price = price;
+            }
+           
         }
 
         ~Utility()
@@ -40,36 +42,19 @@ namespace Common
         /// <param name="price"></param>
         public Utility(double price)
         {
-            this.Price = price;
+            if (price < 0)
+                throw new ArgumentOutOfRangeException("Cena ne sme biti negativna!");
+            else
+                this.Price = price;
         }
 
         /// 
         /// <param name="amount"></param>
       
 
-        public double Power
-        {
-            get
-            {
-                return power;
-            }
-            set
-            {
-                power = value;
-            }
-        }
+        public virtual double Power { get; set; }
 
-        public double Price
-        {
-            get
-            {
-                return price;
-            }
-            set
-            {
-                price = value;
-            }
-        }
+        public virtual double Price { get; set; }
 
     }
 }//end Utility

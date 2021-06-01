@@ -63,7 +63,6 @@
     <Compile Include="ISolarPanelSHES.cs" />
     <Compile Include="IUtilitySHES.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SHES.cs" />
     <Compile Include="ISHESConsumer.cs" />
     <Compile Include="SolarPanel.cs" />
     <Compile Include="Utility.cs" />
