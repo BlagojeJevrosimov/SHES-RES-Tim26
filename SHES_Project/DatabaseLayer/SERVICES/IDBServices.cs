@@ -60,8 +60,6 @@ namespace DatabaseLayer.SERVICES
         [OperationContract]
         double GetCurrentPrice();
 
-       // [OperationContract]
-       // void GetEVCharger();
 
     }
 }

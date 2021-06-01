@@ -12,6 +12,7 @@ namespace SHES
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, InstanceContextMode = InstanceContextMode.Single)]
     public class SHESGUI : ISHESGUI
     {
+        public static bool init = false;
         public static int brojPanelaBuffer;
         public static double[] snagePanelaBuffer;
         public static int brojBaterijaBuffer;
@@ -114,7 +115,7 @@ namespace SHES
                     snagePotrosacaBuffer = snagePotrosaca;
                 }
             }
-
+            init = true;
             Trace.TraceInformation("System initialized");
         }
         

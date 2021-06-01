@@ -64,6 +64,10 @@
       <Project>{A0DD15B1-AD3B-494C-B148-626F08A18CE7}</Project>
       <Name>Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DatabaseLayer\DatabaseLayer.csproj">
+      <Project>{A2357D05-2684-410C-AF81-A5AAB985CE84}</Project>
+      <Name>DatabaseLayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

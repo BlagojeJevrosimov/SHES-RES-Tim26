@@ -1,4 +1,5 @@
 ﻿using Common;
+using DatabaseLayer.SERVICES;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -15,12 +16,60 @@ namespace SHES
     class Program
     {
         static void Main(string[] args)
-    {
-            //Vrednosti potrebne za pravilan rad aplikacije: 
+    { 
+            //Inicijalizacija:
+            if (SHESGUI.init)
+            {
+                ChannelFactory<IDBServices> kanalBaza = new ChannelFactory<IDBServices>("IDBServices");
+                IDBServices proxyBaza = kanalBaza.CreateChannel();
+
+                int brojPanela = SHESGUI.brojPanelaBuffer;
+                double[] snagePanela = SHESGUI.snagePanelaBuffer;
+                int brojBaterija = SHESGUI.brojBaterijaBuffer; 
+                double[] snageBaterija = SHESGUI.snageBaterijaBuffer;
+                double[] kapacitetiBaterija = SHESGUI.kapacitetiBaterijaBuffer;
+                double snagaEVC = SHESGUI.snagaEVCBuffer;
+                double cenaUtility = SHESGUI.cenaUtilityBuffer;
+                int brojPotrosaca = SHESGUI.brojPotrosacaBuffer;
+                double[] snagePotrosaca = SHESGUI.snagePotrosacaBuffer;
+
+                //SolarPanels:
+                List<SolarPanel> solarPanels = new List<SolarPanel>();
+                for (int i = 0; i < brojPanela; i++) {
+                    solarPanels.Add(new SolarPanel(i.ToString(),snagePanela[i]));
+                }
+                proxyBaza.SaveSolarPanels(solarPanels);
+
+                //Batteries:
+                List<Battery> batteries = new List<Battery>();
+                for (int i = 0; i < brojBaterija; i++)
+                {
+                   batteries.Add(new Battery(kapacitetiBaterija[i],i.ToString(),snageBaterija[i],Enums.BatteryRezim.PUNJENJE));
+                }
+                proxyBaza.SaveBatteries(batteries,0);
+
+                //Consumers:
+                List<Consumer> consumers = new List<Consumer>();
+                for (int i = 0; i < brojPotrosaca; i++)
+                {
+                   consumers.Add( new Consumer(snagePotrosaca[i],i.ToString(),Enums.ConsumerRezim.ON));
+                }
+                proxyBaza.SaveConsumers(consumers,0);
+
+                //EVCharger;
+                proxyBaza.SaveEVCharger(new EVCharger(0,"1",snagaEVC,BatteryRezim.PUNJENJE,false,false));
+            }
+        //Vrednosti potrebne za pravilan rad aplikacije: 
             double solarPanelsOutput = 0;
             double consumerEnergyConsumption = 0;
             Dictionary<string, Enums.BatteryRezim> rezimi;
             Dictionary<string, double> capacities;
+            DateTime centuryBegin = new DateTime(2020, 1, 1);
+            DateTime currentDate = DateTime.Now;
+
+            long elapsedTicks = currentDate.Ticks - centuryBegin.Ticks;
+            TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
+            int time = (int)Math.Floor(elapsedSpan.TotalSeconds);
 
             //Iniciajizacija Servera:
             Thread shesSolarPanel = new Thread(SolarPanelServerThread);
@@ -50,12 +99,7 @@ namespace SHES
 
             //otvoriti kanale i ka ostalim komponentama zbog inicijalizacije
 
-            DateTime centuryBegin = new DateTime(2001, 1, 1);
-            DateTime currentDate = DateTime.Now;
-
-            long elapsedTicks = currentDate.Ticks - centuryBegin.Ticks;
-            TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
-            int time = (int)Math.Floor(elapsedSpan.TotalSeconds);
+          
 
             while (true)
             {
