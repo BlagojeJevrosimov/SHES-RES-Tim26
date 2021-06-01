@@ -16,60 +16,70 @@ namespace SHES
     class Program
     {
         static void Main(string[] args)
-    { 
+    {
             //Inicijalizacija:
+            ChannelFactory<IDBServices> kanalBaza = new ChannelFactory<IDBServices>("IDBServices");
+            IDBServices proxyBaza = kanalBaza.CreateChannel();
+
+            List<SolarPanel> solarPanels = new List<SolarPanel>();
+            List<Battery> batteries = new List<Battery>();
+            List<Consumer> consumers = new List<Consumer>();
+            EVCharger evc = new EVCharger();
+            Utility utility = new Utility();
+
+            int brojPanela = SHESGUI.brojPanelaBuffer;
+            double[] snagePanela = SHESGUI.snagePanelaBuffer;
+            int brojBaterija = SHESGUI.brojBaterijaBuffer;
+            double[] snageBaterija = SHESGUI.snageBaterijaBuffer;
+            double[] kapacitetiBaterija = SHESGUI.kapacitetiBaterijaBuffer;
+            double snagaEVC = SHESGUI.snagaEVCBuffer;
+            double cenaUtility = SHESGUI.cenaUtilityBuffer;
+            int brojPotrosaca = SHESGUI.brojPotrosacaBuffer;
+            double[] snagePotrosaca = SHESGUI.snagePotrosacaBuffer;
+
             if (SHESGUI.init)
             {
-                ChannelFactory<IDBServices> kanalBaza = new ChannelFactory<IDBServices>("IDBServices");
-                IDBServices proxyBaza = kanalBaza.CreateChannel();
-
-                int brojPanela = SHESGUI.brojPanelaBuffer;
-                double[] snagePanela = SHESGUI.snagePanelaBuffer;
-                int brojBaterija = SHESGUI.brojBaterijaBuffer; 
-                double[] snageBaterija = SHESGUI.snageBaterijaBuffer;
-                double[] kapacitetiBaterija = SHESGUI.kapacitetiBaterijaBuffer;
-                double snagaEVC = SHESGUI.snagaEVCBuffer;
-                double cenaUtility = SHESGUI.cenaUtilityBuffer;
-                int brojPotrosaca = SHESGUI.brojPotrosacaBuffer;
-                double[] snagePotrosaca = SHESGUI.snagePotrosacaBuffer;
-
                 //SolarPanels:
-                List<SolarPanel> solarPanels = new List<SolarPanel>();
-                for (int i = 0; i < brojPanela; i++) {
-                    solarPanels.Add(new SolarPanel(i.ToString(),snagePanela[i]));
+                solarPanels = new List<SolarPanel>();
+                for (int i = 0; i < brojPanela; i++)
+                {
+                    solarPanels.Add(new SolarPanel(i.ToString(), snagePanela[i]));
                 }
                 proxyBaza.SaveSolarPanels(solarPanels);
 
                 //Batteries:
-                List<Battery> batteries = new List<Battery>();
+                batteries = new List<Battery>();
                 for (int i = 0; i < brojBaterija; i++)
                 {
-                   batteries.Add(new Battery(kapacitetiBaterija[i],i.ToString(),snageBaterija[i],Enums.BatteryRezim.PUNJENJE));
+                    batteries.Add(new Battery(kapacitetiBaterija[i], i.ToString(), snageBaterija[i], Enums.BatteryRezim.PUNJENJE));
                 }
-                proxyBaza.SaveBatteries(batteries,0);
+                proxyBaza.SaveBatteries(batteries, 0);
 
                 //Consumers:
-                List<Consumer> consumers = new List<Consumer>();
+                consumers = new List<Consumer>();
                 for (int i = 0; i < brojPotrosaca; i++)
                 {
-                   consumers.Add( new Consumer(snagePotrosaca[i],i.ToString(),Enums.ConsumerRezim.ON));
+                    consumers.Add(new Consumer(snagePotrosaca[i], i.ToString(), Enums.ConsumerRezim.ON));
                 }
-                proxyBaza.SaveConsumers(consumers,0);
+                proxyBaza.SaveConsumers(consumers, 0);
 
                 //EVCharger;
-                proxyBaza.SaveEVCharger(new EVCharger(0,"1",snagaEVC,BatteryRezim.PUNJENJE,false,false));
-            }
-        //Vrednosti potrebne za pravilan rad aplikacije: 
-            double solarPanelsOutput = 0;
-            double consumerEnergyConsumption = 0;
-            Dictionary<string, Enums.BatteryRezim> rezimi;
-            Dictionary<string, double> capacities;
-            DateTime centuryBegin = new DateTime(2020, 1, 1);
-            DateTime currentDate = DateTime.Now;
+                evc = new EVCharger(0, "1", snagaEVC, BatteryRezim.PUNJENJE, false, false);
+                proxyBaza.SaveEVCharger(evc);
 
-            long elapsedTicks = currentDate.Ticks - centuryBegin.Ticks;
-            TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
-            int time = (int)Math.Floor(elapsedSpan.TotalSeconds);
+                //Utility:
+                utility.Price = 0.33;
+                utility.Power = 0;
+                proxyBaza.SaveUtility(utility,0);
+            }
+            else {
+                solarPanels = proxyBaza.GetSolarPanels();
+                batteries = proxyBaza.GetBatteries();
+                consumers = proxyBaza.GetConsumers();
+                evc = proxyBaza.GetEVCharger();
+                utility = new Utility(proxyBaza.GetCurrentPrice());
+                utility.Power = 0;
+            }
 
             //Iniciajizacija Servera:
             Thread shesSolarPanel = new Thread(SolarPanelServerThread);
@@ -97,9 +107,33 @@ namespace SHES
             ChannelFactory<IEVChargerSHES> evchargerChannel = new ChannelFactory<IEVChargerSHES>("IEVChargerSHES");
             IEVChargerSHES evchargerProxy = evchargerChannel.CreateChannel();
 
-            //otvoriti kanale i ka ostalim komponentama zbog inicijalizacije
+            ChannelFactory<IConsumerSHES> consumerChannel = new ChannelFactory<IConsumerSHES>("IConsumerSHES");
+            IConsumerSHES consumerProxy = consumerChannel.CreateChannel();
 
-          
+            ChannelFactory<ISolarPanelSHES> solarChannel = new ChannelFactory<ISolarPanelSHES>("ISolarPanelSHES");
+            ISolarPanelSHES solarProxy = solarChannel.CreateChannel();
+
+            solarProxy.InitializeSolarPanels(brojPanela,snagePanela);
+            batteryProxy.InitializeBatteries(batteries);
+            consumerProxy.InitializeConsumers(consumers);
+            evchargerProxy.InitializeEVCharger(evc);
+            utilityProxy.initializeUtility(utility);
+
+            //Vrednosti potrebne za pravilan rad aplikacije: 
+            double solarPanelsOutput = 0;
+            double consumerEnergyConsumption = 0;
+            Dictionary<string, Enums.BatteryRezim> rezimi;
+            Dictionary<string, double> capacities;
+            double consumerEC = 0;
+            bool charge = false;
+            bool connected = false;
+            int brojac = 0;
+            //Racunanje pocetnog vremena
+            DateTime centuryBegin = new DateTime(2020, 1, 1);
+            DateTime currentDate = DateTime.Now;
+            long elapsedTicks = currentDate.Ticks - centuryBegin.Ticks;
+            TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
+            int vreme = (int)Math.Floor(elapsedSpan.TotalSeconds); 
 
             while (true)
             {
@@ -108,11 +142,14 @@ namespace SHES
                 consumerEnergyConsumption = SHESConsumer.energyConsumptioneBuffer;
                 capacities = SHESBattery.bufferCapacities;
                 rezimi = SHESBattery.bufferRezimi;
+                consumerEC = SHESConsumer.energyConsumptioneBuffer;
+                charge = SHESEVCharger.rezimBuffer;
+                connected = SHESEVCharger.plugBuffer;
                 //preuzeti bafere sa GUIja
 
 
 
-                int vreme = 14;
+
                 double avgCena = 0.139;
                 double cena = 0.5;
 
@@ -122,16 +159,16 @@ namespace SHES
                 new Common.Battery(0.5,"2",25,Enums.BatteryRezim.PRAZNJENJE)
                 };
 
-                batteryProxy.InitializeBatteries(baterije);
+
 
                 //ove podatke dobaviti sa GUI-ja
                 Common.EVCharger ev = new EVCharger(0.7,"evc",50,Enums.BatteryRezim.PRAZNJENJE,false,true);
 
-                evchargerProxy.InitializeEVCharger(ev);
+
 
                 //ove podatke dobaviti sa GUI-ja
                 Utility util = new Utility(2000, 500);
-                utilityProxy.initializeUtility(util);
+
 
                 //Algoritam:
                 double potrosnja = consumerEnergyConsumption;
@@ -211,8 +248,16 @@ namespace SHES
                 }
                 //Sacuvaj u bazu sve
 
-                Thread.Sleep(1000);//5 minuta
-                    
+                if (brojac >= 5)
+                {
+                    brojac = 0;
+                    //Sacuvaj u bazu sve
+                }
+                else {
+                    brojac++;
+                }
+                vreme += 60;
+                Thread.Sleep(100);
 
             }
 

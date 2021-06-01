@@ -48,7 +48,7 @@ namespace EVCharger
                         proxySHES.SendRegime(plug, true);
                 }
 
-                Thread.Sleep(1000);
+                Thread.Sleep(100);
             }
             
         }
