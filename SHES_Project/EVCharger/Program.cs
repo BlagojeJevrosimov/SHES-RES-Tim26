@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
@@ -10,12 +11,13 @@ using System.Threading.Tasks;
 
 namespace EVCharger
 {
+    [ExcludeFromCodeCoverage]
     class Program
     {
         static void Main(string[] args)
         {
-            Enums.BatteryRezim rezimSHES = Enums.BatteryRezim.IDLE;
-            Enums.BatteryRezim rezimGUI = Enums.BatteryRezim.IDLE;
+            Enums.BatteryRezim rezimSHES = Enums.BatteryRezim.PRAZNJENJE;
+            Enums.BatteryRezim rezimGUI = Enums.BatteryRezim.PRAZNJENJE;
             bool plug = false;
 
             Thread server1 = new Thread(Server1);

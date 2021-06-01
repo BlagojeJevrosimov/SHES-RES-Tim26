@@ -28,7 +28,7 @@ namespace Battery
 
                 for (int i = 0; i < num; i++)
                 {
-                    bufferRezim[batteriesRecieved[i].Id] = Enums.BatteryRezim.IDLE;
+                    bufferRezim.Add(batteriesRecieved[i].Id, Enums.BatteryRezim.PUNJENJE);
                 }
             }
             else throw new ArgumentNullException("Baterije su null!");

@@ -40,7 +40,7 @@ namespace BatteryTest
         [TestCase(100, "1", -5, Common.Enums.BatteryRezim.PRAZNJENJE)]
         public void BatteryKonstruktoLosiParametri(double capacity, string id, double maxPower, Enums.BatteryRezim state)
         {
-            Assert.Throws<ArgumentException>(
+            Assert.Throws<ArgumentOutOfRangeException>(
                 () =>
                 {
                     Common.Battery battery = new Common.Battery(capacity, id, maxPower, state);

@@ -15,13 +15,13 @@ namespace Common
 {
     public class Battery
     {
-        public double Capacity { get; set; }
+        public virtual double Capacity { get; set; }
 
-        public string Id { get; set; }
+        public virtual string Id { get; set; }
 
-        public double MaxPower { get; set; }
+        public virtual double MaxPower { get; set; }
 
-        public Enums.BatteryRezim State { get; set; }
+        public virtual Enums.BatteryRezim State { get; set; }
 
         public Battery()
         {
@@ -52,7 +52,7 @@ namespace Common
             }
             else
             {
-                throw new ArgumentException("Kapacitet ne sme biti negativan broj!");
+                throw new ArgumentOutOfRangeException("Kapacitet ne sme biti negativan broj!");
             }
 
             if (maxPower >= 0)
@@ -61,7 +61,7 @@ namespace Common
             }
             else
             {
-                throw new ArgumentException("Max power ne sme biti negativan broj!");
+                throw new ArgumentOutOfRangeException("Max power ne sme biti negativan broj!");
             }
 
             State = state;

@@ -74,14 +74,14 @@ namespace SHES
 
                 //ove podatke dobaviti sa GUI-ja
                 List<Common.Battery> baterije = new List<Battery>() {
-                new Common.Battery(0.3,"1",50,Enums.BatteryRezim.IDLE),
-                new Common.Battery(0.5,"2",25,Enums.BatteryRezim.IDLE)
+                new Common.Battery(0.3,"1",50,Enums.BatteryRezim.PRAZNJENJE),
+                new Common.Battery(0.5,"2",25,Enums.BatteryRezim.PRAZNJENJE)
                 };
 
                 batteryProxy.InitializeBatteries(baterije);
 
                 //ove podatke dobaviti sa GUI-ja
-                Common.EVCharger ev = new EVCharger(0.7,"evc",50,Enums.BatteryRezim.IDLE,false,true);
+                Common.EVCharger ev = new EVCharger(0.7,"evc",50,Enums.BatteryRezim.PRAZNJENJE,false,true);
 
                 evchargerProxy.InitializeEVCharger(ev);
 

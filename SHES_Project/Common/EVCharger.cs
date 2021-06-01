@@ -25,7 +25,7 @@ namespace Common
 
         }
 
-        public EVCharger(double capacity, string id, double maxPower, Enums.BatteryRezim state,bool charge,bool connected) :base(maxPower,id,capacity,state)
+        public EVCharger(double capacity, string id, double maxPower, Enums.BatteryRezim state,bool charge,bool connected) :base(capacity,id,maxPower,state)
         {
             this.Charge = charge;
             this.Connected = connected;
@@ -37,7 +37,7 @@ namespace Common
 
         }
 
-        public bool Charge { get => charge; set => charge = value; }
-        public bool Connected { get => connected; set => connected = value; }
+        public virtual bool Charge { get => charge; set => charge = value; }
+        public virtual bool Connected { get => connected; set => connected = value; }
     }
 }

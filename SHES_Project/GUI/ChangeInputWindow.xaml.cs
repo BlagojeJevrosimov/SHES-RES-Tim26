@@ -59,7 +59,7 @@ namespace GUI
             double sunIntensity = 0;
             var consumerRezim = Common.Enums.ConsumerRezim.OFF;
             int consumerID = 0;
-            var ev = Common.Enums.BatteryRezim.IDLE;
+            var ev = Common.Enums.BatteryRezim.PRAZNJENJE;
 
             if (txtSun.Text != null && txtSun.Text != "")
             {

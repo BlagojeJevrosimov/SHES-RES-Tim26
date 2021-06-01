@@ -66,10 +66,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonEVChargerTest.cs" />
+    <Compile Include="EVChargerGUITest.cs" />
+    <Compile Include="EVChargerSHESTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{A0DD15B1-AD3B-494C-B148-626F08A18CE7}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EVCharger\EVCharger.csproj">
+      <Project>{AB519DCC-E746-4152-A608-B09546CE0FA4}</Project>
+      <Name>EVCharger</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

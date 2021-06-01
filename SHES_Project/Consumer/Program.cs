@@ -22,6 +22,18 @@ namespace Consumer
 
             Thread serverSHES = new Thread(ServerSHES);
             serverSHES.Start();
+
+            ChannelFactory<ISHESConsumer> channel = new ChannelFactory<ISHESConsumer>("ISHESConsumer");
+            ISHESConsumer proxy = channel.CreateChannel();
+
+            while (true)
+            {
+                if(ConsumerGUI.changed == true)
+                {
+                    proxy.sendEnergyConsumption(ConsumerGUI.total);
+                    ConsumerGUI.changed = false;
+                }
+            }
         }
 
         public static void ServerGUI()

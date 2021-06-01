@@ -16,8 +16,15 @@ namespace EVCharger
 
         public void InitializeEVCharger(Common.EVCharger evc)
         {
-            rezimBuffer = Enums.BatteryRezim.IDLE;
-            EVCharger = evc;
+            if (evc != null)
+            {
+                rezimBuffer = Enums.BatteryRezim.PRAZNJENJE;
+                EVCharger = evc;
+            }
+            else
+            {
+                throw new ArgumentNullException("EVCharger ne sme biti null!");
+            }
         }
 
         public void SendRegime(Enums.BatteryRezim rezim)

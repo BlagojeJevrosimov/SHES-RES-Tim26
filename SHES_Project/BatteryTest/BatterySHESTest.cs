@@ -23,6 +23,7 @@ namespace BatteryTest
         public List<Common.Battery> batteries;
         public Mock<Common.Battery> mockBattery1;
         public Mock<Common.Battery> mockBattery2;
+        private Common.Battery bat;
 
         [SetUp]
         public void SetUp()
@@ -38,13 +39,22 @@ namespace BatteryTest
             bs = new BatterySHES();
             idLos = "b2";
             idDobar = "2";
-            rezim = Enums.BatteryRezim.IDLE;
+            rezim = Enums.BatteryRezim.PRAZNJENJE;
             rezim2 = Enums.BatteryRezim.PUNJENJE;
 
             batteries = new List<Common.Battery>();
 
-            mockBattery1 = new Mock<Common.Battery>(200, "1", 700, Enums.BatteryRezim.PUNJENJE);
-            mockBattery2 = new Mock<Common.Battery>(100, "2", 800, Enums.BatteryRezim.PUNJENJE);
+            mockBattery1 = new Mock<Common.Battery>();
+            mockBattery1.Setup(bat => bat.Capacity).Returns(500);
+            mockBattery1.Setup(bat => bat.Id).Returns("1");
+            mockBattery1.Setup(bat => bat.MaxPower).Returns(1000);
+            mockBattery1.Setup(bat => bat.State).Returns(Common.Enums.BatteryRezim.PUNJENJE);
+
+            mockBattery2 = new Mock<Common.Battery>();
+            mockBattery2.Setup(bat => bat.Capacity).Returns(300);
+            mockBattery2.Setup(bat => bat.Id).Returns("2");
+            mockBattery2.Setup(bat => bat.MaxPower).Returns(100);
+            mockBattery2.Setup(bat => bat.State).Returns(Common.Enums.BatteryRezim.PUNJENJE);
 
             batteries.Add(mockBattery1.Object);
             batteries.Add(mockBattery2.Object);

@@ -15,7 +15,8 @@ namespace Consumer
     public class ConsumerGUI : IConsumerGUI
     {
         public static Enums.ConsumerRezim[] rezimBuffer = new Enums.ConsumerRezim[ConsumerSHES.consumersList.Count];
-        private double total;
+        public static double total;
+        public static bool changed = false;
 
         public void ChangeConsumerState(int id, Enums.ConsumerRezim rezim)
         {
@@ -40,23 +41,11 @@ namespace Consumer
                     if (rezimBuffer[i] == Enums.ConsumerRezim.ON)
                         total += ConsumerSHES.consumersList[i].EnergyConsumption;
                 }
-
-                Thread t = new Thread(SendTotal);
-                t.Start();
-
             }
             else
             {
                 throw new ArgumentOutOfRangeException("Nepostojeci id!");
             }
-        }
-
-        [ExcludeFromCodeCoverage]    
-        private void SendTotal()
-        {
-            ChannelFactory<ISHESConsumer> channel = new ChannelFactory<ISHESConsumer>("ISHESConsumer");
-            ISHESConsumer proxy = channel.CreateChannel();
-            proxy.sendEnergyConsumption(total);
         }
 
         public double ReturnTotal()
