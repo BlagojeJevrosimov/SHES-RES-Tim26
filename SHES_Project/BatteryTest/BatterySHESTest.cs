@@ -23,7 +23,6 @@ namespace BatteryTest
         public List<Common.Battery> batteries;
         public Mock<Common.Battery> mockBattery1;
         public Mock<Common.Battery> mockBattery2;
-        private Common.Battery bat;
 
         [SetUp]
         public void SetUp()

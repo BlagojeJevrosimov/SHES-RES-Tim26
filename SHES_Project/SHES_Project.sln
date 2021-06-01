@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EVChargerTest", "EVChargerT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SHESTest", "SHESTest\SHESTest.csproj", "{7AE03A41-7297-4EE9-9E4E-D0579BA36EA2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolarPanelTest", "SolarPanelTest\SolarPanelTest.csproj", "{5FFB1A72-8911-4F2B-BC6A-8918FEAE8A29}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{7AE03A41-7297-4EE9-9E4E-D0579BA36EA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AE03A41-7297-4EE9-9E4E-D0579BA36EA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AE03A41-7297-4EE9-9E4E-D0579BA36EA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FFB1A72-8911-4F2B-BC6A-8918FEAE8A29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FFB1A72-8911-4F2B-BC6A-8918FEAE8A29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FFB1A72-8911-4F2B-BC6A-8918FEAE8A29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FFB1A72-8911-4F2B-BC6A-8918FEAE8A29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

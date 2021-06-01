@@ -13,8 +13,6 @@ namespace SolarPanels
     {
         public static double buffer = 0;
 
-        
-
         public void ChangeSunIntensity(double sunIntensity)
         {
             if (sunIntensity >= 0 && sunIntensity <= 1)

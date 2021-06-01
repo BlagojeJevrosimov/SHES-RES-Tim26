@@ -25,12 +25,17 @@ namespace Common
         {
 
         }
+
         public SolarPanel(string id, double maxPower)
         {
-
-            Id = id;
-            MaxPower = maxPower;
-
+            if (id == null)
+                throw new ArgumentNullException("Id ne moze biti null!");
+            else if (maxPower < 0)
+                throw new ArgumentOutOfRangeException("Snaga ne sme biti negativna!");
+            else { 
+                Id = id;
+                MaxPower = maxPower;
+            }
         }
 
 
