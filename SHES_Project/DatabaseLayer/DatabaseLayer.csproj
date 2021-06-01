@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A2357D05-2684-410C-AF81-A5AAB985CE84}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>DatabaseLayer</RootNamespace>
     <AssemblyName>DatabaseLayer</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -31,12 +31,16 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Oracle.ManagedDataAccess, Version=4.122.19.1, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
       <HintPath>..\packages\Oracle.ManagedDataAccess.19.11.0\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,11 +57,14 @@
     <Compile Include="DAO\Implementacije\Batteries.cs" />
     <Compile Include="DAO\Implementacije\Consumers.cs" />
     <Compile Include="DAO\Implementacije\EVChargers.cs" />
+    <Compile Include="DAO\ISHES.cs" />
+    <Compile Include="DAO\Implementacije\SHES.cs" />
     <Compile Include="DAO\Implementacije\SolarPanels.cs" />
     <Compile Include="DAO\Implementacije\Utility.cs" />
     <Compile Include="DAO\ISolarPanels.cs" />
     <Compile Include="DAO\IUtility.cs" />
     <Compile Include="DTO\BatteryDTO.cs" />
+    <Compile Include="DTO\ConsumersDTO.cs" />
     <Compile Include="DTO\SolarPanelsDTO.cs" />
     <Compile Include="DTO\UtilityDTO.cs" />
     <Compile Include="Program.cs" />

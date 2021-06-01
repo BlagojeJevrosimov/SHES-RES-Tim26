@@ -1,8 +1,12 @@
 using Common;
+using DatabaseLayer.DAO;
 using DatabaseLayer.DAO.Implementacije;
+using DatabaseLayer.DTO;
+using DatabaseLayer.SERVICES;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,16 +16,12 @@ namespace DatabaseLayer
     {
         static void Main(string[] args)
         {
-
-            DateTime centuryBegin = new DateTime(2001, 1, 1);
-            DateTime currentDate = DateTime.Now;
-
-            
-            Console.ReadKey();
-           
-
-            
-
+            using (ServiceHost host = new ServiceHost(typeof(DBServices))) {
+                
+                host.Open();
+                while (true) ;
+               
+            }
         }
     }
 }

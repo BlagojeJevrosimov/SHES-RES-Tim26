@@ -1,4 +1,5 @@
 ﻿using Common;
+using DatabaseLayer.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace DatabaseLayer.DAO
     public interface IUtility : ICRUDDao<Utility,string>
     {
         double GetCurrentPrice();
-        
+        IEnumerable<UtilityDTO> FindAll(int start, int end);
+        void SaveProduction(Utility utility, int time);
     }
 }

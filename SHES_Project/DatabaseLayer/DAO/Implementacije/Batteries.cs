@@ -99,14 +99,40 @@ namespace DatabaseLayer.DAO.Implementacije
             return batteryList;
             
         }
+        public List<Tuple<string,int>> GetIdsForInit() {
+
+            List<Tuple<string,int>> ids = new List<Tuple<string, int>>();
+            string query = "select idb,MAX(vreme) from batteries group by idb";
+            using (IDbConnection connection = ConnectionUtil_Pooling.GetConnection())
+            {
+                connection.Open();
+                using (IDbCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = query;
+                    command.Prepare();
+
+                    using (IDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Tuple<string,int> b = new Tuple<string, int>(reader.GetString(0),reader.GetInt32(1));
+                                
+                            ids.Add(b);
+                        }
+                    }
+                }
+            }
+            return ids;
+        }
 
         public IEnumerable<BatteryDTO> FindAllById(IEnumerable<string> ids)
         {
             throw new NotImplementedException();
         }
-        public IEnumerable<BatteryDTO> FindAllById(string id)
+        public IEnumerable<BatteryDTO> FindAllById(string id, int secondsStart, int secondsEnd)
         {
-            string query = "select capacity, idb, power, state, time from batteries where idb =:idb";
+            string query = "select capacity, idb, power, state, time from batteries" +
+                " where idb =:idb and time >=:s and time <:e";
             List<BatteryDTO> batteryList = new List<BatteryDTO>();
 
             using (IDbConnection connection = ConnectionUtil_Pooling.GetConnection())
@@ -116,9 +142,15 @@ namespace DatabaseLayer.DAO.Implementacije
                 {
                     command.CommandText = query;
                     ParameterUtil.AddParameter(command, "idb", DbType.String);
+                    ParameterUtil.AddParameter(command, "s", DbType.Int32);
+                    ParameterUtil.AddParameter(command, "e", DbType.Int32);
                     command.Prepare();
 
+                    ParameterUtil.SetParameterValue(command, "e", secondsEnd);
+                    ParameterUtil.SetParameterValue(command, "s", secondsStart);
                     ParameterUtil.SetParameterValue(command, "idb", id);
+                    
+                    
 
                     using (IDataReader reader = command.ExecuteReader())
                     {
@@ -133,10 +165,10 @@ namespace DatabaseLayer.DAO.Implementacije
             }
             return batteryList;
         }
-        public BatteryDTO FindById(string id)
+        public Battery FindById(string id,int time)
         {
-            string query = "select capacity ,idb, power, state, time from batteries where idb = :idb";
-            BatteryDTO battery = null;
+            string query = "select capacity ,idb, power, state from batteries where idb = :idb and vreme =:vreme";
+            Battery battery = null;
 
             using (IDbConnection connection = ConnectionUtil_Pooling.GetConnection())
             {
@@ -145,15 +177,17 @@ namespace DatabaseLayer.DAO.Implementacije
                 {
                     command.CommandText = query;
                     ParameterUtil.AddParameter(command, "idb", DbType.String);
+                    ParameterUtil.AddParameter(command, "vreme", DbType.Int32);
                     command.Prepare();
 
+                    ParameterUtil.SetParameterValue(command, "vreme", time);
                     ParameterUtil.SetParameterValue(command, "idb", id);
                     using (IDataReader reader = command.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            battery = new BatteryDTO(reader.GetDouble(0), reader.GetString(1),
-                                reader.GetDouble(2), (Enums.BatteryRezim)Enum.Parse(typeof(Enums.BatteryRezim),reader.GetString(3)),reader.GetInt32(4));
+                            battery = new Battery(reader.GetDouble(0), reader.GetString(1),
+                                reader.GetDouble(2), (Enums.BatteryRezim)Enum.Parse(typeof(Enums.BatteryRezim),reader.GetString(3)));
                         }
                     }
                 }
@@ -210,6 +244,11 @@ namespace DatabaseLayer.DAO.Implementacije
         }
 
         public bool ExistsById(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BatteryDTO FindById(string id)
         {
             throw new NotImplementedException();
         }

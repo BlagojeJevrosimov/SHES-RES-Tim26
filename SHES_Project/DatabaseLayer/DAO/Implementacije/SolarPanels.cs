@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common;
+using DatabaseLayer.DTO;
 using SHES_Project.DatabaseLayer;
 
 namespace DatabaseLayer.DAO.Implementacije
@@ -94,6 +95,37 @@ namespace DatabaseLayer.DAO.Implementacije
             }
             return solarPanelList;
         }
+        public IEnumerable<SolarPanelsDTO> FindAll(int start, int end)
+        {
+            string query = "select power, time from consumers " +
+                "where time>= :s and time < :e ";
+                
+            List<SolarPanelsDTO> consumerList = new List<SolarPanelsDTO>();
+
+            using (IDbConnection connection = ConnectionUtil_Pooling.GetConnection())
+            {
+                connection.Open();
+                using (IDbCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = query;
+                    ParameterUtil.AddParameter(command, "s", DbType.Int32);
+                    ParameterUtil.AddParameter(command, "e", DbType.Int32);
+                    command.Prepare();
+                    ParameterUtil.SetParameterValue(command, "s", start);
+                    ParameterUtil.SetParameterValue(command, "e", end);
+
+                    using (IDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            SolarPanelsDTO cons = new SolarPanelsDTO(reader.GetDouble(0), reader.GetInt32(1));
+                            consumerList.Add(cons);
+                        }
+                    }
+                }
+            }
+            return consumerList;
+        }
 
         public IEnumerable<SolarPanel> FindAllById(IEnumerable<string> ids)
         {
@@ -171,6 +203,26 @@ namespace DatabaseLayer.DAO.Implementacije
         public bool ExistsById(string id)
         {
             throw new NotImplementedException();
+        }
+        public void SaveProduction(double power, int time) {
+
+            
+            String insertSql = "insert into spproduction (power,time) values (:power, :time)";
+            
+            using (IDbConnection connection = ConnectionUtil_Pooling.GetConnection())
+            {
+                connection.Open();
+                using (IDbCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = insertSql;
+                    ParameterUtil.AddParameter(command, "power", DbType.Double);
+                    ParameterUtil.AddParameter(command, "time", DbType.Int32);
+                    ParameterUtil.SetParameterValue(command, "time", time);
+                    ParameterUtil.SetParameterValue(command, "power", power);
+                    command.ExecuteNonQuery();
+                }
+            }
+
         }
     }
 }

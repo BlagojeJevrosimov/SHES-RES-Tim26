@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common;
+using DatabaseLayer.DTO;
 using SHES_Project.DatabaseLayer;
 
 namespace DatabaseLayer.DAO.Implementacije
@@ -99,15 +100,73 @@ namespace DatabaseLayer.DAO.Implementacije
             }
             return consumerList;
         }
+        public List<Tuple<string,int>> GetIdsForInit() {
+
+            List<Tuple<string, int>> ids = new List<Tuple<string, int>>();
+            string query = "select idc,MAX(vreme) from consumers group by idc";
+            using (IDbConnection connection = ConnectionUtil_Pooling.GetConnection())
+            {
+                connection.Open();
+                using (IDbCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = query;
+                    command.Prepare();
+
+                    using (IDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Tuple<string, int> b = new Tuple<string, int>(reader.GetString(0), reader.GetInt32(1));
+
+                            ids.Add(b);
+                        }
+                    }
+                }
+            }
+            return ids;
+
+
+        }
+        public IEnumerable<ConsumersDTO> FindAll(int start, int end)
+        {
+            string query = "select time, SUM(power) from consumers " +
+                "where time>= :s and time < :e and state = 'ON'" +
+                "group by time";
+            List<ConsumersDTO> consumerList = new List<ConsumersDTO>();
+
+            using (IDbConnection connection = ConnectionUtil_Pooling.GetConnection())
+            {
+                connection.Open();
+                using (IDbCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = query;
+                    ParameterUtil.AddParameter(command, "s", DbType.Int32);
+                    ParameterUtil.AddParameter(command, "e", DbType.Int32);
+                    command.Prepare();
+                    ParameterUtil.SetParameterValue(command, "s", start);
+                    ParameterUtil.SetParameterValue(command, "e", end);
+
+                    using (IDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            ConsumersDTO cons = new ConsumersDTO(reader.GetInt32(0),reader.GetDouble(1));
+                            consumerList.Add(cons);
+                        }
+                    }
+                }
+            }
+            return consumerList;
+        }
 
         public IEnumerable<Consumer> FindAllById(IEnumerable<string> ids)
         {
             throw new NotImplementedException();
         }
 
-        public Consumer FindById(string id)
+        public Consumer FindById(string id, int time)
         {
-            string query = "select power,idc,state from consumers where idc = :idc";
+            string query = "select power,idc,state from consumers where idc = :idc and vreme =:vreme";
            Consumer consumer= null;
 
             using (IDbConnection connection = ConnectionUtil_Pooling.GetConnection())
@@ -117,15 +176,17 @@ namespace DatabaseLayer.DAO.Implementacije
                 {
                     command.CommandText = query;
                     ParameterUtil.AddParameter(command, "idc", DbType.String);
+                    ParameterUtil.AddParameter(command, "vreme", DbType.Int32);
                     command.Prepare();
 
+                    ParameterUtil.SetParameterValue(command, "vreme", time);
                     ParameterUtil.SetParameterValue(command, "idc", id);
                     using (IDataReader reader = command.ExecuteReader())
                     {
                         if (reader.Read())
                         {
                             consumer = new Consumer(reader.GetDouble(0), reader.GetString(1),
-                                (Enums.ConsumerRezim)Enum.Parse(typeof(Enums.ConsumerRezim), reader.GetString(3)));
+                                (Enums.ConsumerRezim)Enum.Parse(typeof(Enums.ConsumerRezim), reader.GetString(2)));
                         }
                     }
                 }
@@ -135,16 +196,16 @@ namespace DatabaseLayer.DAO.Implementacije
             return consumer;
         }
 
-        public void Save(Consumer entity)
+        public void Save(Consumer entity,int time)
         {
             using (IDbConnection connection = ConnectionUtil_Pooling.GetConnection())
             {
                 connection.Open();
-                Save(entity, connection);
+                Save(entity,time, connection);
             }
         }
 
-        public void SaveAll(IEnumerable<Consumer> entities)
+        public void SaveAll(IEnumerable<Consumer> entities, int time)
         {
             using (IDbConnection connection = ConnectionUtil_Pooling.GetConnection())
             {
@@ -152,28 +213,45 @@ namespace DatabaseLayer.DAO.Implementacije
                 IDbTransaction transaction = connection.BeginTransaction();
                 foreach (Consumer entity in entities)
                 {
-                    Save(entity, connection);
+                    Save(entity,time, connection);
                 }
 
                 transaction.Commit();
             }
         }
-        public void Save(Consumer entity, IDbConnection connection)
+        public void Save(Consumer entity,int time, IDbConnection connection)
         {
-            String insertSql = "insert into consumers (power,state,idc) values (:power, :state, :idc)";
-            String updateSql = "update consumers set  power = :power, state = :state where idc =:idc";
+            String insertSql = "insert into consumers (power,state,time,idc) values (:power, :state,:time, :idc)";
+           // String updateSql = "update consumers set  power = :power, state = :state where idc =:idc";
 
             using (IDbCommand command = connection.CreateCommand())
             {
-                command.CommandText = ExistsById(entity.Id, connection) ? updateSql : insertSql;
+                command.CommandText = insertSql;
                 ParameterUtil.AddParameter(command, "power", DbType.Double);
                 ParameterUtil.AddParameter(command, "state", DbType.String);
+                ParameterUtil.AddParameter(command, "time", DbType.Int32);
                 ParameterUtil.AddParameter(command, "idc", DbType.String);
                 ParameterUtil.SetParameterValue(command, "idc", entity.Id);
+                ParameterUtil.SetParameterValue(command, "time", time);
                 ParameterUtil.SetParameterValue(command, "state", entity.Rezim);
                 ParameterUtil.SetParameterValue(command, "power", entity.EnergyConsumption);
                 command.ExecuteNonQuery();
             }
+        }
+
+        public void Save(Consumer entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SaveAll(IEnumerable<Consumer> entities)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Consumer FindById(string id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

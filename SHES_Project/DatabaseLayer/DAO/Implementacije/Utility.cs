@@ -1,4 +1,5 @@
 ﻿using Common;
+using DatabaseLayer.DTO;
 using Oracle.ManagedDataAccess.Client;
 using SHES_Project.DatabaseLayer;
 using System;
@@ -55,6 +56,37 @@ namespace DatabaseLayer.DAO.Implementacije
         {
             throw new NotImplementedException();
         }
+        public IEnumerable<UtilityDTO> FindAll(int start, int end)
+        {
+            string query = "select power, time from consumers " +
+                "where time>= :s and time < :e";
+
+            List<UtilityDTO> consumerList = new List<UtilityDTO>();
+
+            using (IDbConnection connection = ConnectionUtil_Pooling.GetConnection())
+            {
+                connection.Open();
+                using (IDbCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = query;
+                    ParameterUtil.AddParameter(command, "s", DbType.Int32);
+                    ParameterUtil.AddParameter(command, "e", DbType.Int32);
+                    command.Prepare();
+                    ParameterUtil.SetParameterValue(command, "s", start);
+                    ParameterUtil.SetParameterValue(command, "e", end);
+
+                    using (IDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                           UtilityDTO cons = new UtilityDTO(reader.GetDouble(0), reader.GetInt32(1));
+                            consumerList.Add(cons);
+                        }
+                    }
+                }
+            }
+            return consumerList;
+        }
 
         public IEnumerable<Common.Utility> FindAllById(IEnumerable<string> ids)
         {
@@ -107,6 +139,25 @@ namespace DatabaseLayer.DAO.Implementacije
         public void SaveAll(IEnumerable<Common.Utility> entities)
         {
             throw new NotImplementedException();
+        }
+
+        public void SaveProduction(Common.Utility utility, int time)
+        {
+            using (IDbConnection connection = ConnectionUtil_Pooling.GetConnection())
+            {
+                String insertSql = "insert into uproduction (power,time) values (:power, :time)";
+                //String updateSql = "update uproduction set power= :powerwhere time =:time";
+                connection.Open();
+                using (IDbCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = insertSql;
+                    ParameterUtil.AddParameter(command, "power", DbType.Double);
+                    ParameterUtil.AddParameter(command, "time", DbType.Int32);
+                    ParameterUtil.SetParameterValue(command, "time",time);
+                    ParameterUtil.SetParameterValue(command, "power", utility.Power);
+                    command.ExecuteNonQuery();
+                }
+            }
         }
     }
 }
