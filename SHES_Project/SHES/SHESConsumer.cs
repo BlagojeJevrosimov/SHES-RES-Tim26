@@ -19,11 +19,13 @@ namespace SHES
                 energyConsumptioneBuffer = energyConsumption;
             else
                 throw new ArgumentOutOfRangeException("Potrosnja ne moze biti negativna vrednost!");
+
             if (c != null)
             {
                 consumers = c;
             }
-            else throw new ArgumentNullException("Nije poslata lista conusmera iz komponente");
+            else
+                throw new ArgumentNullException("Nije poslata lista conusmera iz komponente");
         }
 
  

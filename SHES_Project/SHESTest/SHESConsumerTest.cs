@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Moq;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -13,21 +14,38 @@ namespace SHESTest
     public class SHESConsumerTest
     {
         private Common.ISHESConsumer shesc;
+        private List<Common.Consumer> lista;
 
         [SetUp]
         public void Setup()
         {
             shesc = new SHES.SHESConsumer();
+            lista = new List<Common.Consumer>();
+
+            Mock<Common.Consumer> c1 = new Mock<Common.Consumer>();
+            c1.Setup(p => p.Id).Returns("0");
+            c1.Setup(p => p.Rezim).Returns(Common.Enums.ConsumerRezim.ON);
+            c1.Setup(p => p.EnergyConsumption).Returns(500);
+
+            lista.Add(c1.Object);
+
+            Mock<Common.Consumer> c2 = new Mock<Common.Consumer>();
+            c2.Setup(p => p.Id).Returns("1");
+            c2.Setup(p => p.Rezim).Returns(Common.Enums.ConsumerRezim.ON);
+            c2.Setup(p => p.EnergyConsumption).Returns(200);
+
+            lista.Add(c2.Object);
+
         }
 
         [Test]
         [TestCase(500)]
         public void DobriParametri(double potrosnja)
         {
-            //DODATI MOCK LISTU
-            shesc.sendEnergyConsumption(potrosnja);
+            shesc.sendEnergyConsumption(potrosnja, lista);
 
             Assert.AreEqual(potrosnja, SHES.SHESConsumer.energyConsumptioneBuffer);
+            Assert.AreEqual(lista, SHES.SHESConsumer.consumers);
 
         }
 
@@ -37,11 +55,20 @@ namespace SHESTest
         {
             Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
-                //DODATI MOCK LISTU
-                shesc.sendEnergyConsumption(potrosnja, );
+                shesc.sendEnergyConsumption(potrosnja, lista);
             }
             );
+        }
 
+
+        [Test]
+        public void NullParametri()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                shesc.sendEnergyConsumption(1000, null);
+            }
+           );
         }
     }
 }
