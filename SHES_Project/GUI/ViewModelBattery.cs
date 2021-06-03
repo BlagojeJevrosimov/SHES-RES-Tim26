@@ -11,10 +11,7 @@ namespace GUI
     {
         public List<BatteryDTO> data { get; set; }
 
-        public ViewModelBattery(List<BatteryDTO> dtos)
-        {
-            data = dtos;
-        }
+        public ViewModelBattery() { }
 
     }
 }

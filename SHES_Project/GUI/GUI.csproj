@@ -57,8 +57,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Bar.xaml.cs">
+      <DependentUpon>Bar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ConsumersDiagram.xaml.cs">
       <DependentUpon>ConsumersDiagram.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReverseBar.xaml.cs">
+      <DependentUpon>ReverseBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="SolarPanelsDiagram.xaml.cs">
       <DependentUpon>SolarPanelsDiagram.xaml</DependentUpon>
@@ -67,6 +73,10 @@
       <DependentUpon>UtilityDiagram.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModelBattery.cs" />
+    <Page Include="Bar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BatteryDiagram.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -105,6 +115,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ReverseBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SolarPanelsDiagram.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
