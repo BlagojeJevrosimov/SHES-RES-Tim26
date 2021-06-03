@@ -34,11 +34,10 @@ namespace EVCharger
                 rezimSHES = EVChargerSHES.rezimBuffer;
                 rezimGUI = EVChargerGUI.rezimBuffer;
 
-                Trace.TraceInformation("Sent from SHES: " + rezimSHES.ToString());
-                Trace.TraceInformation("Sent from GUI: " + EVChargerGUI.rezimBuffer.ToString());
+               // Trace.TraceInformation("Sent from SHES: " + rezimSHES.ToString());
+               // Trace.TraceInformation("Sent from GUI: " + EVChargerGUI.rezimBuffer.ToString());
 
-                //kreirati proxy ka SHESu da mu se posalje trazeni rezim rada sa GUI-ja
-                //proveriti da li je promenjeno stanje i tek ako jeste poslati tu info shesu kao bool
+                
                 if (plug != EVChargerGUI.plugBuffer || rezimSHES != EVChargerGUI.rezimBuffer)
                 {
                     plug = EVChargerGUI.plugBuffer;
@@ -48,7 +47,7 @@ namespace EVCharger
                         proxySHES.SendRegime(plug, true);
                 }
 
-                Thread.Sleep(100);
+                Thread.Sleep(1000);
             }
             
         }

@@ -111,7 +111,7 @@ namespace DatabaseLayer.DAO.Implementacije
         public EVCharger FindById(string id)
         {
             string query = "select capacity, idevc, power, state, charge, connected from evcharger where idevc = :idevc";
-            EVCharger evc = null;
+            EVCharger evc = new EVCharger();
 
             using (IDbConnection connection = ConnectionUtil_Pooling.GetConnection())
             {

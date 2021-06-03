@@ -30,7 +30,13 @@ namespace Consumer
             {
                 if(ConsumerGUI.changed == true)
                 {
-                    proxy.sendEnergyConsumption(ConsumerGUI.total);
+                    int i = 0;
+                    foreach (var c in ConsumerSHES.consumersList)
+                    {
+                        c.Rezim = ConsumerGUI.rezimBuffer[i];
+                        i++;
+                    }
+                    proxy.sendEnergyConsumption(ConsumerGUI.total,ConsumerSHES.consumersList);
                     ConsumerGUI.changed = false;
                 }
             }

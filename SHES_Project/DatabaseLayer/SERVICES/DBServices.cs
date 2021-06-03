@@ -5,13 +5,16 @@ using DatabaseLayer.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DatabaseLayer.SERVICES
 {
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, InstanceContextMode = InstanceContextMode.Single)]
     public class DBServices : IDBServices
     {
+       
         public List<Battery> GetBatteries()
         {
             IBatteries batteries = new Batteries();

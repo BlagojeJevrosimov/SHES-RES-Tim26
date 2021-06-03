@@ -20,8 +20,10 @@ namespace SolarPanel
             double powerOutput = 0;
             double sunIntensity = 0;
 
-            Thread server = new Thread(Server);
-            server.Start();
+            Thread serverGUI = new Thread(ServerGUI);
+            serverGUI.Start();
+            Thread serverSHES = new Thread(ServerSHES);
+            serverSHES.Start();
 
             ChannelFactory<ISHESSolarPanel> channel = new ChannelFactory<ISHESSolarPanel>("ISHESSolarPanel");
             ISHESSolarPanel proxy = channel.CreateChannel();
@@ -34,18 +36,30 @@ namespace SolarPanel
                 {
                     powerOutput += (sp.MaxPower * sunIntensity);
                 }
-                proxy.SendData(powerOutput);
-                Trace.TraceInformation("Sun intensity: " + sunIntensity);
-                Trace.TraceInformation("Solar power output: " + powerOutput);
+                try { proxy.SendData(powerOutput); }
+                catch (Exception e) {
+                    Trace.TraceInformation("Waiting for server to load up.");
+                    break;
+                }
+                //Trace.TraceInformation("Sun intensity: " + sunIntensity);
+                //Trace.TraceInformation("Solar power output: " + powerOutput);
 
-                Thread.Sleep(100);
+                Thread.Sleep(300);
             }
 
 
         }
-        static void Server()
+        static void ServerGUI()
         {
             using (ServiceHost host = new ServiceHost(typeof(SolarPanelGUI)))
+            {
+                host.Open();
+                while (true) ;
+            }
+        }
+        static void ServerSHES()
+        {
+            using (ServiceHost host = new ServiceHost(typeof(SolarPanelSHES)))
             {
                 host.Open();
                 while (true) ;

@@ -8,7 +8,7 @@ using Common;
 
 namespace SolarPanels
 {
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, InstanceContextMode = InstanceContextMode.Single)]
     public class SolarPanelSHES : ISolarPanelSHES
     {
         public static List<Common.SolarPanel> solarPanels = new List<Common.SolarPanel>();

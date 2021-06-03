@@ -19,6 +19,14 @@ namespace Consumer
                 throw new ArgumentNullException("Null prosledjen u Consumera");
 
             consumersList = consumers;
+            int i = 0;
+            ConsumerGUI.rezimBuffer = new Enums.ConsumerRezim[consumers.Count];
+            foreach (var c in consumers)
+            {
+                ConsumerGUI.total += c.EnergyConsumption;
+                ConsumerGUI.rezimBuffer[i++] = c.Rezim;
+            }
+            ConsumerGUI.changed = true;
         }
     }
 }

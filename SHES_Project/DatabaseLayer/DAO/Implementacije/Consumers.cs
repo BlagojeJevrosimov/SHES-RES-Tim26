@@ -221,7 +221,7 @@ namespace DatabaseLayer.DAO.Implementacije
         }
         public void Save(Consumer entity,int time, IDbConnection connection)
         {
-            String insertSql = "insert into consumers (power,state,time,idc) values (:power, :state,:time, :idc)";
+            String insertSql = "insert into consumers (power,state,vreme,idc) values (:power, :state,:vreme, :idc)";
            // String updateSql = "update consumers set  power = :power, state = :state where idc =:idc";
 
             using (IDbCommand command = connection.CreateCommand())
@@ -229,10 +229,10 @@ namespace DatabaseLayer.DAO.Implementacije
                 command.CommandText = insertSql;
                 ParameterUtil.AddParameter(command, "power", DbType.Double);
                 ParameterUtil.AddParameter(command, "state", DbType.String);
-                ParameterUtil.AddParameter(command, "time", DbType.Int32);
+                ParameterUtil.AddParameter(command, "vreme", DbType.Int32);
                 ParameterUtil.AddParameter(command, "idc", DbType.String);
                 ParameterUtil.SetParameterValue(command, "idc", entity.Id);
-                ParameterUtil.SetParameterValue(command, "time", time);
+                ParameterUtil.SetParameterValue(command, "vreme", time);
                 ParameterUtil.SetParameterValue(command, "state", entity.Rezim);
                 ParameterUtil.SetParameterValue(command, "power", entity.EnergyConsumption);
                 command.ExecuteNonQuery();

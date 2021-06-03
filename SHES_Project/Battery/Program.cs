@@ -1,6 +1,7 @@
 ﻿using Common;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.ServiceModel;
@@ -23,28 +24,30 @@ namespace Battery
             ChannelFactory<ISHESBattery> channel = new ChannelFactory<ISHESBattery>("ISHESBattery");
             ISHESBattery proxy = channel.CreateChannel();
 
-            Thread.Sleep(2000);
-            int counter = 0;
+            
             while (true)
             {
                 foreach (Common.Battery b in BatterySHES.batteries) { 
 
                     b.State = BatterySHES.bufferRezim[b.Id];
 
-                    if ( b.State == BatteryRezim.PUNJENJE && counter == 60)
+                    if ( b.State == BatteryRezim.PUNJENJE && b.Capacity <= 0.99 )
                     {
                         b.Capacity+=0.01;
-                        counter = 0;
+                        
                     }
-                    else if (b.State == BatteryRezim.PRAZNJENJE && counter == 60)
+                    else if (b.State == BatteryRezim.PRAZNJENJE && b.Capacity >= 1)
                     {
                         b.Capacity -= 0.01;
-                        counter = 0;
+                        
                     }
-                    proxy.SendData(b.Id,b.Capacity,b.State);
+                    try { proxy.SendData(b.Id, b.Capacity, b.State); }
+                    catch (Exception e) {
+                        break;
+                    }
                 }
-                counter++;
-                Thread.Sleep(100);
+                
+                Thread.Sleep(300);
             }
         }
 

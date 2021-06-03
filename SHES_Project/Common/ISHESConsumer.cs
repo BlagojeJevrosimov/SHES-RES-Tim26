@@ -10,7 +10,7 @@ namespace Common
     public interface ISHESConsumer
     {
         [OperationContract]
-        void sendEnergyConsumption(double energyConsumption);
+        void sendEnergyConsumption(double energyConsumption,List<Consumer> c);
        
     }
 }

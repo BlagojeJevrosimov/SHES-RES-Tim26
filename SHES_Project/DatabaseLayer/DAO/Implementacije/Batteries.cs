@@ -222,7 +222,7 @@ namespace DatabaseLayer.DAO.Implementacije
         }
         public void Save(BatteryDTO entity, IDbConnection connection)
         {
-            String insertSql = "insert into batteries (capacity,power,state,time,idb) values (:capacity, :power, :state,:time, :idb)";
+            String insertSql = "insert into batteries (capacity,power,state,vreme,idb) values (:capacity, :power, :state,:vreme, :idb)";
            // String updateSql = "update batteries set capacity=:capacity, power = :power, state = :state, time=:time where idb =:idb";
 
             using (IDbCommand command = connection.CreateCommand())
@@ -232,10 +232,10 @@ namespace DatabaseLayer.DAO.Implementacije
                 ParameterUtil.AddParameter(command, "capacity", DbType.Double);
                 ParameterUtil.AddParameter(command, "power", DbType.Double);
                 ParameterUtil.AddParameter(command, "state", DbType.String);
-                ParameterUtil.AddParameter(command, "time", DbType.Int32);
+                ParameterUtil.AddParameter(command, "vreme", DbType.Int32);
                 ParameterUtil.AddParameter(command, "idb", DbType.String);
                 ParameterUtil.SetParameterValue(command, "idb", entity.Id);
-                ParameterUtil.SetParameterValue(command, "time", entity.Time);
+                ParameterUtil.SetParameterValue(command, "vreme", entity.Time);
                 ParameterUtil.SetParameterValue(command, "state", entity.State);
                 ParameterUtil.SetParameterValue(command, "power", entity.MaxPower);
                 ParameterUtil.SetParameterValue(command, "capacity", entity.Capacity);              

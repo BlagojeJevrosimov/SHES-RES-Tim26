@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SHES
 {
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, InstanceContextMode = InstanceContextMode.Single)]
     public class SHESSolarPanel : ISHESSolarPanel
     {
         public static double bufferPowerOutput;
