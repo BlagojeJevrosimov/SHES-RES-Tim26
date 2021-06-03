@@ -77,5 +77,15 @@ namespace UtilityTest
                );
 
         }
+
+        [Test]
+        public void GetPriceTest()
+        {
+            //mi smo poslali kod inicijalizacije mock objekat sa cenom 700
+            double temp = 700;
+
+            Assert.AreEqual(temp, ushes.getPrice());
+
+        }
     }
 }

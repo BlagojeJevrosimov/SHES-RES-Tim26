@@ -1,7 +1,7 @@
 ﻿using Common;
+using Common.DTO;
 using DatabaseLayer.DAO;
 using DatabaseLayer.DAO.Implementacije;
-using DatabaseLayer.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -4,20 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DatabaseLayer.DTO
+namespace Common.DTO
 {
-    public class UtilityDTO
+    public class ConsumersDTO
     {
-        private double power;
         private int time;
+        private double power;
 
-        public UtilityDTO(double power, int time)
+        public ConsumersDTO(int time, double power)
         {
-            Power = power;
             Time = time;
+            Power = power;
         }
 
-        public double Power { get => power; set => power = value; }
         public int Time { get => time; set => time = value; }
+        public double Power { get => power; set => power = value; }
     }
 }

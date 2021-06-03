@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Utility
@@ -13,7 +14,29 @@ namespace Utility
     {
         static void Main(string[] args)
         {
-            using (ServiceHost host = new ServiceHost(typeof(UtilitySHES))) {
+            Thread SHESServer = new Thread(ShesServer);
+            SHESServer.Start();
+
+            Thread GUIServer = new Thread(GuiServer);
+            GUIServer.Start();
+            
+        }
+
+        private static void ShesServer()
+        {
+            using (ServiceHost host = new ServiceHost(typeof(UtilitySHES)))
+            {
+
+                host.Open();
+
+                while (true) ;
+            }
+        }
+
+        private static void GuiServer()
+        {
+            using (ServiceHost host = new ServiceHost(typeof(UtilityGUI)))
+            {
 
                 host.Open();
 

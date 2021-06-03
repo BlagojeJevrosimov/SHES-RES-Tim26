@@ -46,6 +46,10 @@ namespace GUI
             ChannelFactory<IConsumerGUI> ConsumerChannel = new ChannelFactory<IConsumerGUI>("IConsumerGUI");
             CommunicationData.proxyConsumer = ConsumerChannel.CreateChannel();
 
+            ChannelFactory<IUtilityGUI> UtilityChannel = new ChannelFactory<IUtilityGUI>("IUtilityGUI");
+            CommunicationData.proxyUtility = UtilityChannel.CreateChannel();
+
+
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -60,32 +64,44 @@ namespace GUI
             var consumerRezim = Common.Enums.ConsumerRezim.OFF;
             int consumerID = 0;
             var ev = Common.Enums.BatteryRezim.PRAZNJENJE;
+            double util = 0;
 
             if (txtSun.Text != null && txtSun.Text != "")
             {
-                sunIntensity = double.Parse(txtSun.Text);
-                CommunicationData.proxySP.ChangeSunIntensity(sunIntensity);
-                txtSun.Text = "";
+                if(double.TryParse(txtSun.Text, out sunIntensity) && sunIntensity >= 0 && sunIntensity <= 1)
+                {
+                    CommunicationData.proxySP.ChangeSunIntensity(sunIntensity);
+                    txtSun.Text = "";
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException("Intenzitet Sunca mora biti broj u intervalu 0-1!");
+                }
             }
 
             if(txtConsumerId.Text != null && txtConsumerId.Text != "")
             {
-                consumerID = Int32.Parse(txtConsumerId.Text);
-
-                if (cmbBoxConsumer.Text != null && cmbBoxConsumer.Text != "")
+                if(Int32.TryParse(txtConsumerId.Text, out consumerID))
                 {
-                    switch (cmbBoxConsumer.Text)
+                    if (cmbBoxConsumer.Text != null && cmbBoxConsumer.Text != "")
                     {
-                        case "ON":
-                            consumerRezim = Enums.ConsumerRezim.ON;
-                            break;
-                        default:
-                            consumerRezim = Enums.ConsumerRezim.OFF;
-                            break;
+                        switch (cmbBoxConsumer.Text)
+                        {
+                            case "ON":
+                                consumerRezim = Enums.ConsumerRezim.ON;
+                                break;
+                            default:
+                                consumerRezim = Enums.ConsumerRezim.OFF;
+                                break;
+                        }
+                        Trace.TraceInformation("GUI sending: Consumer id-" + consumerID + ", state-" + consumerRezim.ToString());
+                        CommunicationData.proxyConsumer.ChangeConsumerState(consumerID, consumerRezim);
+                        txtConsumerId.Text = "";
                     }
-                    Trace.TraceInformation("GUI sending: Consumer id-" + consumerID + ", state-" + consumerRezim.ToString());
-                    CommunicationData.proxyConsumer.ChangeConsumerState(consumerID, consumerRezim);
-                    txtConsumerId.Text = "";
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException("Id potrosaca mora biti nenegativan broj!");
                 }
             }
 
@@ -103,12 +119,33 @@ namespace GUI
                 Trace.TraceInformation("GUI to EV: " + Convert.ToBoolean(cmbBoxBatteryOnPlug.Text) + " " + ev.ToString());
                 CommunicationData.proxyEV.SendRegime(Convert.ToBoolean(cmbBoxBatteryOnPlug.Text), ev);
             }
+
+            if(txtUtilityPrice.Text != null && txtUtilityPrice.Text != "")
+            {
+                if(double.TryParse(txtUtilityPrice.Text, out util) && util >= 0)
+                {
+                    util = double.Parse(txtUtilityPrice.Text);
+                    CommunicationData.proxyUtility.SendPrice(util);
+                    txtUtilityPrice.Text = "";
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException("Cena elektrodistribucije mora biti pozitivan broj!");
+                }
+            }
         }
 
         private void BtnInitialize_Click(object sender, RoutedEventArgs e)
         {
             MainWindow main = new MainWindow();
             main.Show();
+            this.Close();
+        }
+
+        private void BtnShowGraph_Click(object sender, RoutedEventArgs e)
+        {
+            ChooseGraphWindow choose = new ChooseGraphWindow();
+            choose.Show();
             this.Close();
         }
     }

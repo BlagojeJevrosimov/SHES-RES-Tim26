@@ -1,4 +1,5 @@
 ﻿using Common;
+using Common.DTO;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -22,6 +23,16 @@ namespace SHES
         public static double cenaUtilityBuffer;
         public static int brojPotrosacaBuffer;
         public static double[] snagePotrosacaBuffer;
+
+        public List<BatteryDTO> GetBatteryData(DateTime date, string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<DateTime> GetDates()
+        {
+            throw new NotImplementedException();
+        }
 
         public void Initialize(int brojPanela, double[] snagePanela, int brojBateija, 
             double[] snageBaterija, double[] kapacitetiBaterija, double snagaEVC, 

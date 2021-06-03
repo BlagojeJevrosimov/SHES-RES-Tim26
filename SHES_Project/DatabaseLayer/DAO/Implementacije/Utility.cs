@@ -1,5 +1,5 @@
 ﻿using Common;
-using DatabaseLayer.DTO;
+using Common.DTO;
 using Oracle.ManagedDataAccess.Client;
 using SHES_Project.DatabaseLayer;
 using System;

@@ -63,10 +63,6 @@
     <Compile Include="DAO\Implementacije\Utility.cs" />
     <Compile Include="DAO\ISolarPanels.cs" />
     <Compile Include="DAO\IUtility.cs" />
-    <Compile Include="DTO\BatteryDTO.cs" />
-    <Compile Include="DTO\ConsumersDTO.cs" />
-    <Compile Include="DTO\SolarPanelsDTO.cs" />
-    <Compile Include="DTO\UtilityDTO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SERVICES\DBServices.cs" />

@@ -5,21 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d"
-        Title="" Height="390" Width="550" AllowsTransparency="True" Background="WhiteSmoke" MouseLeftButtonDown="Window_MouseLeftButtonDown" WindowStyle="None">
+        Title="" Height="450" Width="650" AllowsTransparency="True" Background="#ADD8FF" MouseLeftButtonDown="Window_MouseLeftButtonDown" WindowStyle="None">
     <Grid>
-        <Label Content="Sun intensity (0-1):" FontSize="20px" TextElement.FontFamily="Cambria" HorizontalAlignment="Left" VerticalAlignment="Top" Height="38" Width="216" Margin="38,52,0,0"/>
-        <TextBox x:Name="txtSun" HorizontalAlignment="Left" Height="38" Margin="260,52,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="213"/>
-        <Label Content="Consumer ID:" FontSize="20px" TextElement.FontFamily="Cambria" HorizontalAlignment="Left" VerticalAlignment="Top" Height="38" Width="216" Margin="38,94,0,0"/>
-        <ComboBox x:Name="cmbBoxConsumer" HorizontalAlignment="Left" Margin="260,137,0,0" VerticalAlignment="Top" Width="213" Height="38"/>
-        <Label Content="EV Charger on plug:" FontSize="20px" TextElement.FontFamily="Cambria" HorizontalAlignment="Left" VerticalAlignment="Top" Height="38" Width="217" Margin="38,179,0,0"/>
-        <ComboBox x:Name="cmbBoxBatteryRegime" HorizontalAlignment="Left" Margin="260,222,0,0" VerticalAlignment="Top" Width="213" Height="38"/>
+        <Label Content="Sun intensity (0-1):" FontSize="20px" TextElement.FontFamily="Cambria" HorizontalAlignment="Left" VerticalAlignment="Top" Height="38" Width="216" Margin="39,46,0,0"/>
+        <TextBox x:Name="txtSun" HorizontalAlignment="Left" Height="38" Margin="347,46,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="213"/>
+        <Label Content="Consumer ID:" FontSize="20px" TextElement.FontFamily="Cambria" HorizontalAlignment="Left" VerticalAlignment="Top" Height="38" Width="216" Margin="39,88,0,0"/>
+        <ComboBox x:Name="cmbBoxConsumer" HorizontalAlignment="Left" Margin="347,131,0,0" VerticalAlignment="Top" Width="213" Height="38"/>
+        <Label Content="EV Charger on plug:" FontSize="20px" TextElement.FontFamily="Cambria" HorizontalAlignment="Left" VerticalAlignment="Top" Height="38" Width="217" Margin="39,173,0,0"/>
+        <ComboBox x:Name="cmbBoxBatteryRegime" HorizontalAlignment="Left" Margin="347,216,0,0" VerticalAlignment="Top" Width="213" Height="38"/>
 
-        <Button x:Name="btnChange" Content="Change" TextElement.FontFamily="Cambria" TextElement.FontSize="30px" Height="40" Click="BtnChange_Click" Canvas.Left="74" Canvas.Top="77" Margin="95,294,291.4,56.4"/>
-        <Button x:Name="btnInitialize" Click="BtnInitialize_Click" Content="Initialize" HorizontalAlignment="Left"  TextElement.FontFamily="Cambria" TextElement.FontSize="30px" Margin="296,294,0,0" VerticalAlignment="Top" Width="151" Height="40"/>
-        <TextBox x:Name="txtConsumerId" HorizontalAlignment="Left" Height="38" Margin="260,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="213"/>
-        <Label Content="Consumer state:" FontSize="20px" TextElement.FontFamily="Cambria" HorizontalAlignment="Left" Height="42" Margin="38,137,0,0" VerticalAlignment="Top" Width="216"/>
-        <Label Content="EV Charger regime:" FontSize="20px" TextElement.FontFamily="Cambria" HorizontalAlignment="Left" VerticalAlignment="Top" Height="38" Width="217" Margin="38,222,0,0"/>
-        <ComboBox x:Name="cmbBoxBatteryOnPlug" HorizontalAlignment="Left" Margin="260,179,0,0" VerticalAlignment="Top" Width="213" Height="38"/>
+        <Button x:Name="btnChange" BorderBrush="BlanchedAlmond" BorderThickness="3" Content="Change" TextElement.FontFamily="Cambria" TextElement.FontSize="30px"  Click="BtnChange_Click" Margin="39,342,445.6,53.6" Width="165" />
+        <Button x:Name="btnInitialize" BorderBrush="BlanchedAlmond" BorderThickness="3" Click="BtnInitialize_Click" Content="Initialize" HorizontalAlignment="Left"  TextElement.FontFamily="Cambria" TextElement.FontSize="30px" Margin="231,342,0,0" VerticalAlignment="Top" Width="165" Height="54"/>
+        <TextBox x:Name="txtConsumerId" HorizontalAlignment="Left" Height="38" Margin="347,89,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="213"/>
+        <Label Content="Consumer state:" FontSize="20px" TextElement.FontFamily="Cambria" HorizontalAlignment="Left" Height="42" Margin="39,131,0,0" VerticalAlignment="Top" Width="216"/>
+        <Label Content="EV Charger regime:" FontSize="20px" TextElement.FontFamily="Cambria" HorizontalAlignment="Left" VerticalAlignment="Top" Height="38" Width="217" Margin="39,216,0,0"/>
+        <ComboBox x:Name="cmbBoxBatteryOnPlug" HorizontalAlignment="Left" Margin="347,173,0,0" VerticalAlignment="Top" Width="213" Height="38"/>
+        <Label Content="Utility price:" FontSize="20px" TextElement.FontFamily="Cambria" HorizontalAlignment="Left" VerticalAlignment="Top" Height="38" Width="217" Margin="39,259,0,0"/>
+        <TextBox x:Name="txtUtilityPrice" HorizontalAlignment="Left" Height="38" Margin="347,259,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="213"/>
+
+        <Label Content="" Background="CadetBlue" RenderTransformOrigin="0.5,0.5" Margin="10,313,36.4,132.6"/>
+        <Button x:Name="btnChooseGraph" BorderBrush="BlanchedAlmond" BorderThickness="3" Click="BtnShowGraph_Click" Content="Graph" HorizontalAlignment="Left"  TextElement.FontFamily="Cambria" TextElement.FontSize="30px" Margin="425,342,0,0" VerticalAlignment="Top" Width="165" Height="54"/>
 
     </Grid>
 </Window>

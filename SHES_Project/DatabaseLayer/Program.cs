@@ -1,7 +1,6 @@
 using Common;
 using DatabaseLayer.DAO;
 using DatabaseLayer.DAO.Implementacije;
-using DatabaseLayer.DTO;
 using DatabaseLayer.SERVICES;
 using System;
 using System.Collections.Generic;

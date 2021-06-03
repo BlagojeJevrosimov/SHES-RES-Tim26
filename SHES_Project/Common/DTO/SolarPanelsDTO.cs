@@ -1,24 +1,23 @@
-﻿using Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DatabaseLayer.DTO
+namespace Common.DTO
 {
-    public class ConsumersDTO 
+    public class SolarPanelsDTO
     {
-        private int time;
         private double power;
+        private int time;
 
-        public ConsumersDTO(int time, double power)
+        public SolarPanelsDTO(double power, int time)
         {
-            Time = time;
             Power = power;
+            Time = time;
         }
 
-        public int Time { get => time; set => time = value; }
         public double Power { get => power; set => power = value; }
+        public int Time { get => time; set => time = value; }
     }
 }

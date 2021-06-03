@@ -15,5 +15,6 @@ namespace GUI
         public static IEVChargerGUI proxyEV;
         public static ISHESGUI proxySHES;
         public static IConsumerGUI proxyConsumer;
+        public static IUtilityGUI proxyUtility;
     }
 }

@@ -57,7 +57,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ConsumersDiagram.xaml.cs">
+      <DependentUpon>ConsumersDiagram.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SolarPanelsDiagram.xaml.cs">
+      <DependentUpon>SolarPanelsDiagram.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UtilityDiagram.xaml.cs">
+      <DependentUpon>UtilityDiagram.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModelBattery.cs" />
+    <Page Include="BatteryDiagram.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ChangeInputWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChooseGraphWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConsumersDiagram.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -69,14 +91,28 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BatteryDiagram.xaml.cs">
+      <DependentUpon>BatteryDiagram.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ChangeInputWindow.xaml.cs">
       <DependentUpon>ChangeInputWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ChooseGraphWindow.xaml.cs">
+      <DependentUpon>ChooseGraphWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="CommunicationData.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SolarPanelsDiagram.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UtilityDiagram.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -108,6 +144,10 @@
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{A0DD15B1-AD3B-494C-B148-626F08A18CE7}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DatabaseLayer\DatabaseLayer.csproj">
+      <Project>{A2357D05-2684-410C-AF81-A5AAB985CE84}</Project>
+      <Name>DatabaseLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

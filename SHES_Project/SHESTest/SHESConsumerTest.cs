@@ -24,6 +24,7 @@ namespace SHESTest
         [TestCase(500)]
         public void DobriParametri(double potrosnja)
         {
+            //DODATI MOCK LISTU
             shesc.sendEnergyConsumption(potrosnja);
 
             Assert.AreEqual(potrosnja, SHES.SHESConsumer.energyConsumptioneBuffer);
@@ -36,7 +37,8 @@ namespace SHESTest
         {
             Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
-                shesc.sendEnergyConsumption(potrosnja);
+                //DODATI MOCK LISTU
+                shesc.sendEnergyConsumption(potrosnja, );
             }
             );
 

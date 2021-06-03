@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common;
-using DatabaseLayer.DTO;
+using Common.DTO;
 using SHES_Project.DatabaseLayer;
 
 namespace DatabaseLayer.DAO.Implementacije

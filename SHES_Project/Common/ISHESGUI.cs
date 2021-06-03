@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
@@ -14,5 +15,12 @@ namespace Common
         void Initialize(int brojPanela, double[] snagePanela, 
             int brojBateija, double[] snageBaterija, double[] kapacitetiBaterija, double snagaEVC, 
             double cenaUtility, int brojPotrosaca, double[] snagePotrosaca);
+
+        [OperationContract]
+        List<DateTime> GetDates();
+
+        [OperationContract]
+        List<BatteryDTO> GetBatteryData(DateTime date, string id);
+
     }
 }
