@@ -12,7 +12,7 @@ namespace Consumer
     public class ConsumerSHES : IConsumerSHES
     {
         public static List<Common.Consumer> consumersList = new List<Common.Consumer>();
-
+        public static bool initialized = false;
         public void InitializeConsumers(List<Common.Consumer> consumers)
         {
             if (consumers == null)
@@ -21,12 +21,15 @@ namespace Consumer
             consumersList = consumers;
             int i = 0;
             ConsumerGUI.rezimBuffer = new Enums.ConsumerRezim[consumers.Count];
+            ConsumerGUI.total = 0;
             foreach (var c in consumers)
             {
+                
                 ConsumerGUI.total += c.EnergyConsumption;
                 ConsumerGUI.rezimBuffer[i++] = c.Rezim;
             }
             ConsumerGUI.changed = true;
+            initialized = true;
         }
     }
 }

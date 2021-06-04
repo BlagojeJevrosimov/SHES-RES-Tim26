@@ -19,7 +19,12 @@ namespace Utility
 
             Thread GUIServer = new Thread(GuiServer);
             GUIServer.Start();
-            
+
+            while (true) {
+
+                UtilitySHES.utility.Price = UtilityGUI.bufferPrice;
+                Thread.Sleep(500);
+            }
         }
 
         private static void ShesServer()

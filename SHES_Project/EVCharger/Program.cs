@@ -28,26 +28,29 @@ namespace EVCharger
 
             ChannelFactory<ISHESEVCharger> channelSHES = new ChannelFactory<ISHESEVCharger>("ISHESEVCharger");
             ISHESEVCharger proxySHES = channelSHES.CreateChannel();
-
+           
             while (true)
-            {
-                rezimSHES = EVChargerSHES.rezimBuffer;
-                rezimGUI = EVChargerGUI.rezimBuffer;
-
-               // Trace.TraceInformation("Sent from SHES: " + rezimSHES.ToString());
-               // Trace.TraceInformation("Sent from GUI: " + EVChargerGUI.rezimBuffer.ToString());
-
-                
-                if (plug != EVChargerGUI.plugBuffer || rezimSHES != EVChargerGUI.rezimBuffer)
                 {
-                    plug = EVChargerGUI.plugBuffer;
-                    if(rezimGUI == Enums.BatteryRezim.PRAZNJENJE)
-                        proxySHES.SendRegime(plug, false);
-                    else if (rezimGUI == Enums.BatteryRezim.PUNJENJE)
-                        proxySHES.SendRegime(plug, true);
-                }
+                if (EVChargerSHES.initialized)
+                {
+                    rezimSHES = EVChargerSHES.rezimBuffer;
+                    rezimGUI = EVChargerGUI.rezimBuffer;
 
-                Thread.Sleep(1000);
+                    // Trace.TraceInformation("Sent from SHES: " + rezimSHES.ToString());
+                    // Trace.TraceInformation("Sent from GUI: " + EVChargerGUI.rezimBuffer.ToString());
+
+
+                    if (plug != EVChargerGUI.plugBuffer || rezimSHES != EVChargerGUI.rezimBuffer)
+                    {
+                        plug = EVChargerGUI.plugBuffer;
+                        if (rezimGUI == Enums.BatteryRezim.PRAZNJENJE)
+                            proxySHES.SendRegime(plug, false);
+                        else if (rezimGUI == Enums.BatteryRezim.PUNJENJE)
+                            proxySHES.SendRegime(plug, true);
+                    }
+
+                    Thread.Sleep(1000);
+                }
             }
             
         }

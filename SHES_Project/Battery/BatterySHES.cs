@@ -14,6 +14,7 @@ namespace Battery
     {
         public static Dictionary<string, Enums.BatteryRezim> bufferRezim = new Dictionary<string, BatteryRezim>();
         public static List<Common.Battery> batteries = new List<Common.Battery>();
+        public static bool initialized = false;
 
         public void InitializeBatteries(List<Common.Battery> batteriesRecieved)
         {
@@ -28,11 +29,11 @@ namespace Battery
 
                 for (int i = 0; i < num; i++)
                 {
-                    bufferRezim.Add(batteriesRecieved[i].Id, Enums.BatteryRezim.PUNJENJE);
+                    bufferRezim[batteriesRecieved[i].Id] = Enums.BatteryRezim.PUNJENJE;
                 }
             }
             else throw new ArgumentNullException("Baterije su null!");
-            
+            initialized = true;
         }
 
         public void SendRegime(string id, BatteryRezim rezim)

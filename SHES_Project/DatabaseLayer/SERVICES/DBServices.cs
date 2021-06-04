@@ -156,5 +156,11 @@ namespace DatabaseLayer.SERVICES
             util.SaveProduction(utility,time);
 
         }
+        public List<DateTime> GetDates() {
+
+            ISHES shes = new DAO.Implementacije.SHES();
+
+            return shes.GetDates();
+        }
     }
 }

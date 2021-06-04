@@ -12,6 +12,7 @@ namespace SolarPanels
     public class SolarPanelSHES : ISolarPanelSHES
     {
         public static List<Common.SolarPanel> solarPanels = new List<Common.SolarPanel>();
+        public static bool initialized = false;
         public void InitializeSolarPanels(int num, double[] maxPowers)
         {
             if (num < 0)
@@ -41,6 +42,7 @@ namespace SolarPanels
                 }
                 
             }
+            initialized = true;
            
         }
     }

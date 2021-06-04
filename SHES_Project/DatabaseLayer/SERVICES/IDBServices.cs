@@ -61,6 +61,10 @@ namespace DatabaseLayer.SERVICES
         [OperationContract]
         double GetCurrentPrice();
 
+        [OperationContract]
+
+        List<DateTime> GetDates();
+
 
     }
 }

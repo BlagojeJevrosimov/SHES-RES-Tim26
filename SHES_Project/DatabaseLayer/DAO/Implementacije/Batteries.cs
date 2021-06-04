@@ -236,7 +236,7 @@ namespace DatabaseLayer.DAO.Implementacije
                 ParameterUtil.AddParameter(command, "idb", DbType.String);
                 ParameterUtil.SetParameterValue(command, "idb", entity.Id);
                 ParameterUtil.SetParameterValue(command, "vreme", entity.Time);
-                ParameterUtil.SetParameterValue(command, "state", entity.State);
+                ParameterUtil.SetParameterValue(command, "state", entity.State.ToString());
                 ParameterUtil.SetParameterValue(command, "power", entity.MaxPower);
                 ParameterUtil.SetParameterValue(command, "capacity", entity.Capacity);              
                 command.ExecuteNonQuery();

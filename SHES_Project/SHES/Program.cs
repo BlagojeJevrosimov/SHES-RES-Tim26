@@ -75,17 +75,21 @@ namespace SHES
             //Vrednosti potrebne za pravilan rad aplikacije: 
             double solarPanelsOutput = 0;
             double consumerEnergyConsumption = 0;
-            int brojac = 1;
+            int brojac = 150;
             //Racunanje pocetnog vremena
             DateTime centuryBegin = new DateTime(2020, 1, 1);
-            DateTime currentDate = DateTime.Now;
+            DateTime currentDate = DateTime.Now.Date;
+
+
             long elapsedTicks = currentDate.Ticks - centuryBegin.Ticks;
             TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
             int vreme = (int)Math.Floor(elapsedSpan.TotalSeconds);
 
             double cenaDana = 0;
+            bool systemInitialized = false;
             while (true)
             {
+               if(!systemInitialized){ 
                 if (SHESGUI.init)
                 {
                     //SolarPanels:
@@ -117,7 +121,7 @@ namespace SHES
                     proxyBaza.SaveEVCharger(evc);
 
                     //Utility:
-                    utility.Price = 0.33;
+                    utility.Price = 0.139;
                     utility.Power = 0;
                     proxyBaza.SaveUtility(utility, 0);
 
@@ -134,12 +138,7 @@ namespace SHES
 
                     }
                     solarProxy.InitializeSolarPanels(solarPanels.Count(), p);
-
-                    proxyBaza.SaveBatteries(batteries, 0);
-                    proxyBaza.SaveConsumers(consumers, 0);
-                    proxyBaza.SaveEVCharger(evc);
-                    proxyBaza.SaveSolarPanels(solarPanels);
-                    proxyBaza.SaveUtility(utility,0);
+                    systemInitialized = true;
                 }
                 else
                 {
@@ -149,7 +148,23 @@ namespace SHES
                     evc = proxyBaza.GetEVCharger();
                     utility = new Utility(proxyBaza.GetCurrentPrice());
                     utility.Power = 0;
+
+                    batteryProxy.InitializeBatteries(batteries);
+                    utilityProxy.initializeUtility(utility);
+                    evchargerProxy.InitializeEVCharger(evc);
+                    consumerProxy.InitializeConsumers(consumers);
+                    double[] p = new double[solarPanels.Count];
+                    int j = 0;
+                    foreach (var sp in solarPanels)
+                    {
+                        p[j] = sp.MaxPower;
+                        j++;
+
+                    }
+                    solarProxy.InitializeSolarPanels(solarPanels.Count(), p);
+                    systemInitialized = true;
                 }
+               }
                 //Preuzimanje vrednosti iz baffera:
                 solarPanelsOutput = SHESSolarPanel.bufferPowerOutput;
 
@@ -181,7 +196,7 @@ namespace SHES
                     evchargerProxy.SendRegime(Enums.BatteryRezim.PUNJENJE);
                 }
 
-                if (brojac >= 36 && vreme <= 72)
+                if (brojac >= 36 && brojac <= 72)
                 {
                     foreach (var b in batteries)
                     {
@@ -203,7 +218,7 @@ namespace SHES
                     }
 
                 }
-                else if (brojac >= 168 && vreme <= 204)
+                else if (brojac >= 168 && brojac <= 204)
                 {
 
                     foreach (var b in batteries)
@@ -255,20 +270,20 @@ namespace SHES
                 utility.Power = potrosnja;
 
                 cenaDana += (potrosnja * utility.Price);
-                if (brojac % 2 == 0)
-                {
+
                     proxyBaza.SaveSolarPanelProduction(solarPanelsOutput,vreme);
                     proxyBaza.SaveConsumers(consumers,vreme);
                     proxyBaza.SaveBatteries(batteries, vreme);
                     proxyBaza.SaveUtility(utility, vreme);
                 
-                }
                 if (brojac == 288)
                 {
 
+                    
+                    proxyBaza.SaveTotalExpenditure(currentDate,(int)cenaDana);
                     brojac = 0;
-                    proxyBaza.SaveTotalExpenditure(DateTime.Now,(int)cenaDana);
                     cenaDana = 0;
+                    currentDate.AddDays(1);
                 }
                 
 

@@ -29,5 +29,35 @@ namespace DatabaseLayer.DAO.Implementacije
                 }
             }
         }
+        public List<DateTime> GetDates() {
+
+            String Sql = "select datum from shes";
+            List<DateTime> list = new List<DateTime>(); 
+            using (IDbConnection connection = ConnectionUtil_Pooling.GetConnection())
+            {
+                connection.Open();
+                using (IDbCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = Sql;
+                    command.Prepare();
+
+                    using (IDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string date = reader.GetString(0);
+                            string[] temp = date.Split('/');
+                            int day = int.Parse(temp[0]);
+                            int month = int.Parse(temp[1]);
+                            int year = int.Parse(temp[2]);
+                            DateTime d = new DateTime(year,month,day);
+                            list.Add(d);
+                        }
+                    }
+                }
+            }
+            return list;
+
+        }
     }
 }

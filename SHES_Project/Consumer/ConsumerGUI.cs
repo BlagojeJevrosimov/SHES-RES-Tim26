@@ -32,7 +32,7 @@ namespace Consumer
             if (id < rezimBuffer.Count())
             {
                 rezimBuffer[id] = rezim;
-                Trace.TraceInformation("Sent to Consumer: id-" + id + ", state-" + rezim.ToString());                
+                //Trace.TraceInformation("Sent to Consumer: id-" + id + ", state-" + rezim.ToString());                
                 //odmah se posalje shesu informacija ukupne snage consumera
                 
                 total = 0;

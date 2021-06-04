@@ -30,21 +30,25 @@ namespace SolarPanel
 
             while (true)
             {
-                sunIntensity = SolarPanelGUI.buffer;
-                powerOutput = 0;
-                foreach (var sp in SolarPanelSHES.solarPanels)
+                if (SolarPanelSHES.initialized)
                 {
-                    powerOutput += (sp.MaxPower * sunIntensity);
-                }
-                try { proxy.SendData(powerOutput); }
-                catch (Exception e) {
-                    Trace.TraceInformation("Waiting for server to load up.");
-                    break;
-                }
-                //Trace.TraceInformation("Sun intensity: " + sunIntensity);
-                //Trace.TraceInformation("Solar power output: " + powerOutput);
+                    sunIntensity = SolarPanelGUI.buffer;
+                    powerOutput = 0;
+                    foreach (var sp in SolarPanelSHES.solarPanels)
+                    {
+                        powerOutput += (sp.MaxPower * sunIntensity);
+                    }
+                    try { proxy.SendData(powerOutput); }
+                    catch (Exception e)
+                    {
+                        Trace.TraceInformation("Waiting for server to load up.");
+                        break;
+                    }
+                    //Trace.TraceInformation("Sun intensity: " + sunIntensity);
+                    //Trace.TraceInformation("Solar power output: " + powerOutput);
 
-                Thread.Sleep(300);
+                    Thread.Sleep(300);
+                }
             }
 
 

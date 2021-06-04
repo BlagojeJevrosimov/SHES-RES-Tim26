@@ -25,19 +25,22 @@ namespace Consumer
 
             ChannelFactory<ISHESConsumer> channel = new ChannelFactory<ISHESConsumer>("ISHESConsumer");
             ISHESConsumer proxy = channel.CreateChannel();
-
+            
             while (true)
-            {
-                if(ConsumerGUI.changed == true)
                 {
-                    int i = 0;
-                    foreach (var c in ConsumerSHES.consumersList)
+                if (ConsumerSHES.initialized)
+                {
+                    if (ConsumerGUI.changed == true)
                     {
-                        c.Rezim = ConsumerGUI.rezimBuffer[i];
-                        i++;
+                        int i = 0;
+                        foreach (var c in ConsumerSHES.consumersList)
+                        {
+                            c.Rezim = ConsumerGUI.rezimBuffer[i];
+                            i++;
+                        }
+                        proxy.sendEnergyConsumption(ConsumerGUI.total, ConsumerSHES.consumersList);
+                        ConsumerGUI.changed = false;
                     }
-                    proxy.sendEnergyConsumption(ConsumerGUI.total,ConsumerSHES.consumersList);
-                    ConsumerGUI.changed = false;
                 }
             }
         }

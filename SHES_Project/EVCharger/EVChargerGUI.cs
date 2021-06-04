@@ -12,7 +12,7 @@ namespace EVCharger
     public class EVChargerGUI : IEVChargerGUI
     {
         public static Enums.BatteryRezim rezimBuffer;
-        public static bool plugBuffer;
+        public static bool plugBuffer = true;
 
         public void SendRegime(bool plug, Enums.BatteryRezim rezim)
         {

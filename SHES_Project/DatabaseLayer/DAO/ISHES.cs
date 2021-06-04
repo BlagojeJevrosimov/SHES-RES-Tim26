@@ -9,5 +9,6 @@ namespace DatabaseLayer.DAO.Implementacije
     public interface ISHES
     {
         void Save(string date, double total);
+        List<DateTime> GetDates();
     }
 }

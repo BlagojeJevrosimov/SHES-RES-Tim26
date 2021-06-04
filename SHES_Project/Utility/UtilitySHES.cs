@@ -11,7 +11,7 @@ namespace Utility
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class UtilitySHES : IUtilitySHES
     {
-        public static Common.Utility utility;
+        public static Common.Utility utility = new Common.Utility();
 
         public double getPrice()
         {
@@ -27,7 +27,7 @@ namespace Utility
 
         public void sendRequestforEnergy(double amount)
         {
-            utility = new Common.Utility(amount, utility.Price);       
+            utility.Power=amount;       
         }
     }
 }

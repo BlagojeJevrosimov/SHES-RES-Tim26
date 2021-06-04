@@ -1,5 +1,6 @@
 ﻿using Common;
 using Common.DTO;
+using DatabaseLayer.SERVICES;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -26,12 +27,17 @@ namespace SHES
 
         public List<BatteryDTO> GetBatteryData(DateTime date, string id)
         {
-            throw new NotImplementedException();
+            ChannelFactory<IDBServices> channelFactory = new ChannelFactory<IDBServices>("IDBServices");
+            IDBServices proxy = channelFactory.CreateChannel();
+
+            return proxy.GetBatteryProduction(id, date);
         }
 
         public List<DateTime> GetDates()
         {
-            throw new NotImplementedException();
+            ChannelFactory<IDBServices> channelFactory = new ChannelFactory<IDBServices>("IDBServices");
+            IDBServices proxy = channelFactory.CreateChannel();
+            return proxy.GetDates();
         }
 
         public void Initialize(int brojPanela, double[] snagePanela, int brojBateija, 
@@ -126,7 +132,7 @@ namespace SHES
                     snagePotrosacaBuffer = snagePotrosaca;
                 }
             }
-            init = true;
+            
             Trace.TraceInformation("System initialized");
         }
         

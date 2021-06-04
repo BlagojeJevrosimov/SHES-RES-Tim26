@@ -10,6 +10,6 @@ namespace Common
     {
         public enum ConsumerRezim { ON, OFF }
 
-        public enum BatteryRezim {  PRAZNJENJE, PUNJENJE }
+        public enum BatteryRezim { PUNJENJE,PRAZNJENJE }
     }
 }

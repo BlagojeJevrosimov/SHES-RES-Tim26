@@ -26,28 +26,33 @@ namespace Battery
 
             
             while (true)
-            {
-                foreach (Common.Battery b in BatterySHES.batteries) { 
-
-                    b.State = BatterySHES.bufferRezim[b.Id];
-
-                    if ( b.State == BatteryRezim.PUNJENJE && b.Capacity <= 0.99 )
+                {
+                if (BatterySHES.initialized)
+                {
+                    foreach (Common.Battery b in BatterySHES.batteries)
                     {
-                        b.Capacity+=0.01;
-                        
+
+                        b.State = BatterySHES.bufferRezim[b.Id];
+
+                        if (b.State == BatteryRezim.PUNJENJE && b.Capacity <= 0.99)
+                        {
+                            b.Capacity += 0.01;
+
+                        }
+                        else if (b.State == BatteryRezim.PRAZNJENJE && b.Capacity >= 0.01)
+                        {
+                            b.Capacity -= 0.01;
+
+                        }
+                        try { proxy.SendData(b.Id, b.Capacity, b.State); }
+                        catch (Exception e)
+                        {
+                           
+                        }
                     }
-                    else if (b.State == BatteryRezim.PRAZNJENJE && b.Capacity >= 1)
-                    {
-                        b.Capacity -= 0.01;
-                        
-                    }
-                    try { proxy.SendData(b.Id, b.Capacity, b.State); }
-                    catch (Exception e) {
-                        break;
-                    }
+
+                    Thread.Sleep(1000);
                 }
-                
-                Thread.Sleep(300);
             }
         }
 
