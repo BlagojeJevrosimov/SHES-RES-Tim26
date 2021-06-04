@@ -25,5 +25,11 @@ namespace Common
         [OperationContract]
         List<SolarPanelsDTO> GetSolarPanelsData(DateTime date);
 
+        [OperationContract]
+        List<UtilityDTO> GetUtilityData(DateTime date);
+
+        [OperationContract]
+        List<ConsumersDTO> GetConsumersData(DateTime date);
+
     }
 }

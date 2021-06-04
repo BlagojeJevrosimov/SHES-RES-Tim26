@@ -21,30 +21,30 @@
                 BorderBrush="Gray" CornerRadius="12">
             <Grid Margin="0,0,0.4,-0.2">
                 <StackPanel Orientation="Horizontal" Height="200" VerticalAlignment="Bottom" Margin="0,0,-0.2,0">
-                    <local:Bar x:Name="bar1Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="10" Margin="5"/>
-                    <local:Bar x:Name="bar2Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="10" Margin="5"/>
-                    <local:Bar x:Name="bar3Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="10" Margin="5"/>
-                    <local:Bar x:Name="bar4Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="10" Margin="5"/>
-                    <local:Bar x:Name="bar5Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="10" Margin="5"/>
-                    <local:Bar x:Name="bar6Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="10" Margin="5"/>
-                    <local:Bar x:Name="bar7Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="10" Margin="5"/>
-                    <local:Bar x:Name="bar8Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="10" Margin="5"/>
-                    <local:Bar x:Name="bar9Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="10" Margin="5"/>
-                    <local:Bar x:Name="bar10Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="10" Margin="5"/>
-                    <local:Bar x:Name="bar11Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="10" Margin="5"/>
-                    <local:Bar x:Name="bar12Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="10" Margin="5"/>
-                    <local:Bar x:Name="bar13Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="10" Margin="5"/>
-                    <local:Bar x:Name="bar14Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="10" Margin="5"/>
-                    <local:Bar x:Name="bar15Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="10" Margin="5"/>
-                    <local:Bar x:Name="bar16Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="10" Margin="5"/>
-                    <local:Bar x:Name="bar17Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="10" Margin="5"/>
-                    <local:Bar x:Name="bar18Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="10" Margin="5"/>
-                    <local:Bar x:Name="bar19Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="10" Margin="5"/>
-                    <local:Bar x:Name="bar20Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="10" Margin="5"/>
-                    <local:Bar x:Name="bar21Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="10" Margin="5"/>
-                    <local:Bar x:Name="bar22Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="10" Margin="5"/>
-                    <local:Bar x:Name="bar23Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="10" Margin="5"/>
-                    <local:Bar x:Name="bar24Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="10" Margin="5"/>
+                    <local:Bar x:Name="bar1Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
+                    <local:Bar x:Name="bar2Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
+                    <local:Bar x:Name="bar3Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
+                    <local:Bar x:Name="bar4Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
+                    <local:Bar x:Name="bar5Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
+                    <local:Bar x:Name="bar6Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
+                    <local:Bar x:Name="bar7Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
+                    <local:Bar x:Name="bar8Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
+                    <local:Bar x:Name="bar9Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
+                    <local:Bar x:Name="bar10Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
+                    <local:Bar x:Name="bar11Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
+                    <local:Bar x:Name="bar12Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
+                    <local:Bar x:Name="bar13Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
+                    <local:Bar x:Name="bar14Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
+                    <local:Bar x:Name="bar15Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
+                    <local:Bar x:Name="bar16Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
+                    <local:Bar x:Name="bar17Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
+                    <local:Bar x:Name="bar18Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
+                    <local:Bar x:Name="bar19Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
+                    <local:Bar x:Name="bar20Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
+                    <local:Bar x:Name="bar21Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
+                    <local:Bar x:Name="bar22Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
+                    <local:Bar x:Name="bar23Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
+                    <local:Bar x:Name="bar24Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
                 </StackPanel>
             </Grid>
 
