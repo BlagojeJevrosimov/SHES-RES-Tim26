@@ -9,7 +9,7 @@ namespace GUI
 {
     public class ViewModelBattery
     {
-        public List<BatteryDTO> data { get; set; }
+        public List<BatteryDTO> Data { get; set; }
 
         public ViewModelBattery() { }
 
