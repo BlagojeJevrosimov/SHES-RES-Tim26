@@ -40,6 +40,11 @@ namespace SHES
             return proxy.GetDates();
         }
 
+        public List<SolarPanelsDTO> GetSolarPanelsData(DateTime date)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Initialize(int brojPanela, double[] snagePanela, int brojBateija, 
             double[] snageBaterija, double[] kapacitetiBaterija, double snagaEVC, 
             double cenaUtility, int brojPotrosaca, double[] snagePotrosaca)

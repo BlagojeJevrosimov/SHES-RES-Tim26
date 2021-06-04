@@ -34,16 +34,5 @@ namespace Common.DTO
             return ret;
         }
 
-        public double DiagramData()
-        {
-            if(State == Enums.BatteryRezim.PUNJENJE)
-            {
-                return MaxPower;
-            }
-            else
-            {
-                return -MaxPower;
-            }
-        }
     }
 }

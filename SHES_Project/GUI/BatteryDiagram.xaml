@@ -78,7 +78,7 @@
                 <local:ReverseBar x:Name="bar24Negative" VerticalAlignment="Top" Height="200" MaxValue="100" Color="#FF442266" Value="10" Margin="5"/>
             </StackPanel>
         </Grid>
-        <Label Foreground="White" Content="Energy" FontSize="15" HorizontalAlignment="Left" Height="30" Margin="-20,223.6,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
+        <Label Foreground="White" Content="Power" FontSize="15" HorizontalAlignment="Left" Height="30" Margin="-20,223.6,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
