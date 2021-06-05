@@ -135,13 +135,6 @@ namespace GUI
             }
         }
 
-        private void BtnInitialize_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow main = new MainWindow();
-            main.Show();
-            this.Close();
-        }
-
         private void BtnShowGraph_Click(object sender, RoutedEventArgs e)
         {
             ChooseGraphWindow choose = new ChooseGraphWindow();

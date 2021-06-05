@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d"
-        Height="550" Width="650" WindowStyle="None" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="Window_MouseLeftButtonDown" Background="Black">
+        Height="590" Width="650" WindowStyle="None" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="Window_MouseLeftButtonDown" Background="Black">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
@@ -95,6 +95,7 @@
                HorizontalAlignment="Left" FontSize="6" Height="18" Margin="42,243.6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="538"/>
         <Label Content="+" Foreground="White" HorizontalAlignment="Left" Height="31" Margin="10,9.6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="20"/>
         <Label Content="-" Foreground="White" HorizontalAlignment="Left" Height="31" Margin="10,422.6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="20"/>
+        <Button Content="Go back" FontSize="20" Click="Button_Click"  HorizontalAlignment="Left" Height="43" Margin="227,459,0,0" Grid.Row="1" VerticalAlignment="Top" Width="174"/>
 
     </Grid>
 </Window>
