@@ -1,8 +1,10 @@
 ﻿using Common;
 using Common.DTO;
+using SHES;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -39,8 +41,9 @@ namespace GUI
             maxHgt = 0;
 
             naslov.Text += "Date: " + date + ", ID: " + id;
-
-            data = CommunicationData.proxySHES.GetBatteryData(date, id);
+            ChannelFactory<ISHESGUI> channel = new ChannelFactory<ISHESGUI>("ISHESGUI");
+            ISHESGUI proxy = channel.CreateChannel();
+            data = CommunicationData.proxySHES.GetBatteryData(date,id);
 
             ViewModelBattery vm = new ViewModelBattery();
             vm.Data = data;

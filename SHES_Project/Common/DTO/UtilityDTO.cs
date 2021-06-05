@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Common.DTO
 {
+    [DataContract]
     public class UtilityDTO
     {
         private double power;
@@ -16,8 +18,9 @@ namespace Common.DTO
             Power = power;
             Time = time;
         }
-
+        [DataMember]
         public double Power { get => power; set => power = value; }
+        [DataMember]
         public int Time { get => time; set => time = value; }
 
         public DateTime TimeAsDT

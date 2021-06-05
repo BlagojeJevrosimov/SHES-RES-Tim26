@@ -164,8 +164,8 @@ namespace DatabaseLayer.DAO.Implementacije
         public void Save(EVCharger entity, IDbConnection connection)
         {
             String insertSql = "insert into evcharger (capacity,power,state,charge,connected,idevc) " +
-                "values (:c , :p,:s, :charge,:connected, :idevc)";
-            String updateSql = "update evcharger set capacity = :c, power = :p, state =:s" +
+                "values (:c ,:p,:s, :charge,:connected, :idevc)";
+            String updateSql = "update evcharger set capacity = :c, power = :p, state =:s," +
                 "charge =:charge, connected=:connected where idevc =:idevc";
 
             using (IDbCommand command = connection.CreateCommand())

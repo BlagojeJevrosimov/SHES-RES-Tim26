@@ -42,6 +42,8 @@ namespace GUI
 
             cmbBoxGraph.ItemsSource = grafici;
 
+            lblID.Visibility = Visibility.Visible;
+            txtBoxID.Visibility = Visibility.Visible;
         }
 
         private void Show_Button_Click(object sender, RoutedEventArgs e)
@@ -49,7 +51,7 @@ namespace GUI
             if(cmbBoxDatum.Text != null && cmbBoxGraph != null)
             {
                 //proveriti da li radi (DateTime)cmbBoxDatum.SelectedValue
-                switch (cmbBoxDatum.Text)
+                switch (cmbBoxGraph.Text)
                 {
                     case "Solar Panels":
                         SolarPanelsDiagram spd = new SolarPanelsDiagram((DateTime)cmbBoxDatum.SelectedValue);
@@ -57,6 +59,7 @@ namespace GUI
                         this.Close();
                         break;
                     case "Battery":
+                        
                         if (txtBoxID.Text != "") {
                             BatteryDiagram bdd = new BatteryDiagram((DateTime)cmbBoxDatum.SelectedValue, txtBoxID.Text);
                             bdd.Show();

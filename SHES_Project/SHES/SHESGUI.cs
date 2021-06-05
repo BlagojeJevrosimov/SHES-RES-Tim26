@@ -14,6 +14,8 @@ namespace SHES
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, InstanceContextMode = InstanceContextMode.Single)]
     public class SHESGUI : ISHESGUI
     {
+        public static List<BatteryDTO> bGrafik = new List<BatteryDTO>();
+        public static List<DateTime> dates = new List<DateTime>();
         public static bool init = false;
         public static bool startSystem = false;
         public static int brojPanelaBuffer;
@@ -28,10 +30,22 @@ namespace SHES
 
         public List<BatteryDTO> GetBatteryData(DateTime date, string id)
         {
-            ChannelFactory<IDBServices> channelFactory = new ChannelFactory<IDBServices>("IDBServices");
-            IDBServices proxy = channelFactory.CreateChannel();
+            ChannelFactory<IDBServices> channel = new ChannelFactory<IDBServices>("IDBServices");
+            IDBServices proxy = channel.CreateChannel();
 
-            return proxy.GetBatteryProduction(id, date);
+            DateTime centuryBegin = new DateTime(2020, 1, 1);
+
+            long elapsedTicks = date.Ticks - centuryBegin.Ticks;
+            TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
+            int svreme = (int)Math.Floor(elapsedSpan.TotalSeconds);
+            int evreme = svreme + 86400;
+            List<BatteryDTO> ret = new List<BatteryDTO>();
+            foreach (BatteryDTO b in bGrafik) {
+                if (b.Time >= svreme && b.Time < evreme) {
+                    ret.Add(b);
+                }
+            }
+            return proxy.GetBatteryProduction(id,date);
         }
 
         public List<ConsumersDTO> GetConsumersData(DateTime date)
@@ -41,14 +55,14 @@ namespace SHES
 
         public List<DateTime> GetDates()
         {
-            ChannelFactory<IDBServices> channelFactory = new ChannelFactory<IDBServices>("IDBServices");
-            IDBServices proxy = channelFactory.CreateChannel();
-            return proxy.GetDates();
+            return dates;
         }
 
         public List<SolarPanelsDTO> GetSolarPanelsData(DateTime date)
         {
-            throw new NotImplementedException();
+            ChannelFactory<IDBServices> channelFactory = new ChannelFactory<IDBServices>("IDBServices");
+            IDBServices proxy = channelFactory.CreateChannel();
+            return proxy.GetSolarPanelProduction(date);
         }
 
         public List<UtilityDTO> GetUtilityData(DateTime date)

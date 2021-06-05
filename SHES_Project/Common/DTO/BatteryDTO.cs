@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ServiceModel;
+using System.Runtime.Serialization;
 
 namespace Common.DTO
 {
+    [DataContract]
     public class BatteryDTO : Battery
-    {
+    {  
         private int time;
 
         public BatteryDTO(double capacity, string id, double maxPower, Enums.BatteryRezim state, int time) : base(capacity, id, maxPower, state)
         {
             Time = time;
         }
-
+        [DataMember]
         public int Time { get => time; set => time = value; }
 
         public DateTime TimeAsDT

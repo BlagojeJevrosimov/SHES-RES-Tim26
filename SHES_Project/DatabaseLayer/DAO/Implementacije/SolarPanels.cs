@@ -104,7 +104,7 @@ namespace DatabaseLayer.DAO.Implementacije
 
             using (IDbConnection connection = ConnectionUtil_Pooling.GetConnection())
             {
-                connection.Open();
+               // connection.Open();
                 using (IDbCommand command = connection.CreateCommand())
                 {
                     command.CommandText = query;
@@ -186,16 +186,16 @@ namespace DatabaseLayer.DAO.Implementacije
         }
         public void Save(SolarPanel entity, IDbConnection connection)
         {
-            String insertSql = "insert into solarpanels(power,idsp) values (:power, :idsp)";
-            String updateSql = "update solarpanels set  power = :power where idsp =:idsp";
+            String insertSql = "insert into solarpanels(power,idsp) values (:p, :idsp)";
+            String updateSql = "update solarpanels set  power = :p where idsp =:idsp";
 
             using (IDbCommand command = connection.CreateCommand())
             {
                 command.CommandText = ExistsById(entity.Id, connection) ? updateSql : insertSql;
-                ParameterUtil.AddParameter(command, "power", DbType.Double);
+                ParameterUtil.AddParameter(command, "p", DbType.Double);
                 ParameterUtil.AddParameter(command, "idsp", DbType.String);
                 ParameterUtil.SetParameterValue(command, "idsp", entity.Id);
-                ParameterUtil.SetParameterValue(command, "power", entity.MaxPower);
+                ParameterUtil.SetParameterValue(command, "p", entity.MaxPower);
                 command.ExecuteNonQuery();
             }
         }

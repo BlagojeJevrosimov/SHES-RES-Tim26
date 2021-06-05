@@ -10,10 +10,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-
+using System.Runtime.Serialization;
 
 namespace Common
 {
+    [DataContract]
     public class EVCharger:Battery
     {
 
@@ -36,8 +37,9 @@ namespace Common
         {
 
         }
-
+        [DataMember]
         public virtual bool Charge { get => charge; set => charge = value; }
+        [DataMember]
         public virtual bool Connected { get => connected; set => connected = value; }
     }
 }

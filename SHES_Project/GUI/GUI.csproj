@@ -166,6 +166,10 @@
       <Project>{A2357D05-2684-410C-AF81-A5AAB985CE84}</Project>
       <Name>DatabaseLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SHES\SHES.csproj">
+      <Project>{DAFDA542-5463-4740-8699-904FA2032906}</Project>
+      <Name>SHES</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

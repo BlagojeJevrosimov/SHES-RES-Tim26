@@ -10,10 +10,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-
+using System.Runtime.Serialization;
 
 namespace Common
 {
+    [DataContract]
     public class Consumer
     {
         public Consumer() { }
@@ -40,11 +41,11 @@ namespace Common
             this.Rezim = rezim;
 
         }
-
+        [DataMember]
         public virtual double EnergyConsumption { get; set; }
-
+        [DataMember]
         public virtual string Id { get; set; }
-
+        [DataMember]
         public virtual Enums.ConsumerRezim Rezim { get; set; }
     }
 }//end Consumer

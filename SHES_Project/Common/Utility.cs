@@ -11,8 +11,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Threading;
+using System.Runtime.Serialization;
+
 namespace Common
 {
+    [DataContract]
     public class Utility
     {
         public Utility()
@@ -51,9 +54,9 @@ namespace Common
         /// 
         /// <param name="amount"></param>
       
-
+        [DataMember]
         public virtual double Power { get; set; }
-
+        [DataMember]
         public virtual double Price { get; set; }
 
     }

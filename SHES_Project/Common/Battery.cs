@@ -10,17 +10,20 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using System.Runtime.Serialization;
 
 namespace Common
 {
+    [DataContract]
     public class Battery
     {
+        [DataMember]
         public virtual double Capacity { get; set; }
-
+        [DataMember]
         public virtual string Id { get; set; }
-
+        [DataMember]
         public virtual double MaxPower { get; set; }
-
+        [DataMember]
         public virtual Enums.BatteryRezim State { get; set; }
 
         public Battery()

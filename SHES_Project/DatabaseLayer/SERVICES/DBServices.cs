@@ -35,10 +35,9 @@ namespace DatabaseLayer.SERVICES
             long ticks = date.Ticks - centuryBegin.Ticks;
             long secondsStart = ticks / 10000000;
             long secondsEnd = secondsStart + 86400;
-             return (List<BatteryDTO>)batteries.FindAllById(id,(int)secondsStart, (int)secondsEnd);
-  
+            List<BatteryDTO> list = (List<BatteryDTO>)batteries.FindAllById(id, (int)secondsStart, (int)secondsEnd); ;
+            return list;
         }
-
         public List<Consumer> GetConsumers()
         {
             IConsumers consumers = new Consumers();

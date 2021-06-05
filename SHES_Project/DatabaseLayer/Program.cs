@@ -16,7 +16,8 @@ namespace DatabaseLayer
         static void Main(string[] args)
         {
             using (ServiceHost host = new ServiceHost(typeof(DBServices))){
-                
+                host.CloseTimeout = new TimeSpan(0,10,0);
+                host.OpenTimeout = new TimeSpan(0, 10, 0);
                 host.Open();
                 while (true) ;
                

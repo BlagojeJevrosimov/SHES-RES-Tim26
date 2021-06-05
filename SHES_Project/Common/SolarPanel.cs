@@ -11,9 +11,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Threading;
+using System.Runtime.Serialization;
 
 namespace Common
 {
+    [DataContract]
     public class SolarPanel
     {
 
@@ -43,7 +45,7 @@ namespace Common
         {
 
         }
-
+        [DataMember]
         public string Id
         {
             get
@@ -55,7 +57,7 @@ namespace Common
                 id = value;
             }
         }
-
+        [DataMember]
         public double MaxPower
         {
             get
