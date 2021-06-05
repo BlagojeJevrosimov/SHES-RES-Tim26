@@ -34,11 +34,26 @@ namespace SHES
             return proxy.GetBatteryProduction(id, date);
         }
 
+        public List<ConsumersDTO> GetConsumersData(DateTime date)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<DateTime> GetDates()
         {
             ChannelFactory<IDBServices> channelFactory = new ChannelFactory<IDBServices>("IDBServices");
             IDBServices proxy = channelFactory.CreateChannel();
             return proxy.GetDates();
+        }
+
+        public List<SolarPanelsDTO> GetSolarPanelsData(DateTime date)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<UtilityDTO> GetUtilityData(DateTime date)
+        {
+            throw new NotImplementedException();
         }
 
         public void Initialize(int brojPanela, double[] snagePanela, int brojBateija, 

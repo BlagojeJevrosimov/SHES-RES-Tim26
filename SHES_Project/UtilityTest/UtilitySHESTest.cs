@@ -51,11 +51,11 @@ namespace UtilityTest
         {
             ushes.sendRequestforEnergy(-2000);
 
-            Assert.AreEqual(Utility.UtilitySHES.utility.Power, -2000);
+            Assert.AreEqual(mockUtil.Object.Power, -2000);
 
             ushes.sendRequestforEnergy(1000);
 
-            Assert.AreEqual(Utility.UtilitySHES.utility.Power, 1000);
+            Assert.AreEqual(mockUtil.Object.Power, 1000);
 
         }
 

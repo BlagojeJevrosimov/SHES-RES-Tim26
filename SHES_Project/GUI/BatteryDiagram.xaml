@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d"
-        Height="550" Width="540" WindowStyle="None" WindowStartupLocation="CenterScreen" Background="#AADD82" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+        Height="550" Width="650" WindowStyle="None" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="Window_MouseLeftButtonDown" Background="Black">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
@@ -13,14 +13,14 @@
         </Grid.RowDefinitions>
 
         <Border BorderBrush="Gray" BorderThickness="0 0 0 1">
-            <TextBlock Text="Battery Energy Diagram" VerticalAlignment="Center" Margin="15" 
-                       Foreground="Black" FontSize="24" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="naslov" Text="Battery Energy Diagram - " Margin="58,34,9.6,9.6" 
+                       Foreground="White" FontSize="18"/>
         </Border>
-        <Border Grid.Row="1" Width="414" Height="221" VerticalAlignment="Top" 
-                HorizontalAlignment="Left" Margin="42,19.6,0,0"
+        <Border Grid.Row="1" Width="546" Height="221" VerticalAlignment="Top" 
+                HorizontalAlignment="Left" Margin="42,19.6,0,0" Background="Black"
                 BorderBrush="Gray" CornerRadius="12">
-            <Grid Margin="0,0,10.4,-0.2">
-                <StackPanel Orientation="Horizontal" Height="200" VerticalAlignment="Bottom">
+            <Grid Margin="0,0,0.4,-0.2">
+                <StackPanel Orientation="Horizontal" Height="200" VerticalAlignment="Bottom" Margin="0,0,-20.2,0">
                     <local:Bar x:Name="bar1Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
                     <local:Bar x:Name="bar2Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
                     <local:Bar x:Name="bar3Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
@@ -44,13 +44,14 @@
                     <local:Bar x:Name="bar21Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
                     <local:Bar x:Name="bar22Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
                     <local:Bar x:Name="bar23Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
+                    <local:Bar x:Name="bar24Positive" VerticalAlignment="Bottom" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
                 </StackPanel>
             </Grid>
 
         </Border>
 
-        <Grid HorizontalAlignment="Left" Height="200" Margin="42,253.6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="414">
-            <StackPanel Orientation="Horizontal" Height="200" VerticalAlignment="Top">
+        <Grid HorizontalAlignment="Left" Height="200" Margin="42,253.6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="528">
+            <StackPanel Orientation="Horizontal" Height="200" VerticalAlignment="Top" Margin="0,0,-21,0">
                 <local:ReverseBar x:Name="bar1Negative" VerticalAlignment="Top" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
                 <local:ReverseBar x:Name="bar2Negative" VerticalAlignment="Top" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
                 <local:ReverseBar x:Name="bar3Negative" VerticalAlignment="Top" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
@@ -74,9 +75,10 @@
                 <local:ReverseBar x:Name="bar21Negative" VerticalAlignment="Top" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
                 <local:ReverseBar x:Name="bar22Negative" VerticalAlignment="Top" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
                 <local:ReverseBar x:Name="bar23Negative" VerticalAlignment="Top" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
+                <local:ReverseBar x:Name="bar24Negative" VerticalAlignment="Top" Height="200" MaxValue="100" Color="#FF442266" Value="0" Margin="5"/>
             </StackPanel>
         </Grid>
-        <Label Content="Energy" FontSize="15" HorizontalAlignment="Left" Height="30" Margin="-20,223.6,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
+        <Label Foreground="White" Content="Power" FontSize="15" HorizontalAlignment="Left" Height="30" Margin="-20,223.6,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -86,11 +88,13 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Label Content="Time" FontSize="15" Height="38" Margin="472,240.6,15.6,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Label Content="" Background="Black" Height="2" HorizontalAlignment="Left" Margin="35,245.6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="485"/>
-        <Label Content="" Background="Black" Height="430" HorizontalAlignment="Left" Margin="35,19.6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="2"/>
-        <Label Content="00:00       01:00       02:00       03:00        04:00        05:00       06:00       07:00       08:00        09:00       10:00        11:00       12:00       13:00       14:00        15:00       16:00        17:00       18:00        19:00       21:00        22:00       23:00" 
-               HorizontalAlignment="Left" FontSize="4" Height="18" Margin="42,243.6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="430"/>
+        <Label Foreground="White" Content="Time" FontSize="15" Height="38" Margin="580,240.6,0.2,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="-0.117,0.489"/>
+        <Label Foreground="White" Content="" Background="White" Height="2" HorizontalAlignment="Left" Margin="35,245.6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="585"/>
+        <Label Foreground="White" Content="" Background="White" Height="430" HorizontalAlignment="Left" Margin="35,19.6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="2"/>
+        <Label Foreground="White" Content="00:00     01:00    02:00     03:00    04:00     05:00     06:00     07:00     08:00     09:00    10:00     11:00    12:00    13:00    14:00     15:00     16:00     17:00     18:00     19:00    20:00     21:00     22:00    23:00" 
+               HorizontalAlignment="Left" FontSize="6" Height="18" Margin="42,243.6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="538"/>
+        <Label Content="+" Foreground="White" HorizontalAlignment="Left" Height="31" Margin="10,9.6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="20"/>
+        <Label Content="-" Foreground="White" HorizontalAlignment="Left" Height="31" Margin="10,422.6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="20"/>
 
     </Grid>
 </Window>

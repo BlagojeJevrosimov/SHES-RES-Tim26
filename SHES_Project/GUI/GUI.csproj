@@ -73,6 +73,9 @@
       <DependentUpon>UtilityDiagram.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModelBattery.cs" />
+    <Compile Include="ViewModelConsumers.cs" />
+    <Compile Include="ViewModelSP.cs" />
+    <Compile Include="ViewModelUtility.cs" />
     <Page Include="Bar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

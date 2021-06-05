@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace GUI
 {
-    public class ViewModelBattery
+    public class ViewModelSP
     {
-        public List<BatteryDTO> Data { get; set; }
+        public List<SolarPanelsDTO> Data { get; set; }
 
-        public ViewModelBattery() { }
+        public ViewModelSP() { }
 
     }
 }

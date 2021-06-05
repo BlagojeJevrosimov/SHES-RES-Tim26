@@ -75,11 +75,31 @@ namespace GUI
             }
         }
 
+        private SolidColorBrush foregroundClr;
+
+        public SolidColorBrush ForegroundClr
+        {
+            get { return foregroundClr; }
+            set
+            {
+                foregroundClr = value;
+                UpdateForeground();
+                NotifyPropertyChanged("ForegroundClr");
+            }
+        }
+
+        private void UpdateForeground()
+        {
+            txtBlock.Foreground = foregroundClr;
+        }
+
         public Bar()
         {
             InitializeComponent();
             this.DataContext = this;
             Color = Brushes.Black;
+
+            txtBlock.Foreground = Brushes.White;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

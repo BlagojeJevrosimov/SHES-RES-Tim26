@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace GUI
 {
-    public class ViewModelBattery
+    public class ViewModelConsumers
     {
-        public List<BatteryDTO> Data { get; set; }
+        public List<ConsumersDTO> Data { get; set; }
 
-        public ViewModelBattery() { }
+        public ViewModelConsumers() { }
 
     }
 }
