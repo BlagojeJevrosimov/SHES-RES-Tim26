@@ -99,7 +99,7 @@ namespace GUI
                     bar1Negative.MaxValue = maxHgt;
 
                     //ako je ovo poslednji iz ovog vremenskog intervala
-                    if (data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + hour))
+                    if ((i + 1) == data.Count || data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + hour))
                     {
                         if (sum >= 0)
                         {
@@ -133,7 +133,7 @@ namespace GUI
                     bar2Negative.MaxValue = maxHgt;
 
                     //ako je ovo poslednji iz ovog vremenskog intervala
-                    if (data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + hour + hour))
+                    if ((i + 1) == data.Count || data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + hour + hour))
                     {
                         if (sum >= 0)
                         {
@@ -167,7 +167,7 @@ namespace GUI
                     bar3Negative.MaxValue = maxHgt;
 
                     //ako je ovo poslednji iz ovog vremenskog intervala
-                    if (data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + hour + hour + hour))
+                    if ((i + 1) == data.Count || data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + hour + hour + hour))
                     {
                         if (sum >= 0)
                         {
@@ -201,7 +201,7 @@ namespace GUI
                     bar4Negative.MaxValue = maxHgt;
 
                     //ako je ovo poslednji iz ovog vremenskog intervala
-                    if (data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + hour + hour + hour + hour))
+                    if ((i + 1) == data.Count || data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + hour + hour + hour + hour))
                     {
                         if (sum >= 0)
                         {
@@ -235,7 +235,7 @@ namespace GUI
                     bar5Negative.MaxValue = maxHgt;
 
                     //ako je ovo poslednji iz ovog vremenskog intervala
-                    if (data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + fiveHours))
+                    if ((i + 1) == data.Count || data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + fiveHours))
                     {
                         if (sum >= 0)
                         {
@@ -269,7 +269,7 @@ namespace GUI
                     bar6Negative.MaxValue = maxHgt;
 
                     //ako je ovo poslednji iz ovog vremenskog intervala
-                    if (data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + fiveHours + hour))
+                    if ((i + 1) == data.Count || data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + fiveHours + hour))
                     {
                         if (sum >= 0)
                         {
@@ -303,7 +303,7 @@ namespace GUI
                     bar7Negative.MaxValue = maxHgt;
 
                     //ako je ovo poslednji iz ovog vremenskog intervala
-                    if (data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + fiveHours + hour + hour))
+                    if ((i + 1) == data.Count || data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + fiveHours + hour + hour))
                     {
                         if (sum >= 0)
                         {
@@ -337,7 +337,7 @@ namespace GUI
                     bar8Negative.MaxValue = maxHgt;
 
                     //ako je ovo poslednji iz ovog vremenskog intervala
-                    if (data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + fiveHours + hour + hour + hour))
+                    if ((i + 1) == data.Count || data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + fiveHours + hour + hour + hour))
                     {
                         if (sum >= 0)
                         {
@@ -371,7 +371,7 @@ namespace GUI
                     bar9Negative.MaxValue = maxHgt;
 
                     //ako je ovo poslednji iz ovog vremenskog intervala
-                    if (data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + fiveHours + hour + hour + hour + hour))
+                    if ((i + 1) == data.Count || data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + fiveHours + hour + hour + hour + hour))
                     {
                         if (sum >= 0)
                         {
@@ -405,7 +405,7 @@ namespace GUI
                     bar10Negative.MaxValue = maxHgt;
 
                     //ako je ovo poslednji iz ovog vremenskog intervala
-                    if (data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + tenHours))
+                    if ((i + 1) == data.Count || data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + tenHours))
                     {
                         if (sum >= 0)
                         {
@@ -439,7 +439,7 @@ namespace GUI
                     bar11Negative.MaxValue = maxHgt;
 
                     //ako je ovo poslednji iz ovog vremenskog intervala
-                    if (data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + tenHours + hour))
+                    if ((i + 1) == data.Count || data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + tenHours + hour))
                     {
                         if (sum >= 0)
                         {
@@ -473,7 +473,7 @@ namespace GUI
                     bar12Negative.MaxValue = maxHgt;
 
                     //ako je ovo poslednji iz ovog vremenskog intervala
-                    if (data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + tenHours + hour + hour))
+                    if ((i + 1) == data.Count || data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + tenHours + hour + hour))
                     {
                         if (sum >= 0)
                         {
@@ -507,7 +507,7 @@ namespace GUI
                     bar13Negative.MaxValue = maxHgt;
 
                     //ako je ovo poslednji iz ovog vremenskog intervala
-                    if (data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + tenHours + hour + hour + hour))
+                    if ((i + 1) == data.Count || data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + tenHours + hour + hour + hour))
                     {
                         if (sum >= 0)
                         {
@@ -541,7 +541,7 @@ namespace GUI
                     bar14Negative.MaxValue = maxHgt;
 
                     //ako je ovo poslednji iz ovog vremenskog intervala
-                    if (data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + tenHours + hour + hour + hour + hour))
+                    if ((i + 1) == data.Count || data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + tenHours + hour + hour + hour + hour))
                     {
                         if (sum >= 0)
                         {
@@ -575,7 +575,7 @@ namespace GUI
                     bar15Negative.MaxValue = maxHgt;
 
                     //ako je ovo poslednji iz ovog vremenskog intervala
-                    if (data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + fftHours))
+                    if ((i + 1) == data.Count || data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + fftHours))
                     {
                         if (sum >= 0)
                         {
@@ -609,7 +609,7 @@ namespace GUI
                     bar16Negative.MaxValue = maxHgt;
 
                     //ako je ovo poslednji iz ovog vremenskog intervala
-                    if (data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + fftHours + hour))
+                    if ((i + 1) == data.Count || data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + fftHours + hour))
                     {
                         if (sum >= 0)
                         {
@@ -643,7 +643,7 @@ namespace GUI
                     bar17Negative.MaxValue = maxHgt;
 
                     //ako je ovo poslednji iz ovog vremenskog intervala
-                    if (data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + fftHours + hour + hour))
+                    if ((i + 1) == data.Count || data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + fftHours + hour + hour))
                     {
                         if (sum >= 0)
                         {
@@ -677,7 +677,7 @@ namespace GUI
                     bar18Negative.MaxValue = maxHgt;
 
                     //ako je ovo poslednji iz ovog vremenskog intervala
-                    if (data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + fftHours + hour + hour + hour))
+                    if ((i + 1) == data.Count || data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + fftHours + hour + hour + hour))
                     {
                         if (sum >= 0)
                         {
@@ -711,7 +711,7 @@ namespace GUI
                     bar19Negative.MaxValue = maxHgt;
 
                     //ako je ovo poslednji iz ovog vremenskog intervala
-                    if (data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + fftHours + hour + hour + hour + hour))
+                    if ((i + 1) == data.Count || data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + fftHours + hour + hour + hour + hour))
                     {
                         if (sum >= 0)
                         {
@@ -745,7 +745,7 @@ namespace GUI
                     bar20Negative.MaxValue = maxHgt;
 
                     //ako je ovo poslednji iz ovog vremenskog intervala
-                    if (data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + twtHours))
+                    if ((i + 1) == data.Count || data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + twtHours))
                     {
                         if (sum >= 0)
                         {
@@ -779,7 +779,7 @@ namespace GUI
                     bar21Negative.MaxValue = maxHgt;
 
                     //ako je ovo poslednji iz ovog vremenskog intervala
-                    if (data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + twtHours + hour))
+                    if ((i + 1) == data.Count || data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + twtHours + hour))
                     {
                         if (sum >= 0)
                         {
@@ -813,7 +813,7 @@ namespace GUI
                     bar22Negative.MaxValue = maxHgt;
 
                     //ako je ovo poslednji iz ovog vremenskog intervala
-                    if (data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + twtHours + hour + hour))
+                    if ((i + 1) == data.Count || data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + twtHours + hour + hour))
                     {
                         if (sum >= 0)
                         {
@@ -847,7 +847,7 @@ namespace GUI
                     bar23Negative.MaxValue = maxHgt;
 
                     //ako je ovo poslednji iz ovog vremenskog intervala
-                    if (data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + twtHours + hour + hour + hour))
+                    if ((i + 1) == data.Count || data[i + 1].TimeAsDT >= (bat.TimeAsDT.Date + twtHours + hour + hour + hour))
                     {
                         if (sum >= 0)
                         {
@@ -907,6 +907,13 @@ namespace GUI
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ChooseGraphWindow c = new ChooseGraphWindow();
+            c.Show();
+            this.Close();
         }
     }
 }

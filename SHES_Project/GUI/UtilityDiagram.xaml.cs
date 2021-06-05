@@ -90,7 +90,7 @@ namespace GUI
                     bar1Negative.MaxValue = maxHgt;
 
                     //ako je ovo poslednji iz ovog vremenskog intervala
-                    if (data[i + 1].TimeAsDT >= (util.TimeAsDT.Date + hour))
+                    if ((i + 1) == data.Count && data[i + 1].TimeAsDT >= (util.TimeAsDT.Date + hour))
                     {
                         if (sum >= 0)
                         {
@@ -119,7 +119,7 @@ namespace GUI
                     bar2Negative.MaxValue = maxHgt;
 
                     //ako je ovo poslednji iz ovog vremenskog intervala
-                    if (data[i + 1].TimeAsDT >= (util.TimeAsDT.Date + hour + hour))
+                    if ((i + 1) == data.Count && data[i + 1].TimeAsDT >= (util.TimeAsDT.Date + hour + hour))
                     {
                         if (sum >= 0)
                         {
@@ -761,6 +761,13 @@ namespace GUI
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ChooseGraphWindow c = new ChooseGraphWindow();
+            c.Show();
+            this.Close();
         }
     }
 }

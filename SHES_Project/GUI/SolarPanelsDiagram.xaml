@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d"
-        Height="350" Width="650" WindowStyle="None" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="Window_MouseLeftButtonDown" Background="Black">
+        Height="420" Width="650" WindowStyle="None" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="Window_MouseLeftButtonDown" Background="Black">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
@@ -66,6 +66,8 @@
         <Label Foreground="White" Content="" Background="White" Height="230" HorizontalAlignment="Left" Margin="35,19.6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="2"/>
         <Label Foreground="White" Content="00:00     01:00    02:00     03:00    04:00     05:00     06:00     07:00     08:00     09:00    10:00     11:00    12:00    13:00    14:00     15:00     16:00     17:00     18:00     19:00    20:00     21:00     22:00    23:00" 
                HorizontalAlignment="Left" FontSize="6" Height="18" Margin="42,243.6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="538"/>
+
+        <Button Content="Go back" FontSize="20" Click="Button_Click"  HorizontalAlignment="Left" Height="43" Margin="226,277,0,0" Grid.Row="1" VerticalAlignment="Top" Width="174"/>
 
     </Grid>
 </Window>
