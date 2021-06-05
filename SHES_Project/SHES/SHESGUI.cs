@@ -15,6 +15,7 @@ namespace SHES
     public class SHESGUI : ISHESGUI
     {
         public static bool init = false;
+        public static bool startSystem = false;
         public static int brojPanelaBuffer;
         public static double[] snagePanelaBuffer;
         public static int brojBaterijaBuffer;
@@ -42,7 +43,7 @@ namespace SHES
 
         public void Initialize(int brojPanela, double[] snagePanela, int brojBateija, 
             double[] snageBaterija, double[] kapacitetiBaterija, double snagaEVC, 
-            double cenaUtility, int brojPotrosaca, double[] snagePotrosaca)
+            double cenaUtility, int brojPotrosaca, double[] snagePotrosaca,bool init1, bool start)
         {
             if(brojPanela < 0)
             {
@@ -130,6 +131,8 @@ namespace SHES
                     cenaUtilityBuffer = cenaUtility;
                     brojPotrosacaBuffer = brojPotrosaca;
                     snagePotrosacaBuffer = snagePotrosaca;
+                    init = init1;
+                    startSystem = start;
                 }
             }
             

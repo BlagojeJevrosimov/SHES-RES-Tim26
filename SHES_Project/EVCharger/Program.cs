@@ -20,25 +20,20 @@ namespace EVCharger
             Enums.BatteryRezim rezimGUI = Enums.BatteryRezim.PRAZNJENJE;
             bool plug = false;
 
-            Thread server1 = new Thread(Server1);
-            Thread server2 = new Thread(Server2);
-
-            server1.Start();
-            server2.Start();
+            ServiceHost host = new ServiceHost(typeof(EVChargerSHES));
+            host.Open();
+            ServiceHost host2 = new ServiceHost(typeof(EVChargerGUI));
+            host2.Open();
 
             ChannelFactory<ISHESEVCharger> channelSHES = new ChannelFactory<ISHESEVCharger>("ISHESEVCharger");
             ISHESEVCharger proxySHES = channelSHES.CreateChannel();
-           
+
             while (true)
                 {
                 if (EVChargerSHES.initialized)
                 {
                     rezimSHES = EVChargerSHES.rezimBuffer;
                     rezimGUI = EVChargerGUI.rezimBuffer;
-
-                    // Trace.TraceInformation("Sent from SHES: " + rezimSHES.ToString());
-                    // Trace.TraceInformation("Sent from GUI: " + EVChargerGUI.rezimBuffer.ToString());
-
 
                     if (plug != EVChargerGUI.plugBuffer || rezimSHES != EVChargerGUI.rezimBuffer)
                     {
@@ -49,28 +44,9 @@ namespace EVCharger
                             proxySHES.SendRegime(plug, true);
                     }
 
-                    Thread.Sleep(1000);
+                    Thread.Sleep(300);
                 }
-            }
-            
-        }
-
-        static void Server1()
-        {
-            using (ServiceHost host = new ServiceHost(typeof(EVChargerSHES)))
-            {
-                host.Open();
-                while (true) ;
-            }
-        }
-
-        static void Server2()
-        {
-            using (ServiceHost host = new ServiceHost(typeof(EVChargerGUI)))
-            {
-                host.Open();
-                while (true) ;
-            }
+            }        
         }
     }
 }

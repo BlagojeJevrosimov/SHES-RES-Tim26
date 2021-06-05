@@ -18,8 +18,8 @@ namespace Battery
         static void Main(string[] args)
         {
 
-            Thread server = new Thread(Server);
-            server.Start();
+            ServiceHost host = new ServiceHost(typeof(BatterySHES));
+            host.Open();
 
             ChannelFactory<ISHESBattery> channel = new ChannelFactory<ISHESBattery>("ISHESBattery");
             ISHESBattery proxy = channel.CreateChannel();
@@ -53,16 +53,6 @@ namespace Battery
 
                     Thread.Sleep(1000);
                 }
-            }
-        }
-
-        [ExcludeFromCodeCoverage]
-        static void Server()
-        {
-            using (ServiceHost host = new ServiceHost(typeof(BatterySHES)))
-            {
-                host.Open();
-                while (true) ;
             }
         }
     }

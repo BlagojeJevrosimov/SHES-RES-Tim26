@@ -164,25 +164,25 @@ namespace DatabaseLayer.DAO.Implementacije
         public void Save(EVCharger entity, IDbConnection connection)
         {
             String insertSql = "insert into evcharger (capacity,power,state,charge,connected,idevc) " +
-                "values (:capacity , :power,:state, :charge,:connected, :idevc)";
-            String updateSql = "update evcharger set capacity = :capacity, power = :power, state =:state" +
+                "values (:c , :p,:s, :charge,:connected, :idevc)";
+            String updateSql = "update evcharger set capacity = :c, power = :p, state =:s" +
                 "charge =:charge, connected=:connected where idevc =:idevc";
 
             using (IDbCommand command = connection.CreateCommand())
             {
                 command.CommandText = ExistsById(entity.Id, connection) ? updateSql : insertSql;
-                ParameterUtil.AddParameter(command, "capacity", DbType.Double);
-                ParameterUtil.AddParameter(command, "power", DbType.Double);
-                ParameterUtil.AddParameter(command, "state", DbType.String);
+                ParameterUtil.AddParameter(command, "c", DbType.Double);
+                ParameterUtil.AddParameter(command, "p", DbType.Double);
+                ParameterUtil.AddParameter(command, "s", DbType.String);
                 ParameterUtil.AddParameter(command, "charge", DbType.String);
                 ParameterUtil.AddParameter(command, "connected", DbType.String);
                 ParameterUtil.AddParameter(command, "idevc", DbType.String);
                 ParameterUtil.SetParameterValue(command, "idevc", entity.Id);
                 ParameterUtil.SetParameterValue(command, "connected", entity.Connected);
                 ParameterUtil.SetParameterValue(command, "charge", entity.Charge);
-                ParameterUtil.SetParameterValue(command, "state", entity.State);
-                ParameterUtil.SetParameterValue(command, "power", entity.MaxPower);
-                ParameterUtil.SetParameterValue(command, "capacity", entity.Capacity);
+                ParameterUtil.SetParameterValue(command, "s", entity.State);
+                ParameterUtil.SetParameterValue(command, "p", entity.MaxPower);
+                ParameterUtil.SetParameterValue(command, "c", entity.Capacity);
                 command.ExecuteNonQuery();
             }
         }

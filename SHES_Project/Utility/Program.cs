@@ -14,11 +14,12 @@ namespace Utility
     {
         static void Main(string[] args)
         {
-            Thread SHESServer = new Thread(ShesServer);
-            SHESServer.Start();
+            
+            ServiceHost host = new ServiceHost(typeof(UtilitySHES));
+            host.Open();
 
-            Thread GUIServer = new Thread(GuiServer);
-            GUIServer.Start();
+            ServiceHost host2 = new ServiceHost(typeof(UtilityGUI));
+            host2.Open();
 
             while (true) {
 
@@ -27,26 +28,5 @@ namespace Utility
             }
         }
 
-        private static void ShesServer()
-        {
-            using (ServiceHost host = new ServiceHost(typeof(UtilitySHES)))
-            {
-
-                host.Open();
-
-                while (true) ;
-            }
-        }
-
-        private static void GuiServer()
-        {
-            using (ServiceHost host = new ServiceHost(typeof(UtilityGUI)))
-            {
-
-                host.Open();
-
-                while (true) ;
-            }
-        }
     }
 }

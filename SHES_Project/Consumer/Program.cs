@@ -16,12 +16,10 @@ namespace Consumer
     {
         static void Main(string[] args)
         {
-
-            Thread serverGUI = new Thread(ServerGUI);
-            serverGUI.Start();
-
-            Thread serverSHES = new Thread(ServerSHES);
-            serverSHES.Start();
+            ServiceHost host = new ServiceHost(typeof(ConsumerGUI));
+            host.Open();
+            ServiceHost host2 = new ServiceHost(typeof(ConsumerSHES));
+            host2.Open();
 
             ChannelFactory<ISHESConsumer> channel = new ChannelFactory<ISHESConsumer>("ISHESConsumer");
             ISHESConsumer proxy = channel.CreateChannel();
@@ -42,24 +40,6 @@ namespace Consumer
                         ConsumerGUI.changed = false;
                     }
                 }
-            }
-        }
-
-        public static void ServerGUI()
-        {
-            using (ServiceHost host = new ServiceHost(typeof(ConsumerGUI)))
-            {
-                host.Open();
-                while (true) ;
-            }
-        }
-
-        public static void ServerSHES()
-        {
-            using (ServiceHost host = new ServiceHost(typeof(ConsumerSHES)))
-            {
-                host.Open();
-                while (true) ;
             }
         }
     }

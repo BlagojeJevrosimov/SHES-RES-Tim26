@@ -14,7 +14,7 @@ namespace Common
         [OperationContract]
         void Initialize(int brojPanela, double[] snagePanela, 
             int brojBateija, double[] snageBaterija, double[] kapacitetiBaterija, double snagaEVC, 
-            double cenaUtility, int brojPotrosaca, double[] snagePotrosaca);
+            double cenaUtility, int brojPotrosaca, double[] snagePotrosaca,bool init1,bool start);
 
         [OperationContract]
         List<DateTime> GetDates();

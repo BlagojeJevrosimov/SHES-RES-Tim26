@@ -15,7 +15,7 @@ namespace DatabaseLayer
     {
         static void Main(string[] args)
         {
-            using (ServiceHost host = new ServiceHost(typeof(DBServices))) {
+            using (ServiceHost host = new ServiceHost(typeof(DBServices))){
                 
                 host.Open();
                 while (true) ;

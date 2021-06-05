@@ -191,7 +191,7 @@ namespace GUI
             if (flag == true)
             {
                 CommunicationData.proxySHES.Initialize(Int32.Parse(txtNmbSP.Text), tempSP, Int32.Parse(txtNmbB.Text), tempBMP, 
-                    tempBC, double.Parse(txtMaxPwrEV.Text), double.Parse(txtCostU.Text), Int32.Parse(txtNmbConsumer.Text), tempMPC);
+                    tempBC, double.Parse(txtMaxPwrEV.Text), double.Parse(txtCostU.Text), Int32.Parse(txtNmbConsumer.Text), tempMPC,true,true);
                 ChangeInputWindow newChangeInput = new ChangeInputWindow();
                 newChangeInput.Show();
                 this.Close();
@@ -202,7 +202,7 @@ namespace GUI
         {
             //poslati prazne podatke shesu
             double[] niz = new double[0];
-            CommunicationData.proxySHES.Initialize(0, niz, 0, niz, niz, 0, 0, 0, niz);
+            CommunicationData.proxySHES.Initialize(0, niz, 0, niz, niz, 0, 0, 0, niz,false,true);
 
             ChangeInputWindow newChangeInput = new ChangeInputWindow();
             newChangeInput.Show();

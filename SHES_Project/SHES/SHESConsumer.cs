@@ -12,7 +12,7 @@ namespace SHES
     public class SHESConsumer : ISHESConsumer
     {
         public static double energyConsumptioneBuffer;
-        public static List<Consumer> consumers;
+        public static List<Consumer> consumers = new List<Consumer>();
         public void sendEnergyConsumption(double energyConsumption,List<Consumer> c)
         {
             if (energyConsumption >= 0)

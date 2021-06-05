@@ -187,7 +187,7 @@ namespace DatabaseLayer.DAO.Implementacije
         public void Save(SolarPanel entity, IDbConnection connection)
         {
             String insertSql = "insert into solarpanels(power,idsp) values (:power, :idsp)";
-            String updateSql = "update consumers set  power = :power where idsp =:idsp";
+            String updateSql = "update solarpanels set  power = :power where idsp =:idsp";
 
             using (IDbCommand command = connection.CreateCommand())
             {
