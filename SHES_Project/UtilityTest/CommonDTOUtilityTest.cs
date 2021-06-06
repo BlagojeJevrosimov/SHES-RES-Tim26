@@ -47,7 +47,7 @@ namespace UtilityTest
         }
 
         [Test]
-        [TestCase(-200, 442560)]
+        [TestCase(200, -442560)]
         public void LosiParametriKonstruktor(double power, int time)
         {
             Assert.Throws<ArgumentOutOfRangeException>(
