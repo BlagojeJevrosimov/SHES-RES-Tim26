@@ -129,9 +129,9 @@ namespace DatabaseLayer.DAO.Implementacije
         }
         public IEnumerable<ConsumersDTO> FindAll(int start, int end)
         {
-            string query = "select time, SUM(power) from consumers " +
-                "where time>= :s and time < :e and state = 'ON'" +
-                "group by time";
+            string query = "select vreme, SUM(power) from consumers " +
+                "where vreme>= :s and vreme <= :e and state = 'ON'" +
+                "group by vreme";
             List<ConsumersDTO> consumerList = new List<ConsumersDTO>();
 
             using (IDbConnection connection = ConnectionUtil_Pooling.GetConnection())

@@ -22,7 +22,7 @@ namespace Consumer
             int i = 0;
             ConsumerGUI.rezimBuffer = new Enums.ConsumerRezim[consumers.Count];
             ConsumerGUI.total = 0;
-            foreach (var c in consumers)
+            foreach (Common.Consumer c in consumers)
             {
                 
                 ConsumerGUI.total += c.EnergyConsumption;

@@ -29,7 +29,7 @@ namespace Consumer
                 if (ConsumerSHES.initialized)
                 {
                     if (ConsumerGUI.changed == true)
-                    {
+                    {                        
                         int i = 0;
                         foreach (var c in ConsumerSHES.consumersList)
                         {

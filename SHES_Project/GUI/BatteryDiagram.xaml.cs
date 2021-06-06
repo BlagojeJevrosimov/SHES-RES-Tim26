@@ -43,7 +43,7 @@ namespace GUI
             naslov.Text += "Date: " + date + ", ID: " + id;
             ChannelFactory<ISHESGUI> channel = new ChannelFactory<ISHESGUI>("ISHESGUI");
             ISHESGUI proxy = channel.CreateChannel();
-            data = CommunicationData.proxySHES.GetBatteryData(date,id);
+            data = proxy.GetBatteryData(date, id);
 
             ViewModelBattery vm = new ViewModelBattery();
             vm.Data = data;

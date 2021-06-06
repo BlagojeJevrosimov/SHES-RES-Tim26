@@ -14,7 +14,6 @@ namespace SHES
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, InstanceContextMode = InstanceContextMode.Single)]
     public class SHESGUI : ISHESGUI
     {
-        public static List<BatteryDTO> bGrafik = new List<BatteryDTO>();
         public static List<DateTime> dates = new List<DateTime>();
         public static bool init = false;
         public static bool startSystem = false;
@@ -33,24 +32,15 @@ namespace SHES
             ChannelFactory<IDBServices> channel = new ChannelFactory<IDBServices>("IDBServices");
             IDBServices proxy = channel.CreateChannel();
 
-            DateTime centuryBegin = new DateTime(2020, 1, 1);
-
-            long elapsedTicks = date.Ticks - centuryBegin.Ticks;
-            TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
-            int svreme = (int)Math.Floor(elapsedSpan.TotalSeconds);
-            int evreme = svreme + 86400;
-            List<BatteryDTO> ret = new List<BatteryDTO>();
-            foreach (BatteryDTO b in bGrafik) {
-                if (b.Time >= svreme && b.Time < evreme) {
-                    ret.Add(b);
-                }
-            }
             return proxy.GetBatteryProduction(id,date);
         }
 
         public List<ConsumersDTO> GetConsumersData(DateTime date)
         {
-            throw new NotImplementedException();
+            ChannelFactory<IDBServices> channel = new ChannelFactory<IDBServices>("IDBServices");
+            IDBServices proxy = channel.CreateChannel();
+
+            return proxy.GetConsumersProduction(date);
         }
 
         public List<DateTime> GetDates()
@@ -67,7 +57,9 @@ namespace SHES
 
         public List<UtilityDTO> GetUtilityData(DateTime date)
         {
-            throw new NotImplementedException();
+            ChannelFactory<IDBServices> channelFactory = new ChannelFactory<IDBServices>("IDBServices");
+            IDBServices proxy = channelFactory.CreateChannel();
+            return proxy.GetUtilityProduction(date);
         }
 
         public void Initialize(int brojPanela, double[] snagePanela, int brojBateija, 
