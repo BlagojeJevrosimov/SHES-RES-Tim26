@@ -17,8 +17,6 @@ namespace Common.DTO
 
         public UtilityDTO(double power, int time)
         {
-            if (power < 0)
-                throw new ArgumentOutOfRangeException("Snaga ne moze biti negativna!");
             if (time < 0)
                 throw new ArgumentOutOfRangeException("Vreme ne sme biti negativno!");
 

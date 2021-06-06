@@ -11,7 +11,7 @@ namespace SolarPanels
     [ServiceBehavior(ConcurrencyMode=ConcurrencyMode.Multiple, InstanceContextMode = InstanceContextMode.Single)]
     public class SolarPanelGUI : ISolarPanelGUI
     {
-        public static double buffer = 1;
+        public static double buffer = 0;
 
         public void ChangeSunIntensity(double sunIntensity)
         {

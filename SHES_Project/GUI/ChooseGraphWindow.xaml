@@ -13,8 +13,8 @@
         <Label Content="Graph:" FontSize="20px" TextElement.FontFamily="Cambria" HorizontalAlignment="Left" Margin="46,118,0,0" VerticalAlignment="Top" Height="38" Width="158"/>
         <Button Content="Show" FontSize="30px" TextElement.FontFamily="Cambria" HorizontalAlignment="Left" Margin="30,314,0,0" VerticalAlignment="Top" Width="133" Height="54" Click="Show_Button_Click"/>
         <Button Content="Go back" FontSize="30px" TextElement.FontFamily="Cambria" HorizontalAlignment="Left" Margin="190,314,0,0" VerticalAlignment="Top" Width="128" Height="54" Click="Back_Button_Click"/>
-        <Label x:Name="lblID" Content="" FontSize="20px" TextElement.FontFamily="Cambria" HorizontalAlignment="Left" Margin="46,204,0,0" VerticalAlignment="Top" Height="38" Width="257"/>
-        <TextBox x:Name="txtBoxID" HorizontalAlignment="Left" Height="47" Visibility="Hidden"  Margin="46,246,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="257"/>
+        <Label x:Name="lblID" Content="Battery ID:" FontSize="20px" TextElement.FontFamily="Cambria" HorizontalAlignment="Left" Margin="46,204,0,0" VerticalAlignment="Top" Height="38" Width="257"/>
+        <TextBox x:Name="txtBoxID" HorizontalAlignment="Left" Height="47" Visibility="Visible"  Margin="46,246,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="257"/>
 
     </Grid>
 </Window>

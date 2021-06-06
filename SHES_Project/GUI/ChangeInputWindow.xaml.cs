@@ -37,18 +37,7 @@ namespace GUI
             List<bool> plugBattery = new List<bool> { true, false };
             cmbBoxBatteryOnPlug.ItemsSource = plugBattery;
 
-            ChannelFactory<ISolarPanelGUI> SolarPanelChannel = new ChannelFactory<ISolarPanelGUI>("ISolarPanelGUI");
-            CommunicationData.proxySP = SolarPanelChannel.CreateChannel();
-
-            ChannelFactory<IEVChargerGUI> EVChargerChannel = new ChannelFactory<IEVChargerGUI>("IEVChargerGUI");
-            CommunicationData.proxyEV = EVChargerChannel.CreateChannel();
-
-            ChannelFactory<IConsumerGUI> ConsumerChannel = new ChannelFactory<IConsumerGUI>("IConsumerGUI");
-            CommunicationData.proxyConsumer = ConsumerChannel.CreateChannel();
-
-            ChannelFactory<IUtilityGUI> UtilityChannel = new ChannelFactory<IUtilityGUI>("IUtilityGUI");
-            CommunicationData.proxyUtility = UtilityChannel.CreateChannel();
-
+            
 
         }
 
@@ -60,6 +49,18 @@ namespace GUI
         private void BtnChange_Click(object sender, RoutedEventArgs e)
         {
             //parsirati unos svaki
+            ChannelFactory<ISolarPanelGUI> SolarPanelChannel = new ChannelFactory<ISolarPanelGUI>("ISolarPanelGUI");
+            ISolarPanelGUI proxySP = SolarPanelChannel.CreateChannel();
+
+            ChannelFactory<IEVChargerGUI> EVChargerChannel = new ChannelFactory<IEVChargerGUI>("IEVChargerGUI");
+            IEVChargerGUI proxyEV = EVChargerChannel.CreateChannel();
+
+            ChannelFactory<IConsumerGUI> ConsumerChannel = new ChannelFactory<IConsumerGUI>("IConsumerGUI");
+            IConsumerGUI proxyConsumer = ConsumerChannel.CreateChannel();
+
+            ChannelFactory<IUtilityGUI> UtilityChannel = new ChannelFactory<IUtilityGUI>("IUtilityGUI");
+            IUtilityGUI proxyUtility = UtilityChannel.CreateChannel();
+
             double sunIntensity = 0;
             var consumerRezim = Common.Enums.ConsumerRezim.OFF;
             int consumerID = 0;
@@ -70,7 +71,7 @@ namespace GUI
             {
                 if(double.TryParse(txtSun.Text, out sunIntensity) && sunIntensity >= 0 && sunIntensity <= 1)
                 {
-                    CommunicationData.proxySP.ChangeSunIntensity(sunIntensity);
+                    proxySP.ChangeSunIntensity(sunIntensity);
                     txtSun.Text = "";
                 }
                 else
@@ -95,7 +96,7 @@ namespace GUI
                                 break;
                         }
                         Trace.TraceInformation("GUI sending: Consumer id-" + consumerID + ", state-" + consumerRezim.ToString());
-                        CommunicationData.proxyConsumer.ChangeConsumerState(consumerID, consumerRezim);
+                        proxyConsumer.ChangeConsumerState(consumerID, consumerRezim);
                         txtConsumerId.Text = "";
                     }
                 }
@@ -117,7 +118,7 @@ namespace GUI
                         break;
                 }
                 Trace.TraceInformation("GUI to EV: " + Convert.ToBoolean(cmbBoxBatteryOnPlug.Text) + " " + ev.ToString());
-                CommunicationData.proxyEV.SendRegime(Convert.ToBoolean(cmbBoxBatteryOnPlug.Text), ev);
+               proxyEV.SendRegime(Convert.ToBoolean(cmbBoxBatteryOnPlug.Text), ev);
             }
 
             if(txtUtilityPrice.Text != null && txtUtilityPrice.Text != "")
@@ -125,7 +126,7 @@ namespace GUI
                 if(double.TryParse(txtUtilityPrice.Text, out util) && util >= 0)
                 {
                     util = double.Parse(txtUtilityPrice.Text);
-                    CommunicationData.proxyUtility.SendPrice(util);
+                    proxyUtility.SendPrice(util);
                     txtUtilityPrice.Text = "";
                 }
                 else

@@ -66,7 +66,7 @@ namespace SHES
             int brojac = 0;
             //Racunanje pocetnog vremena
             DateTime centuryBegin = new DateTime(2020, 1, 1);
-            DateTime currentDate = new DateTime(2020,6,1);
+            DateTime currentDate = DateTime.Now.Date;
 
 
             long elapsedTicks = currentDate.Ticks - centuryBegin.Ticks;
@@ -278,6 +278,7 @@ namespace SHES
                     proxyBaza.SaveConsumers(consumers, vreme);
                     proxyBaza.SaveBatteries(batteries, vreme);
                     proxyBaza.SaveUtility(utility, vreme);
+                    proxyBaza.SaveEVCharger(evc);
                     if (!SHESGUI.dates.Contains(currentDate)) SHESGUI.dates.Add(currentDate);
                     if (brojac == 288)
                     {

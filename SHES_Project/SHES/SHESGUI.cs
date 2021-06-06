@@ -49,6 +49,13 @@ namespace SHES
         [ExcludeFromCodeCoverage]
         public List<DateTime> GetDates()
         {
+            ChannelFactory<IDBServices> channel = new ChannelFactory<IDBServices>("IDBServices");
+            IDBServices proxy = channel.CreateChannel();
+            foreach (DateTime d in proxy.GetDates())
+            {
+                if (!dates.Contains(d)) dates.Add(d);
+
+            }
             return dates;
         }
 
