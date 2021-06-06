@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5FFB1A72-8911-4F2B-BC6A-8918FEAE8A29}</ProjectGuid>
+    <ProjectGuid>{82AAEC27-D651-4943-8749-EF0B9A44148F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SolarPanelTest</RootNamespace>
-    <AssemblyName>SolarPanelTest</AssemblyName>
+    <RootNamespace>DatabaseLayerTest</RootNamespace>
+    <AssemblyName>DatabaseLayerTest</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -60,23 +60,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommonDTOSolarPanelTest.cs" />
-    <Compile Include="CommonSolarPanelTest.cs" />
+    <Compile Include="GetBatteriesTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SolarPanelGUITest.cs" />
-    <Compile Include="SolarPanelSHESTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{a0dd15b1-ad3b-494c-b148-626f08a18ce7}</Project>
+      <Project>{A0DD15B1-AD3B-494C-B148-626F08A18CE7}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SolarPanel\SolarPanels.csproj">
-      <Project>{8429d67a-eea0-4b0f-a15a-b0171ccd524f}</Project>
-      <Name>SolarPanels</Name>
+    <ProjectReference Include="..\DatabaseLayer\DatabaseLayer.csproj">
+      <Project>{A2357D05-2684-410C-AF81-A5AAB985CE84}</Project>
+      <Name>DatabaseLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

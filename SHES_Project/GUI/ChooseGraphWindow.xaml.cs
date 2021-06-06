@@ -45,8 +45,33 @@ namespace GUI
 
             cmbBoxGraph.ItemsSource = grafici;
 
-            lblID.Visibility = Visibility.Visible;
-            txtBoxID.Visibility = Visibility.Visible;
+        }
+
+        public ChooseGraphWindow(string message)
+        {
+            InitializeComponent();
+
+            dates = CommunicationData.proxySHES.GetDates();
+
+            if (dates == null)
+                throw new ArgumentNullException("Datumi prosledjeni od SHES-a su null!");
+
+            //ovde proveriti da li ih lepo prikazuje ili treba da se pretvaraju u string svi
+            cmbBoxDatum.ItemsSource = dates;
+
+            List<string> grafici = new List<string>();
+
+            grafici.Add("Solar Panels");
+            grafici.Add("Battery");
+            grafici.Add("Utility");
+            grafici.Add("Consumers");
+
+            cmbBoxGraph.ItemsSource = grafici;
+
+            lblID.Content = message;
+            lblID.Foreground = Brushes.Red;
+            txtBoxID.Visibility = Visibility.Hidden;
+
         }
 
         private void Show_Button_Click(object sender, RoutedEventArgs e)

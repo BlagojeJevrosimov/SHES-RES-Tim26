@@ -13,8 +13,15 @@ namespace Common.DTO
         private double power;
         private int time;
 
+        public UtilityDTO() { }
+
         public UtilityDTO(double power, int time)
         {
+            if (power < 0)
+                throw new ArgumentOutOfRangeException("Snaga ne moze biti negativna!");
+            if (time < 0)
+                throw new ArgumentOutOfRangeException("Vreme ne sme biti negativno!");
+
             Power = power;
             Time = time;
         }

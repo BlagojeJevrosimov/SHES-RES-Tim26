@@ -13,10 +13,16 @@ namespace Common.DTO
     {  
         private int time;
 
+        public BatteryDTO() { }
+
         public BatteryDTO(double capacity, string id, double maxPower, Enums.BatteryRezim state, int time) : base(capacity, id, maxPower, state)
         {
-            Time = time;
+            if (time >= 0)
+                Time = time;
+            else
+                throw new ArgumentOutOfRangeException("Vreme ne moze biti negativno!");
         }
+
         [DataMember]
         public int Time { get => time; set => time = value; }
 

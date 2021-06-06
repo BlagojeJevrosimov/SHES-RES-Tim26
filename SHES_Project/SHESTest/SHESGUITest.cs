@@ -61,7 +61,7 @@ namespace SHESTest
         public void DobriParametri()
         {
             shesg.Initialize(brojPanela, snagePanela, brojBateija, snageBaterija, kapacitetiBaterija, 
-                snagaEVC, cenaUtility, brojPotrosaca, snagePotrosaca);
+                snagaEVC, cenaUtility, brojPotrosaca, snagePotrosaca, true, true);
 
             Assert.AreEqual(brojPanela, SHES.SHESGUI.brojPanelaBuffer);
             Assert.AreEqual(snagePanela, SHES.SHESGUI.snagePanelaBuffer);
@@ -81,7 +81,7 @@ namespace SHESTest
                 () =>
                 {
                     shesg.Initialize(3, snagePanela, brojBateija, snageBaterija, kapacitetiBaterija,
-                        snagaEVC, cenaUtility, brojPotrosaca, snagePotrosaca);
+                        snagaEVC, cenaUtility, brojPotrosaca, snagePotrosaca, true, true);
                 }
                 );
 
@@ -89,7 +89,7 @@ namespace SHESTest
                 () =>
                 {
                     shesg.Initialize(-1, snagePanela, brojBateija, snageBaterija, kapacitetiBaterija,
-                        snagaEVC, cenaUtility, brojPotrosaca, snagePotrosaca);
+                        snagaEVC, cenaUtility, brojPotrosaca, snagePotrosaca, true, true);
                 }
                 );
 
@@ -97,7 +97,7 @@ namespace SHESTest
                 () =>
                 {
                     shesg.Initialize(brojPanela, snagePanela, 5, snageBaterija, kapacitetiBaterija,
-                        snagaEVC, cenaUtility, brojPotrosaca, snagePotrosaca);
+                        snagaEVC, cenaUtility, brojPotrosaca, snagePotrosaca, true, true);
                 }
                 );
 
@@ -105,7 +105,7 @@ namespace SHESTest
                 () =>
                 {
                     shesg.Initialize(brojPanela, snagePanela, -2, snageBaterija, kapacitetiBaterija,
-                        snagaEVC, cenaUtility, brojPotrosaca, snagePotrosaca);
+                        snagaEVC, cenaUtility, brojPotrosaca, snagePotrosaca, true, true);
                 }
                 );
 
@@ -113,7 +113,7 @@ namespace SHESTest
                 () =>
                 {
                     shesg.Initialize(brojPanela, snagePanela, brojBateija, snageBaterija, kapacitetiBaterijaPogresno1,
-                        snagaEVC, cenaUtility, brojPotrosaca, snagePotrosaca);
+                        snagaEVC, cenaUtility, brojPotrosaca, snagePotrosaca, true, true);
                 }
                 );
 
@@ -121,7 +121,7 @@ namespace SHESTest
                 () =>
                 {
                     shesg.Initialize(brojPanela, snagePanela, brojBateija, snageBaterija, kapacitetiBaterija,
-                        -50, cenaUtility, brojPotrosaca, snagePotrosaca);
+                        -50, cenaUtility, brojPotrosaca, snagePotrosaca, true, true);
                 }
                 );
 
@@ -129,7 +129,7 @@ namespace SHESTest
                 () =>
                 {
                     shesg.Initialize(brojPanela, snagePanela, brojBateija, snageBaterija, kapacitetiBaterija,
-                        snagaEVC, -200, brojPotrosaca, snagePotrosaca);
+                        snagaEVC, -200, brojPotrosaca, snagePotrosaca, true, true);
                 }
                 );
 
@@ -137,7 +137,7 @@ namespace SHESTest
                 () =>
                 {
                     shesg.Initialize(brojPanela, snagePanela, brojBateija, snageBaterija, kapacitetiBaterija,
-                        snagaEVC, cenaUtility, -7, snagePotrosaca);
+                        snagaEVC, cenaUtility, -7, snagePotrosaca, true, true);
                 }
                 );
 
@@ -145,7 +145,7 @@ namespace SHESTest
                 () =>
                 {
                     shesg.Initialize(brojPanela, snagePanela, brojBateija, snageBaterija, kapacitetiBaterija,
-                        snagaEVC, cenaUtility, 5, snagePotrosaca);
+                        snagaEVC, cenaUtility, 5, snagePotrosaca, true, true);
                 }
                 );
 
@@ -153,7 +153,7 @@ namespace SHESTest
                () =>
                {
                    shesg.Initialize(brojPanela, snagePanelaNegativno, brojBateija, snageBaterija, kapacitetiBaterija,
-                       snagaEVC, cenaUtility, brojPotrosaca, snagePotrosaca);
+                       snagaEVC, cenaUtility, brojPotrosaca, snagePotrosaca, true, true);
                }
                );
 
@@ -161,7 +161,7 @@ namespace SHESTest
                () =>
                {
                    shesg.Initialize(brojPanela, snagePanela, brojBateija, snageBaterijaNegativno, kapacitetiBaterija,
-                       snagaEVC, cenaUtility, brojPotrosaca, snagePotrosaca);
+                       snagaEVC, cenaUtility, brojPotrosaca, snagePotrosaca, true, true);
                }
                );
 
@@ -169,7 +169,7 @@ namespace SHESTest
                () =>
                {
                    shesg.Initialize(brojPanela, snagePanela, brojBateija, snageBaterija, kapacitetiBaterijaNegativno,
-                       snagaEVC, cenaUtility, brojPotrosaca, snagePotrosaca);
+                       snagaEVC, cenaUtility, brojPotrosaca, snagePotrosaca, true, true);
                }
                );
 
@@ -177,7 +177,7 @@ namespace SHESTest
                () =>
                {
                    shesg.Initialize(brojPanela, snagePanela, brojBateija, snageBaterija, kapacitetiBaterija,
-                       snagaEVC, cenaUtility, brojPotrosaca, snagePotrosacaNegativno);
+                       snagaEVC, cenaUtility, brojPotrosaca, snagePotrosacaNegativno, true, true);
                }
                );
 

@@ -47,6 +47,13 @@ namespace GUI
             ViewModelUtility vm = new ViewModelUtility();
             vm.Data = data;
 
+            if (data.Count == 0)
+            {
+                ChooseGraphWindow c = new ChooseGraphWindow("Podaci nisu ucitani za izabrani datum!");
+                c.Show();
+                this.Close();
+            }
+
             var beginning = new DateTime(2021, 01, 01, 0, 0, 0);
             TimeSpan hour = new TimeSpan(1, 0, 0);
             TimeSpan fiveHours = new TimeSpan(5, 0, 0);

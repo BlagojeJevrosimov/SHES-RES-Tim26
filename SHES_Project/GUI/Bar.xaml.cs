@@ -56,14 +56,22 @@ namespace GUI
         public double BarHeight
         {
             get { return barHeight; }
-            private set { barHeight = value; NotifyPropertyChanged("BarHeight"); }
+            private set
+            {
+                barHeight = value;
+                NotifyPropertyChanged("BarHeight");
+            }
         }
 
         private Brush color;
         public Brush Color
         {
             get { return color; }
-            set { color = value; NotifyPropertyChanged("Color"); }
+            set
+            {
+                color = value;
+                NotifyPropertyChanged("Color");
+            }
         }
 
         private void UpdateBarHeight()

@@ -4,6 +4,7 @@ using DatabaseLayer.SERVICES;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
@@ -27,6 +28,7 @@ namespace SHES
         public static int brojPotrosacaBuffer;
         public static double[] snagePotrosacaBuffer;
 
+        [ExcludeFromCodeCoverage]
         public List<BatteryDTO> GetBatteryData(DateTime date, string id)
         {
             ChannelFactory<IDBServices> channel = new ChannelFactory<IDBServices>("IDBServices");
@@ -35,6 +37,7 @@ namespace SHES
             return proxy.GetBatteryProduction(id,date);
         }
 
+        [ExcludeFromCodeCoverage]
         public List<ConsumersDTO> GetConsumersData(DateTime date)
         {
             ChannelFactory<IDBServices> channel = new ChannelFactory<IDBServices>("IDBServices");
@@ -43,11 +46,13 @@ namespace SHES
             return proxy.GetConsumersProduction(date);
         }
 
+        [ExcludeFromCodeCoverage]
         public List<DateTime> GetDates()
         {
             return dates;
         }
 
+        [ExcludeFromCodeCoverage]
         public List<SolarPanelsDTO> GetSolarPanelsData(DateTime date)
         {
             ChannelFactory<IDBServices> channelFactory = new ChannelFactory<IDBServices>("IDBServices");
@@ -55,6 +60,7 @@ namespace SHES
             return proxy.GetSolarPanelProduction(date);
         }
 
+        [ExcludeFromCodeCoverage]
         public List<UtilityDTO> GetUtilityData(DateTime date)
         {
             ChannelFactory<IDBServices> channelFactory = new ChannelFactory<IDBServices>("IDBServices");

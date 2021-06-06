@@ -106,6 +106,7 @@
   <ItemGroup>
     <Compile Include="BatterySHESTest.cs" />
     <Compile Include="CommonBatteryTest.cs" />
+    <Compile Include="CommonDTOBatteryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
