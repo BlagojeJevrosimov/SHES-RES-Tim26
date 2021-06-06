@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,8 +26,9 @@ namespace GUI
         public ChooseGraphWindow()
         {
             InitializeComponent();
-
-            dates = CommunicationData.proxySHES.GetDates();
+            ChannelFactory<ISHESGUI> channel= new ChannelFactory<ISHESGUI>("ISHESGUI");
+            ISHESGUI proxy = channel.CreateChannel();
+            dates = proxy.GetDates();
 
             if (dates == null)
                 throw new ArgumentNullException("Datumi prosledjeni od SHES-a su null!");

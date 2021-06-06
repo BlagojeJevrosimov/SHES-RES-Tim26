@@ -86,7 +86,7 @@ namespace GUI
                     {
                         if (sum > 0)
                         {
-                            bar1Positive.Value = sum / count;
+                            bar1Positive.Value = Math.Floor(sum / count);
                         }
                         else
                         {
@@ -109,7 +109,7 @@ namespace GUI
                     {
                         if (sum > 0)
                         {
-                            bar2Positive.Value = sum / count;
+                            bar2Positive.Value = Math.Floor(sum / count);
                         }
                         else
                         {
@@ -132,7 +132,7 @@ namespace GUI
                     {
                         if (sum > 0)
                         {
-                            bar3Positive.Value = sum / count;
+                            bar3Positive.Value = Math.Floor(sum / count);
                         }
                         else
                         {
@@ -155,7 +155,7 @@ namespace GUI
                     {
                         if (sum > 0)
                         {
-                            bar4Positive.Value = sum / count;
+                            bar4Positive.Value = Math.Floor(sum / count);
                         }
                         else
                         {
@@ -178,7 +178,7 @@ namespace GUI
                     {
                         if (sum > 0)
                         {
-                            bar5Positive.Value = sum / count;
+                            bar5Positive.Value = Math.Floor(sum / count);
                         }
                         else
                         {
@@ -201,7 +201,7 @@ namespace GUI
                     {
                         if (sum > 0)
                         {
-                            bar6Positive.Value = sum / count;
+                            bar6Positive.Value = Math.Floor(sum / count);
                         }
                         else
                         {
@@ -224,7 +224,7 @@ namespace GUI
                     {
                         if (sum > 0)
                         {
-                            bar7Positive.Value = sum / count;
+                            bar7Positive.Value = Math.Floor(sum / count);
                         }
                         else
                         {
@@ -247,7 +247,7 @@ namespace GUI
                     {
                         if (sum > 0)
                         {
-                            bar8Positive.Value = sum / count;
+                            bar8Positive.Value = Math.Floor(sum / count);
                         }
                         else
                         {
@@ -270,7 +270,7 @@ namespace GUI
                     {
                         if (sum > 0)
                         {
-                            bar9Positive.Value = sum / count;
+                            bar9Positive.Value = Math.Floor(sum / count);
                         }
                         else
                         {
@@ -293,7 +293,7 @@ namespace GUI
                     {
                         if (sum > 0)
                         {
-                            bar10Positive.Value = sum / count;
+                            bar10Positive.Value = Math.Floor(sum / count);
                         }
                         else
                         {
@@ -316,7 +316,7 @@ namespace GUI
                     {
                         if (sum > 0)
                         {
-                            bar11Positive.Value = sum / count;
+                            bar11Positive.Value = Math.Floor(sum / count);
                         }
                         else
                         {
@@ -339,7 +339,7 @@ namespace GUI
                     {
                         if (sum > 0)
                         {
-                            bar12Positive.Value = sum / count;
+                            bar12Positive.Value = Math.Floor(sum / count);
                         }
                         else
                         {
@@ -362,7 +362,7 @@ namespace GUI
                     {
                         if (sum > 0)
                         {
-                            bar13Positive.Value = sum / count;
+                            bar13Positive.Value = Math.Floor(sum / count);
                         }
                         else
                         {
@@ -385,7 +385,7 @@ namespace GUI
                     {
                         if (sum > 0)
                         {
-                            bar14Positive.Value = sum / count;
+                            bar14Positive.Value = Math.Floor(sum / count);
                         }
                         else
                         {
@@ -408,7 +408,7 @@ namespace GUI
                     {
                         if (sum > 0)
                         {
-                            bar15Positive.Value = sum / count;
+                            bar15Positive.Value = Math.Floor(sum / count);
                         }
                         else
                         {
@@ -431,7 +431,7 @@ namespace GUI
                     {
                         if (sum > 0)
                         {
-                            bar16Positive.Value = sum / count;
+                            bar16Positive.Value = Math.Floor(sum / count);
                         }
                         else
                         {
@@ -454,7 +454,7 @@ namespace GUI
                     {
                         if (sum > 0)
                         {
-                            bar17Positive.Value = sum / count;
+                            bar17Positive.Value = Math.Floor(sum / count);
                         }
                         else
                         {
@@ -477,7 +477,7 @@ namespace GUI
                     {
                         if (sum > 0)
                         {
-                            bar18Positive.Value = sum / count;
+                            bar18Positive.Value = Math.Floor(sum / count);
                         }
                         else
                         {
@@ -500,7 +500,7 @@ namespace GUI
                     {
                         if (sum > 0)
                         {
-                            bar19Positive.Value = sum / count;
+                            bar19Positive.Value = Math.Floor(sum / count);
                         }
                         else
                         {
@@ -523,7 +523,7 @@ namespace GUI
                     {
                         if (sum > 0)
                         {
-                            bar20Positive.Value = sum / count;
+                            bar20Positive.Value = Math.Floor(sum / count);
                         }
                         else
                         {
@@ -546,7 +546,7 @@ namespace GUI
                     {
                         if (sum > 0)
                         {
-                            bar21Positive.Value = sum / count;
+                            bar21Positive.Value = Math.Floor(sum / count);
                         }
                         else
                         {
@@ -569,7 +569,7 @@ namespace GUI
                     {
                         if (sum >= 0)
                         {
-                            bar22Positive.Value = sum / count;
+                            bar22Positive.Value = Math.Floor(sum / count);
                         }
                         else
                         {
@@ -592,7 +592,7 @@ namespace GUI
                     {
                         if (sum >= 0)
                         {
-                            bar23Positive.Value = sum / count;
+                            bar23Positive.Value = Math.Floor(sum / count);
                         }
                         else
                         {
@@ -615,7 +615,7 @@ namespace GUI
                     {
                         if (sum >= 0)
                         {
-                            bar24Positive.Value = sum / count;
+                            bar24Positive.Value = Math.Floor(sum / count);
                         }
                         else
                         {

@@ -131,8 +131,9 @@ namespace DatabaseLayer.DAO.Implementacije
         }
         public IEnumerable<BatteryDTO> FindAllById(string id, int secondsStart, int secondsEnd)
         {
-            string query = "select capacity, idb, power, state, vreme from batteries" +
-                " where idb =:idb and vreme >=:s and vreme <=:e";
+            string query = "select capacity, idb, power, state, vreme from batteries " +
+                " where idb =:idb and vreme >=:s and vreme <=:e " +
+                "order by vreme asc";
             List<BatteryDTO> batteryList = new List<BatteryDTO>();
 
             using (IDbConnection connection = ConnectionUtil_Pooling.GetConnection())

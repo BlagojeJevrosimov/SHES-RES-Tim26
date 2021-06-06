@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DatabaseLayer.SERVICES
 {
-    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, InstanceContextMode = InstanceContextMode.Single)]
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Single)]
     public class DBServices : IDBServices
     {
        

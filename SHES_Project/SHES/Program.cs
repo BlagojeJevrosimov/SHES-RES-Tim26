@@ -284,7 +284,7 @@ namespace SHES
                         proxyBaza.SaveTotalExpenditure(currentDate, (int)cenaDana);
                         brojac = 0;
                         cenaDana = 0;
-                        currentDate.AddDays(1);
+                        currentDate = currentDate.AddDays(1);
                     }
 
                     brojac++;

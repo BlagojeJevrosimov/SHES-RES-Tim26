@@ -98,7 +98,8 @@ namespace DatabaseLayer.DAO.Implementacije
         public IEnumerable<SolarPanelsDTO> FindAll(int start, int end)
         {
             string query = "select power, time from spproduction " +
-                "where time>= :s and time <= :e ";
+                "where time>= :s and time <= :e " +
+                "order by time asc";
                 
             List<SolarPanelsDTO> consumerList = new List<SolarPanelsDTO>();
 

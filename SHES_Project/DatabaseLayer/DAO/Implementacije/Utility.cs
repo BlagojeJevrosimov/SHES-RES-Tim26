@@ -58,8 +58,9 @@ namespace DatabaseLayer.DAO.Implementacije
         }
         public IEnumerable<UtilityDTO> FindAll(int start, int end)
         {
-            string query = "select power, time from uproduction " +
-                "where time>= :s and time < :e";
+            string query = "select power, vreme from uproduction " +
+                "where vreme >= :s and vreme <= :e " +
+                "order by vreme asc";
 
             List<UtilityDTO> consumerList = new List<UtilityDTO>();
 
@@ -72,8 +73,9 @@ namespace DatabaseLayer.DAO.Implementacije
                     ParameterUtil.AddParameter(command, "s", DbType.Int32);
                     ParameterUtil.AddParameter(command, "e", DbType.Int32);
                     command.Prepare();
-                    ParameterUtil.SetParameterValue(command, "s", start);
                     ParameterUtil.SetParameterValue(command, "e", end);
+                    ParameterUtil.SetParameterValue(command, "s", start);
+                    
 
                     using (IDataReader reader = command.ExecuteReader())
                     {
@@ -145,15 +147,15 @@ namespace DatabaseLayer.DAO.Implementacije
         {
             using (IDbConnection connection = ConnectionUtil_Pooling.GetConnection())
             {
-                String insertSql = "insert into uproduction (power,time) values (:power, :time)";
+                String insertSql = "insert into uproduction (power,vreme) values (:power, :t)";
                 //String updateSql = "update uproduction set power= :powerwhere time =:time";
                 connection.Open();
                 using (IDbCommand command = connection.CreateCommand())
                 {
                     command.CommandText = insertSql;
                     ParameterUtil.AddParameter(command, "power", DbType.Double);
-                    ParameterUtil.AddParameter(command, "time", DbType.Int32);
-                    ParameterUtil.SetParameterValue(command, "time",time);
+                    ParameterUtil.AddParameter(command, "t", DbType.Int32);
+                    ParameterUtil.SetParameterValue(command, "t",time);
                     ParameterUtil.SetParameterValue(command, "power", utility.Power);
                     command.ExecuteNonQuery();
                 }
