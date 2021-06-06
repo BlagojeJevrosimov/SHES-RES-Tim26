@@ -57,6 +57,55 @@ namespace GUI
             }
             maxHgt = maxPowers.Max();
 
+            bar1Positive.Value = 0;
+            bar1Positive.MaxValue = maxHgt;
+            bar2Positive.Value = 0;
+            bar2Positive.MaxValue = maxHgt;
+            bar3Positive.Value = 0;
+            bar3Positive.MaxValue = maxHgt;
+            bar4Positive.Value = 0;
+            bar4Positive.MaxValue = maxHgt;
+            bar5Positive.Value = 0;
+            bar5Positive.MaxValue = maxHgt;
+            bar6Positive.Value = 0;
+            bar6Positive.MaxValue = maxHgt;
+            bar7Positive.Value = 0;
+            bar7Positive.MaxValue = maxHgt;
+            bar8Positive.Value = 0;
+            bar8Positive.MaxValue = maxHgt;
+            bar9Positive.Value = 0;
+            bar9Positive.MaxValue = maxHgt;
+            bar10Positive.Value = 0;
+            bar10Positive.MaxValue = maxHgt;
+            bar11Positive.Value = 0;
+            bar11Positive.MaxValue = maxHgt;
+            bar12Positive.Value = 0;
+            bar12Positive.MaxValue = maxHgt;
+            bar13Positive.Value = 0;
+            bar13Positive.MaxValue = maxHgt;
+            bar14Positive.Value = 0;
+            bar14Positive.MaxValue = maxHgt;
+            bar15Positive.Value = 0;
+            bar15Positive.MaxValue = maxHgt;
+            bar16Positive.Value = 0;
+            bar16Positive.MaxValue = maxHgt;
+            bar17Positive.Value = 0;
+            bar17Positive.MaxValue = maxHgt;
+            bar18Positive.Value = 0;
+            bar18Positive.MaxValue = maxHgt;
+            bar19Positive.Value = 0;
+            bar19Positive.MaxValue = maxHgt;
+            bar20Positive.Value = 0;
+            bar20Positive.MaxValue = maxHgt;
+            bar21Positive.Value = 0;
+            bar21Positive.MaxValue = maxHgt;
+            bar22Positive.Value = 0;
+            bar22Positive.MaxValue = maxHgt;
+            bar23Positive.Value = 0;
+            bar23Positive.MaxValue = maxHgt;
+            bar24Positive.Value = 0;
+            bar24Positive.MaxValue = maxHgt;
+
             for (int i = 0; i < data.Count; i++)
             {
 

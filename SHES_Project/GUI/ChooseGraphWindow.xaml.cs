@@ -42,8 +42,6 @@ namespace GUI
 
             cmbBoxGraph.ItemsSource = grafici;
 
-            lblID.Visibility = Visibility.Visible;
-            txtBoxID.Visibility = Visibility.Visible;
         }
 
         private void Show_Button_Click(object sender, RoutedEventArgs e)
