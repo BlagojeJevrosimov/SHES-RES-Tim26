@@ -64,6 +64,7 @@ namespace GUI
 
             double temp1 = maxPowers.Max();
             double temp2 = maxPowers.Min();
+
             if (Math.Abs(temp2) > temp1)
             {
                 maxHgt = Math.Abs(temp2);
@@ -106,14 +107,14 @@ namespace GUI
                     {
                         if (sum >= 0)
                         {
-                            bar1Positive.Value = sum / count;
+                            bar1Positive.Value = Math.Round(sum / count);
                             bar1Negative.Value = 0;
                             bar1Negative.ForegroundClr = Brushes.Transparent;
                         }
                         else
                         {
                             bar1Positive.Value = 0;
-                            bar1Negative.Value = Math.Abs(sum / count);
+                            bar1Negative.Value = Math.Abs(Math.Round(sum / count));
                             bar1Positive.ForegroundClr = Brushes.Transparent;
                         }
 
@@ -140,14 +141,14 @@ namespace GUI
                     {
                         if (sum >= 0)
                         {
-                            bar2Positive.Value = sum / count;
+                            bar2Positive.Value = Math.Round(sum / count);
                             bar2Negative.Value = 0;
                             bar2Negative.ForegroundClr = Brushes.Transparent;
                         }
                         else
                         {
                             bar2Positive.Value = 0;
-                            bar2Negative.Value = Math.Abs(sum / count);
+                            bar2Negative.Value = Math.Abs(Math.Round(sum / count));
                             bar2Positive.ForegroundClr = Brushes.Transparent;
                         }
 
@@ -174,14 +175,14 @@ namespace GUI
                     {
                         if (sum >= 0)
                         {
-                            bar3Positive.Value = sum / count;
+                            bar3Positive.Value = Math.Round(sum / count);
                             bar3Negative.Value = 0;
                             bar3Negative.ForegroundClr = Brushes.Transparent;
                         }
                         else
                         {
                             bar3Positive.Value = 0;
-                            bar3Negative.Value = Math.Abs(sum / count);
+                            bar3Negative.Value = Math.Abs(Math.Round(sum / count));
                             bar3Positive.ForegroundClr = Brushes.Transparent;
                         }
 
@@ -208,14 +209,14 @@ namespace GUI
                     {
                         if (sum >= 0)
                         {
-                            bar4Positive.Value = sum / count;
+                            bar4Positive.Value = Math.Round(sum / count);
                             bar4Negative.Value = 0;
                             bar4Negative.ForegroundClr = Brushes.Transparent;
                         }
                         else
                         {
                             bar4Positive.Value = 0;
-                            bar4Negative.Value = Math.Abs(sum / count);
+                            bar4Negative.Value = Math.Abs(Math.Round(sum / count));
                             bar4Positive.ForegroundClr = Brushes.Transparent;
                         }
 
@@ -242,14 +243,14 @@ namespace GUI
                     {
                         if (sum >= 0)
                         {
-                            bar5Positive.Value = sum / count;
+                            bar5Positive.Value = Math.Round(sum / count);
                             bar5Negative.Value = 0;
                             bar5Negative.ForegroundClr = Brushes.Transparent;
                         }
                         else
                         {
                             bar5Positive.Value = 0;
-                            bar5Negative.Value = Math.Abs(sum / count);
+                            bar5Negative.Value = Math.Abs(Math.Round(sum / count));
                             bar5Positive.ForegroundClr = Brushes.Transparent;
                         }
 
@@ -276,14 +277,14 @@ namespace GUI
                     {
                         if (sum >= 0)
                         {
-                            bar6Positive.Value = sum / count;
+                            bar6Positive.Value = Math.Round(sum / count);
                             bar6Negative.Value = 0;
                             bar6Negative.ForegroundClr = Brushes.Transparent;
                         }
                         else
                         {
                             bar6Positive.Value = 0;
-                            bar6Negative.Value = Math.Abs(sum / count);
+                            bar6Negative.Value = Math.Abs(Math.Round(sum / count));
                             bar6Positive.ForegroundClr = Brushes.Transparent;
                         }
 
@@ -310,14 +311,14 @@ namespace GUI
                     {
                         if (sum >= 0)
                         {
-                            bar7Positive.Value = sum / count;
+                            bar7Positive.Value = Math.Round(sum / count);
                             bar7Negative.Value = 0;
                             bar7Negative.ForegroundClr = Brushes.Transparent;
                         }
                         else
                         {
                             bar7Positive.Value = 0;
-                            bar7Negative.Value = Math.Abs(sum / count);
+                            bar7Negative.Value = Math.Abs(Math.Round(sum / count));
                             bar7Positive.ForegroundClr = Brushes.Transparent;
                         }
 
@@ -344,14 +345,14 @@ namespace GUI
                     {
                         if (sum >= 0)
                         {
-                            bar8Positive.Value = sum / count;
+                            bar8Positive.Value = Math.Round(sum / count);
                             bar8Negative.Value = 0;
                             bar8Negative.ForegroundClr = Brushes.Transparent;
                         }
                         else
                         {
                             bar8Positive.Value = 0;
-                            bar8Negative.Value = Math.Abs(sum / count);
+                            bar8Negative.Value = Math.Abs(Math.Round(sum / count));
                             bar8Positive.ForegroundClr = Brushes.Transparent;
                         }
 
@@ -378,14 +379,14 @@ namespace GUI
                     {
                         if (sum >= 0)
                         {
-                            bar9Positive.Value = sum / count;
+                            bar9Positive.Value = Math.Round(sum / count);
                             bar9Negative.Value = 0;
                             bar9Negative.ForegroundClr = Brushes.Transparent;
                         }
                         else
                         {
                             bar9Positive.Value = 0;
-                            bar9Negative.Value = Math.Abs(sum / count);
+                            bar9Negative.Value = Math.Abs(Math.Round(sum / count));
                             bar9Positive.ForegroundClr = Brushes.Transparent;
                         }
 
@@ -412,14 +413,14 @@ namespace GUI
                     {
                         if (sum >= 0)
                         {
-                            bar10Positive.Value = sum / count;
+                            bar10Positive.Value = Math.Round(sum / count);
                             bar10Negative.Value = 0;
                             bar10Negative.ForegroundClr = Brushes.Transparent;
                         }
                         else
                         {
                             bar10Positive.Value = 0;
-                            bar10Negative.Value = Math.Abs(sum / count);
+                            bar10Negative.Value = Math.Abs(Math.Round(sum / count));
                             bar10Positive.ForegroundClr = Brushes.Transparent;
                         }
 
@@ -446,14 +447,14 @@ namespace GUI
                     {
                         if (sum >= 0)
                         {
-                            bar11Positive.Value = sum / count;
+                            bar11Positive.Value = Math.Round(sum / count);
                             bar11Negative.Value = 0;
                             bar11Negative.ForegroundClr = Brushes.Transparent;
                         }
                         else
                         {
                             bar11Positive.Value = 0;
-                            bar11Negative.Value = Math.Abs(sum / count);
+                            bar11Negative.Value = Math.Abs(Math.Round(sum / count));
                             bar11Positive.ForegroundClr = Brushes.Transparent;
                         }
 
@@ -480,14 +481,14 @@ namespace GUI
                     {
                         if (sum >= 0)
                         {
-                            bar12Positive.Value = sum / count;
+                            bar12Positive.Value = Math.Round(sum / count);
                             bar12Negative.Value = 0;
                             bar12Negative.ForegroundClr = Brushes.Transparent;
                         }
                         else
                         {
                             bar12Positive.Value = 0;
-                            bar12Negative.Value = Math.Abs(sum / count);
+                            bar12Negative.Value = Math.Abs(Math.Round(sum / count));
                             bar12Positive.ForegroundClr = Brushes.Transparent;
                         }
 
@@ -514,14 +515,14 @@ namespace GUI
                     {
                         if (sum >= 0)
                         {
-                            bar13Positive.Value = sum / count;
+                            bar13Positive.Value = Math.Round(sum / count);
                             bar13Negative.Value = 0;
                             bar13Negative.ForegroundClr = Brushes.Transparent;
                         }
                         else
                         {
                             bar13Positive.Value = 0;
-                            bar13Negative.Value = Math.Abs(sum / count);
+                            bar13Negative.Value = Math.Abs(Math.Round(sum / count));
                             bar13Positive.ForegroundClr = Brushes.Transparent;
                         }
 
@@ -548,14 +549,14 @@ namespace GUI
                     {
                         if (sum >= 0)
                         {
-                            bar14Positive.Value = sum / count;
+                            bar14Positive.Value = Math.Round(sum / count);
                             bar14Negative.Value = 0;
                             bar14Negative.ForegroundClr = Brushes.Transparent;
                         }
                         else
                         {
                             bar14Positive.Value = 0;
-                            bar14Negative.Value = Math.Abs(sum / count);
+                            bar14Negative.Value = Math.Abs(Math.Round(sum / count));
                             bar14Positive.ForegroundClr = Brushes.Transparent;
                         }
 
@@ -582,14 +583,14 @@ namespace GUI
                     {
                         if (sum >= 0)
                         {
-                            bar15Positive.Value = sum / count;
+                            bar15Positive.Value = Math.Round(sum / count);
                             bar15Negative.Value = 0;
                             bar15Negative.ForegroundClr = Brushes.Transparent;
                         }
                         else
                         {
                             bar15Positive.Value = 0;
-                            bar15Negative.Value = Math.Abs(sum / count);
+                            bar15Negative.Value = Math.Abs(Math.Round(sum / count));
                             bar15Positive.ForegroundClr = Brushes.Transparent;
                         }
 
@@ -616,14 +617,14 @@ namespace GUI
                     {
                         if (sum >= 0)
                         {
-                            bar16Positive.Value = sum / count;
+                            bar16Positive.Value = Math.Round(sum / count);
                             bar16Negative.Value = 0;
                             bar16Negative.ForegroundClr = Brushes.Transparent;
                         }
                         else
                         {
                             bar16Positive.Value = 0;
-                            bar16Negative.Value = Math.Abs(sum / count);
+                            bar16Negative.Value = Math.Abs(Math.Round(sum / count));
                             bar16Positive.ForegroundClr = Brushes.Transparent;
                         }
 
@@ -650,14 +651,14 @@ namespace GUI
                     {
                         if (sum >= 0)
                         {
-                            bar17Positive.Value = sum / count;
+                            bar17Positive.Value = Math.Round(sum / count);
                             bar17Negative.Value = 0;
                             bar17Negative.ForegroundClr = Brushes.Transparent;
                         }
                         else
                         {
                             bar17Positive.Value = 0;
-                            bar17Negative.Value = Math.Abs(sum / count);
+                            bar17Negative.Value = Math.Abs(Math.Round(sum / count));
                             bar17Positive.ForegroundClr = Brushes.Transparent;
                         }
 
@@ -691,7 +692,7 @@ namespace GUI
                         else
                         {
                             bar18Positive.Value = 0;
-                            bar18Negative.Value = Math.Abs(sum / count);
+                            bar18Negative.Value = Math.Abs(Math.Round(sum / count));
                             bar18Positive.ForegroundClr = Brushes.Transparent;
                         }
 
@@ -718,14 +719,14 @@ namespace GUI
                     {
                         if (sum >= 0)
                         {
-                            bar19Positive.Value = sum / count;
+                            bar19Positive.Value = Math.Round(sum / count);
                             bar19Negative.Value = 0;
                             bar19Negative.ForegroundClr = Brushes.Transparent;
                         }
                         else
                         {
                             bar19Positive.Value = 0;
-                            bar19Negative.Value = Math.Abs(sum / count);
+                            bar19Negative.Value = Math.Abs(Math.Round(sum / count));
                             bar19Positive.ForegroundClr = Brushes.Transparent;
                         }
 
@@ -752,14 +753,14 @@ namespace GUI
                     {
                         if (sum >= 0)
                         {
-                            bar20Positive.Value = sum / count;
+                            bar20Positive.Value = Math.Round(sum / count);
                             bar20Negative.Value = 0;
                             bar20Negative.ForegroundClr = Brushes.Transparent;
                         }
                         else
                         {
                             bar20Positive.Value = 0;
-                            bar20Negative.Value = Math.Abs(sum / count);
+                            bar20Negative.Value = Math.Abs(Math.Round(sum / count));
                             bar20Positive.ForegroundClr = Brushes.Transparent;
                         }
 
@@ -786,14 +787,14 @@ namespace GUI
                     {
                         if (sum >= 0)
                         {
-                            bar21Positive.Value = sum / count;
+                            bar21Positive.Value = Math.Round(sum / count);
                             bar21Negative.Value = 0;
                             bar21Negative.ForegroundClr = Brushes.Transparent;
                         }
                         else
                         {
                             bar21Positive.Value = 0;
-                            bar21Negative.Value = Math.Abs(sum / count);
+                            bar21Negative.Value = Math.Abs(Math.Round(sum / count));
                             bar21Positive.ForegroundClr = Brushes.Transparent;
                         }
 
@@ -820,14 +821,14 @@ namespace GUI
                     {
                         if (sum >= 0)
                         {
-                            bar22Positive.Value = sum / count;
+                            bar22Positive.Value = Math.Round(sum / count);
                             bar22Negative.Value = 0;
                             bar22Negative.ForegroundClr = Brushes.Transparent;
                         }
                         else
                         {
                             bar22Positive.Value = 0;
-                            bar22Negative.Value = Math.Abs(sum / count);
+                            bar22Negative.Value = Math.Abs(Math.Round(sum / count));
                             bar22Positive.ForegroundClr = Brushes.Transparent;
                         }
 
@@ -854,14 +855,14 @@ namespace GUI
                     {
                         if (sum >= 0)
                         {
-                            bar23Positive.Value = sum / count;
+                            bar23Positive.Value = Math.Round(sum / count);
                             bar23Negative.Value = 0;
                             bar23Negative.ForegroundClr = Brushes.Transparent;
                         }
                         else
                         {
                             bar23Positive.Value = 0;
-                            bar23Negative.Value = Math.Abs(sum / count);
+                            bar23Negative.Value = Math.Abs(Math.Round(sum / count));
                             bar23Positive.ForegroundClr = Brushes.Transparent;
                         }
 
@@ -888,14 +889,14 @@ namespace GUI
                     {
                         if (sum >= 0)
                         {
-                            bar24Positive.Value = sum / count;
+                            bar24Positive.Value = Math.Round(sum / count);
                             bar24Negative.Value = 0;
                             bar24Negative.ForegroundClr = Brushes.Transparent;
                         }
                         else
                         {
                             bar24Positive.Value = 0;
-                            bar24Negative.Value = Math.Abs(sum / count);
+                            bar24Negative.Value = Math.Abs(Math.Round(sum / count));
                             bar24Positive.ForegroundClr = Brushes.Transparent;
                         }
 
