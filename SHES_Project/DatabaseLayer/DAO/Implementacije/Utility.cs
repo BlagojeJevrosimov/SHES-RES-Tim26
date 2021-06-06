@@ -5,12 +5,14 @@ using SHES_Project.DatabaseLayer;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DatabaseLayer.DAO.Implementacije
 {
+    [ExcludeFromCodeCoverage]
     public class Utility : IUtility
     {
         public int Count()

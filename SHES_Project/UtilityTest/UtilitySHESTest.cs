@@ -47,19 +47,6 @@ namespace UtilityTest
         }
 
         [Test]
-        public void DobriParametriEnergija()
-        {
-            ushes.sendRequestforEnergy(-2000);
-
-            Assert.AreEqual(mockUtil.Object.Power, -2000);
-
-            ushes.sendRequestforEnergy(1000);
-
-            Assert.AreEqual(mockUtil.Object.Power, 1000);
-
-        }
-
-        [Test]
         public void LosiParametriIncijalizacija()
         {
             Assert.Throws<ArgumentNullException>(

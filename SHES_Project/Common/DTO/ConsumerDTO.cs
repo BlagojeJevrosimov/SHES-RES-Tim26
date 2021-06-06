@@ -13,11 +13,17 @@ namespace Common.DTO
         private int time;
         private double power;
 
-        //OVAJ OBRISATI
+        public ConsumersDTO() { }
+
         public ConsumersDTO(int time, double power)
         {
-            Time = time;
-            Power = power;
+            if (time < 0)
+                throw new ArgumentOutOfRangeException("Vreme ne sme biti negativno!");
+            else
+            {
+                Time = time;
+                Power = power;
+            }
         }
         [DataMember]
         public int Time { get => time; set => time = value; }

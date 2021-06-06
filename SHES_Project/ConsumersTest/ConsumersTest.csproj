@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonConsumersTest.cs" />
+    <Compile Include="CommonDTOConsumerTest.cs" />
     <Compile Include="ConsumerGUITest.cs" />
     <Compile Include="ConsumerSHESTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
