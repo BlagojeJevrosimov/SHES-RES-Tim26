@@ -23,6 +23,7 @@ namespace Consumer
             if(id >= 0)
             {
                 rezimBuffer = new Enums.ConsumerRezim[ConsumerSHES.consumersList.Count];
+                changed = true;
             }
             else
             {

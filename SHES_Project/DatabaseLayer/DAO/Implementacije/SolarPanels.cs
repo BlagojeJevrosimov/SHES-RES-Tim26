@@ -97,14 +97,14 @@ namespace DatabaseLayer.DAO.Implementacije
         }
         public IEnumerable<SolarPanelsDTO> FindAll(int start, int end)
         {
-            string query = "select power, time from consumers " +
-                "where time>= :s and time < :e ";
+            string query = "select power, time from spproduction " +
+                "where time>= :s and time <= :e ";
                 
             List<SolarPanelsDTO> consumerList = new List<SolarPanelsDTO>();
 
             using (IDbConnection connection = ConnectionUtil_Pooling.GetConnection())
             {
-               // connection.Open();
+                connection.Open();
                 using (IDbCommand command = connection.CreateCommand())
                 {
                     command.CommandText = query;
@@ -186,8 +186,8 @@ namespace DatabaseLayer.DAO.Implementacije
         }
         public void Save(SolarPanel entity, IDbConnection connection)
         {
-            String insertSql = "insert into solarpanels(power,idsp) values (:p, :idsp)";
-            String updateSql = "update solarpanels set  power = :p where idsp =:idsp";
+            String insertSql = "insert into solarpanels(power,idsp) values(:p, :idsp)";
+            String updateSql = "update solarpanels set  power=:p where idsp =:idsp";
 
             using (IDbCommand command = connection.CreateCommand())
             {
@@ -207,7 +207,7 @@ namespace DatabaseLayer.DAO.Implementacije
         public void SaveProduction(double power, int time) {
 
             
-            String insertSql = "insert into spproduction (power,time) values (:power, :time)";
+            String insertSql = "insert into spproduction (power,time) values (:power, :t)";
             
             using (IDbConnection connection = ConnectionUtil_Pooling.GetConnection())
             {
@@ -216,8 +216,8 @@ namespace DatabaseLayer.DAO.Implementacije
                 {
                     command.CommandText = insertSql;
                     ParameterUtil.AddParameter(command, "power", DbType.Double);
-                    ParameterUtil.AddParameter(command, "time", DbType.Int32);
-                    ParameterUtil.SetParameterValue(command, "time", time);
+                    ParameterUtil.AddParameter(command, "t", DbType.Int32);
+                    ParameterUtil.SetParameterValue(command, "t", time);
                     ParameterUtil.SetParameterValue(command, "power", power);
                     command.ExecuteNonQuery();
                 }

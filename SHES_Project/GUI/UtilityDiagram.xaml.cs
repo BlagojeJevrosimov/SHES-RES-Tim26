@@ -1,7 +1,9 @@
-﻿using Common.DTO;
+﻿using Common;
+using Common.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -38,8 +40,9 @@ namespace GUI
             maxHgt = 0;
 
             naslov.Text += "Date: " + date;
-
-            data = CommunicationData.proxySHES.GetUtilityData(date);
+            ChannelFactory<ISHESGUI> channel = new ChannelFactory<ISHESGUI>("ISHESGUI");
+            ISHESGUI proxy = channel.CreateChannel();
+            data = proxy.GetUtilityData(date);
 
             ViewModelUtility vm = new ViewModelUtility();
             vm.Data = data;

@@ -3,6 +3,7 @@ using Common.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -39,8 +40,10 @@ namespace GUI
             maxHgt = 0;
 
             naslov.Text += "Date: " + date;
+            ChannelFactory<ISHESGUI> channel = new ChannelFactory<ISHESGUI>("ISHESGUI");
+            ISHESGUI proxy = channel.CreateChannel();
 
-            data = CommunicationData.proxySHES.GetSolarPanelsData(date);
+            data = proxy.GetSolarPanelsData(date);
 
             ViewModelSP vm = new ViewModelSP();
             vm.Data = data;

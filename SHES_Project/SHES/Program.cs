@@ -66,7 +66,7 @@ namespace SHES
             int brojac = 0;
             //Racunanje pocetnog vremena
             DateTime centuryBegin = new DateTime(2020, 1, 1);
-            DateTime currentDate = DateTime.Now.Date;
+            DateTime currentDate = new DateTime(2020,6,1);
 
 
             long elapsedTicks = currentDate.Ticks - centuryBegin.Ticks;
@@ -277,11 +277,6 @@ namespace SHES
                     proxyBaza.SaveSolarPanelProduction(solarPanelsOutput, vreme);
                     proxyBaza.SaveConsumers(consumers, vreme);
                     proxyBaza.SaveBatteries(batteries, vreme);
-                    foreach (Battery b in batteries)
-                    {
-                        
-                       SHESGUI.bGrafik.Add(new Common.DTO.BatteryDTO(b.Capacity, b.Id, b.MaxPower, b.State, vreme));
-                    }
                     proxyBaza.SaveUtility(utility, vreme);
                     if (!SHESGUI.dates.Contains(currentDate)) SHESGUI.dates.Add(currentDate);
                     if (brojac == 288)

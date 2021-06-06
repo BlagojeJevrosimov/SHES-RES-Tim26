@@ -58,7 +58,7 @@ namespace DatabaseLayer.DAO.Implementacije
         }
         public IEnumerable<UtilityDTO> FindAll(int start, int end)
         {
-            string query = "select power, time from consumers " +
+            string query = "select power, time from uproduction " +
                 "where time>= :s and time < :e";
 
             List<UtilityDTO> consumerList = new List<UtilityDTO>();
